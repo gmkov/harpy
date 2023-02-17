@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.729886394784">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.729959327277">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -34,11 +34,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="static/favicon.png" rel="icon" />
-    <link href="resources/css/retype.css?v=2.4.0.729886394784" rel="stylesheet" />
+    <link href="resources/css/retype.css?v=2.4.0.729959327277" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.729886394784" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.729959327277" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.729886394784" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.729959327277" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -251,7 +251,7 @@ can modify are done at the command line. There aren&#x27;t too many, which shoul
     </h2>
 </doc-anchor-target>
 <p>Harpy is modular, meaning you can use different parts of it independent from each other. Need to only align reads?
-Great! Only want to call variants? Awesome! All modules are called by <code v-pre>harpy modulename</code>. For example, use <code v-pre>harpy align</code> to align reads.</p>
+Great! Only want to call variants? Awesome! All modules are called by <code v-pre>harpy &lt;module&gt;</code>. For example, use <code v-pre>harpy align</code> to align reads.</p>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -261,6 +261,10 @@ Great! Only want to call variants? Awesome! All modules are called by <code v-pr
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>extra</code></td>
+<td style="text-align: left;">Create various associated or necessary files</td>
+</tr>
 <tr>
 <td style="text-align: left;"><code v-pre>trim</code></td>
 <td style="text-align: left;">Remove adapters and quality trim sequences</td>
@@ -275,7 +279,7 @@ Great! Only want to call variants? Awesome! All modules are called by <code v-pr
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>impute</code></td>
-<td style="text-align: left;">Impute genotypes from genotype likelihoods</td>
+<td style="text-align: left;">Impute genotypes using variants and sequences</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>phase</code></td>
@@ -295,25 +299,27 @@ Great! Only want to call variants? Awesome! All modules are called by <code v-pr
 <div class="codeblock-title">harpy --help</div>
 <pre class="language-none"><code v-pre class="language-none"> Usage: harpy [OPTIONS] COMMAND [ARGS]...                     
                                                               
- HARPY Haplotagging data processing pipeline.             
- The pipeline trims reads, map sequences, calls variants, 
- imputes genotypes, and phases haplotypes.                
-                                                          
- trim 🡒 align 🡒 variants 🡒 impute 🡒 phase                 
-                                                          
- Documentation: https://pdimens.github.io/HARPY/#/        
-                                                          
-╭─ Options ──────────────────────────────────────────────╮
-│ --help      Show this message and exit.                │
-╰────────────────────────────────────────────────────────╯
-╭─ Commands ─────────────────────────────────────────────╮
-│ align     Align sample sequences to a reference genome │
-│ impute    Impute genotypes from genotype likelihoods   │
-│ phase     Phase SNPs into haplotypes                   │
-│ trim      Remove adapters and quality trim sequences   │
-│ variants  Call variants from sample alignments         │
-╰────────────────────────────────────────────────────────╯
-</code></pre>
+               Haplotagging Research Pipeline (HARPY)               
+                            version: 0.1                            
+                                                                    
+ The pipeline trims reads, maps sequences, calls variants, imputes  
+ genotypes, and phases haplotypes of Haplotagging data.             
+                                                                    
+ trim 🡒 align 🡒 variants 🡒 impute 🡒 phase                           
+                                                                    
+ Documentation: https://pdimens.github.io/HARPY/                    
+                                                                    
+╭─ Options ────────────────────────────────────────────────────────╮
+│ --help      Show this message and exit.                          │
+╰──────────────────────────────────────────────────────────────────╯
+╭─ Commands ───────────────────────────────────────────────────────╮
+│ align     Align sample sequences to a reference genome           │
+│ extra     Create various associated/necessary files              │
+│ impute    Impute genotypes using variants and sequences          │
+│ phase     Phase SNPs into haplotypes                             │
+│ trim      Remove adapters and quality trim sequences             │
+│ variants  Call variants from sample alignments                   │
+╰──────────────────────────────────────────────────────────────────╯</code></pre>
 </doc-codeblock></div>
 
                                 
