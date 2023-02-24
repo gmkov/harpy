@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.730390583937">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.730571850832">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.730390583937" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.730571850832" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.730390583937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.730571850832" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.730390583937" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.730390583937" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.730571850832" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.730571850832" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -246,7 +246,7 @@
 <li>at least 4 cores/threads available</li>
 <li>a genome assembly in FASTA format</li>
 <li>alignment files</li>
-<li>sample grouping file (<doc-anchor-trigger to="#sample-grouping-file">see below</doc-anchor-trigger>)</li>
+<li>sample grouping file (<doc-anchor-trigger to="#sample-grouping-file%5D">see below</doc-anchor-trigger></li>
 </ul>
     </div>
 </div>
@@ -353,6 +353,7 @@
 <p>This file is entirely optional and useful if you want variant calling to happen on a per-population level.</p>
 <ul>
 <li>takes the format of sample&lt;tab&gt;group</li>
+<li>the groups can be numbers or text (<em>i.e.</em> meaningful population names)</li>
 <li>create with <code v-pre>harpy extra -p &lt;samplefolder&gt;</code> or manually</li>
 <li>if created with <code v-pre>harpy extra -p</code>, all the samples will be assigned to group <code v-pre>1</code>, so make sure to edit the second column to reflect your data correctly.</li>
 <li>the file looks like:</li>
@@ -386,10 +387,10 @@ then merge everything at the end. This would mean that a more fragmented assembl
 chromosome-scale one, but you&#x27;re more likely to have fewer variants detected. All intermediate outputs are removed, leaving
 you only the raw variants file (in <code v-pre>.bcf</code> format), the index of that file, and some basic stats about it.</p>
 <div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
-    A((split contigs)) --&gt; B((bcftools mpileup))
-    B--&gt;C((bcftools call))
-    C--&gt;D((index BCFs))
-    D--&gt;E((combine BCFs))
+    A([split contigs]) --&gt; B([bcftools mpileup])
+    B--&gt;C([bcftools call])
+    C--&gt;D([index BCFs])
+    D--&gt;E([combine BCFs])
     C--&gt;E</pre></div>
 <doc-anchor-target id="leviathan">
     <h3>
@@ -397,18 +398,66 @@ you only the raw variants file (in <code v-pre>.bcf</code> format), the index of
         <span>Leviathan</span>
     </h3>
 </doc-anchor-target>
-<p><a href="https://github.com/morispi/LEVIATHAN">Leviathan</a> is an alternative variant caller that uses linked read barcode information to call structural variants (indels, etc.).
-Harpy first uses <a href="https://github.com/morispi/LRez">LRez</a> to index the barcodes in the alignments, then
-it calls variants for individual samples using Leviathan. Due to the nature of Structural Variant (SV)
-VCF files, there isn&#x27;t an entirely fool-proof way of combining the variants of all the samples into a
-single VCF file, therefore the output will be a VCF for every sample. It&#x27;s unclear what Leviathan does with invalid
-barcodes and until that gets clarified, Harpy will preprocess alignments to keep
-only alignments with a complete barcode (no <code v-pre>00</code> beadtags, <doc-anchor-trigger to="#barcode-validation">read more below</doc-anchor-trigger>).</p>
+<p><a href="https://github.com/morispi/LEVIATHAN">Leviathan</a> is an alternative variant caller that uses linked read barcode information
+to call structural variants (indels, inversions, etc.). Harpy first uses <a href="https://github.com/morispi/LRez">LRez</a> to index the barcodes
+in the alignments, then it calls variants for individual samples using Leviathan. It&#x27;s unclear what Leviathan does with invalid barcodes
+and until that gets clarified, Harpy will preprocess alignments to keep only alignments with a complete barcode (no <code v-pre>00</code> beadtags,
+<doc-anchor-trigger to="#barcode-validation%5D">read more below</doc-anchor-trigger>.</p>
+<doc-anchor-target id="individual-level-variant-calling">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#individual-level-variant-calling">#</doc-anchor-trigger>
+        <span>Individual-level variant calling</span>
+    </h4>
+</doc-anchor-target>
+<p>Leviathan is intended to call structural variants on individual samples. Without using a population grouping file (<code v-pre>--populations</code>),
+variants will be called per-sample. Due to the nature of Structural Variant (SV) VCF files, there isn&#x27;t an entirely fool-proof way
+of combining the variants of all the samples into a single VCF file, therefore the output will be a VCF for every sample.</p>
+<doc-anchor-target id="population-level-variant-calling">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#population-level-variant-calling">#</doc-anchor-trigger>
+        <span>Population-level variant calling</span>
+    </h4>
+</doc-anchor-target>
+<p>Some internal preliminary work revealed better SV calling when samples are grouped by population. With the inclusion of a population
+grouping file via <code v-pre>--populations</code>, Harpy will merge the bam files from for all samples within a population and call SV&#x27;s on these
+alignment pools. Preliminary work shows that this way identifies more variants and fewer false positives. <strong>However</strong>, individual-level
+information gets lost using this approach, so you will only be able to assess population-level variants, if that&#x27;s what your primary
+interest is.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Potential barcode clashing</h5>
+<p>If pooling by population, be mindful of potential sources of barcode clashing. For example, Gen I haplotagging uses 4-segment beadtags,
+<code v-pre>AXXCXXBXXDXX</code>, where <code v-pre>A</code>, <code v-pre>B</code>, <code v-pre>C</code>, and <code v-pre>D</code> can range from <code v-pre>1</code>-<code v-pre>96</code>, but the <code v-pre>C</code> barcode is specific for a sample (i.e. it does not change within
+a sample). If your samples were sequenced across different lanes (i.e. were not prepared on the same plate in the laboratory), a common method to
+reduce artifactual sequencing bias, then there&#x27;s a possibility multiple samples within a population might have the same <code v-pre>C</code> barcode due to laboratory
+preparation. If you have samples within a population with clashing <code v-pre>C</code> barcodes, you will need to replace the <code v-pre>C</code> part of the barcode in the BAM headers
+to make sure each sample has a unique <code v-pre>C</code>, otherwise it might confuse Leviathan.</p>
+        </div>
+    </div>
+</div>
 <div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
-    Z((keep valid BX alignments))--&gt;A
-    A((index barcodes)) --&gt; B((leviathan))
-    B--&gt;C((convert to BCF))
-    C--&gt;D((index BCFs))</pre></div>
+    subgraph Population calling
+    popsplit([merge by population])
+    end
+    subgraph Individual calling
+    bams([individual alignments])
+    end
+    popsplit--&gt;Z
+    bams--&gt;Z
+    Z([keep valid BX &lt;/br&gt; alignments])--&gt;A
+    A([index barcodes]) --&gt; B([leviathan])
+    B--&gt;C([convert to BCF])
+    C--&gt;D([index BCFs])</pre></div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">

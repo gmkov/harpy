@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.730390583937">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.730571850832">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -34,12 +34,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.730390583937" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.730571850832" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.730390583937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.730571850832" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.730390583937" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.730390583937" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.730571850832" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.730571850832" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -377,23 +377,23 @@
 </div>
 <p>Since <a href="https://github.com/arshajii/ema">EMA</a> does extra things to account for barcode information, the EMA workflow is a bit more complicated under the hood. Reads with barcodes are aligned using EMA and reads without valid barcodes are separately mapped using BWA before merging all the alignments together again. EMA will mark duplicates within alignments, but the BWA alignments need duplicates marked manually using <a href="https://lomereiter.github.io/sambamba/">sambamba</a>. Thankfully, you shouldn&#x27;t need to worry about any of these details.</p>
 <div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
-    A((count beadtags)) --&gt; B((EMA preprocess))
-    B--&gt;C((EMA align barcoded))
-    C--&gt;D((sort alignments))
-    D--&gt;E((merge alignments))
+    A([count beadtags]) --&gt; B([EMA preprocess])
+    B--&gt;C([EMA align barcoded])
+    C--&gt;D([sort alignments])
+    D--&gt;E([merge alignments])
     E--&gt;G
-    E--&gt;F((merge alignments))
-    IDX((index genome))--&gt;C
-    IDX--&gt;Z((BWA align unbarcoded))
-    Z--&gt;Y((sort alignments))
-    Y--&gt;X((mark duplicates))
+    E--&gt;F([merge alignments])
+    IDX([index genome])--&gt;C
+    IDX--&gt;Z([BWA align unbarcoded])
+    Z--&gt;Y([sort alignments])
+    Y--&gt;X([mark duplicates])
     X--&gt;F
-    F--&gt;K((sort alignments))
-    K--&gt;J((alignment reports))
-    K--&gt;G((convert to BED))
-    G--&gt;H((calculate reads per BX))
-    G--&gt;L((calculate BX size))
-    G--&gt;I((calculate genomic coverage))</pre></div>
+    F--&gt;K([sort alignments])
+    K--&gt;J([alignment reports])
+    K--&gt;G([convert to BED])
+    G--&gt;H([calculate reads per BX])
+    G--&gt;L([calculate BX size])
+    G--&gt;I([calculate genomic coverage])</pre></div>
 <doc-anchor-target id="bwa">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#bwa">#</doc-anchor-trigger>
@@ -415,12 +415,12 @@
 </div>
 <p>The <a href="https://github.com/lh3/bwa">BWA MEM</a> workflow is substantially simpler than the EMA workflow and maps all reads against the reference genome, no muss no fuss. Duplicates are marked at the end using <a href="https://lomereiter.github.io/sambamba/">sambamba</a>.</p>
 <div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
-    A((index genome)) --&gt; B((align to genome))
-    B--&gt;C((sort alignments))
-    C--&gt;D((mark duplicates))
-    D--&gt;E((alignment reports))
-    D--&gt;F((convert to BED))
-    F--&gt;G((calculate genomic coverage))</pre></div>
+    A([index genome]) --&gt; B([align to genome])
+    B--&gt;C([sort alignments])
+    C--&gt;D([mark duplicates])
+    D--&gt;E([alignment reports])
+    D--&gt;F([convert to BED])
+    F--&gt;G([calculate genomic coverage])</pre></div>
 <doc-anchor-target id="why-ema">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#why-ema">#</doc-anchor-trigger>
