@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.731097637894">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.731106683695">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon" />
-    <link href="../resources/css/retype.css?v=2.4.0.731097637894" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.731106683695" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.731097637894" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.731106683695" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.731097637894" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.731097637894" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.731106683695" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.731106683695" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -232,7 +232,27 @@
         <span>Adding additional Snakamake parameters</span>
     </h1>
 </doc-anchor-target>
-<p>Harpy relies on Snakemake under the hood to handle file and job dependencies. Most of these details have been abstracted away from the end-user, but every module of Harpy (except <code v-pre>extra</code>) has an optional flag <code v-pre>-s</code> (<code v-pre>--snakemake</code>) that you can use to augment the Snakemake workflow if necessary. Any time you use this flag, your argument must be encased in quotation marks, <em>e.g.</em> <code v-pre>-s &quot;--dry-run&quot;</code>.</p>
+<p>Harpy relies on Snakemake under the hood to handle file and job dependencies. Most of these details have been abstracted away from the end-user, but every module of Harpy (except <code v-pre>extra</code>) has an optional flag <code v-pre>-s</code> (<code v-pre>--snakemake</code>) that you can use to augment the Snakemake workflow if necessary. Whenever you use this flag, your argument must be enclosed in quotation marks, for example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">harpy trim -d rawseq -s &quot;--dry-run&quot;</code></pre>
+</doc-codeblock></div>
+<p>This means you can add several Snakemake arguments at once, as long as the entire thing is enclosed in quotes:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">harpy trim -d rawseq -s &quot;--dry-run --debug --shadow-prefix /scratch&quot;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="reserved-arguments">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#reserved-arguments">#</doc-anchor-trigger>
+        <span>Reserved arguments</span>
+    </h2>
+</doc-anchor-target>
+<p>Harpy calls Snakemake using specific arguments, meaning you cannot append these again to the internal command line call. Well, you can, but Snakemake will error and exit. <a href="https://snakemake.readthedocs.io/en/stable/executing/cli.html#all-options">Everything else</a> is allowed. The reserved (<strong>forbidden</strong>) arguments are:</p>
+<ul>
+<li><code v-pre>--directory</code></li>
+<li><code v-pre>--cores</code></li>
+<li><code v-pre>--snakefile</code></li>
+<li><code v-pre>--config</code></li>
+</ul>
 <doc-anchor-target id="use-cases">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#use-cases">#</doc-anchor-trigger>
