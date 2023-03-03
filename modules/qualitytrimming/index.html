@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.731176669797">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.731184309880">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.731176669797" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.731184309880" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.731176669797" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.731184309880" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.731176669797" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.731176669797" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.731184309880" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.731184309880" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -328,8 +328,8 @@ and quality trim sequences using the <code v-pre>trim</code> module:</p>
     </h2>
 </doc-anchor-target>
 <p>There are a handful of &quot;accepted&quot; naming schemes for fastq file extensions, but Harpy only accepts a limited number of them, shown below.
-The fastq files <strong>must</strong> be bzipped or gzipped and be <strong>consistent</strong> with regards to the extensions and read-pair naming styles.
-That is, all your files must only use <code v-pre>.fastq.gz</code> or only use <code v-pre>.fq.gz</code> for all files, and the same for <code v-pre>.1.</code>/<code v-pre>.2.</code> or <code v-pre>.F.</code>/<code v-pre>.R.</code>.
+The fastq files <strong>must</strong> be bgzipped or gzipped and be <strong>consistent</strong> with regards to the extensions and read-pair naming styles.
+That is, you must only use <code v-pre>.fastq.gz</code> or only use <code v-pre>.fq.gz</code> for all files, and the same for <code v-pre>.1.</code>/<code v-pre>.2.</code> or <code v-pre>.F.</code>/<code v-pre>.R.</code>.
 Notice that the read pair part differs from the <a href="../readmapping/#fastq-file-format">accepted fastq formats</a> for aligning reads.</p>
 <doc-anchor-target id="acceptable-formats">
     <h4>
