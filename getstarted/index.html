@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.731865150173">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732045414125">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon" />
-    <link href="../resources/css/retype.css?v=2.4.0.731865150173" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.732045414125" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.731865150173" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.732045414125" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.731865150173" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.731865150173" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.732045414125" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.732045414125" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -277,10 +277,10 @@ At the minimum, you will need:</p>
 <pre class="language-bash"><code v-pre class="language-bash">harpy trim -d rawseq -s &quot;--dry-run --debug --shadow-prefix /scratch&quot;</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="reserved-arguments">
-    <h4>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#reserved-arguments">#</doc-anchor-trigger>
         <span>Reserved arguments</span>
-    </h4>
+    </h3>
 </doc-anchor-target>
 <p>Harpy calls Snakemake using specific arguments, meaning you cannot append these again to the internal command line call. Well, you can, but Snakemake will error and exit. <a href="https://snakemake.readthedocs.io/en/stable/executing/cli.html#all-options">Everything else</a> is allowed. The reserved (<strong>forbidden</strong>) arguments are:</p>
 <ul>
@@ -290,17 +290,17 @@ At the minimum, you will need:</p>
 <li><code v-pre>--config</code></li>
 </ul>
 <doc-anchor-target id="use-cases">
-    <h3>
+    <h5>
         <doc-anchor-trigger class="header-anchor-trigger" to="#use-cases">#</doc-anchor-trigger>
         <span>Use cases</span>
-    </h3>
+    </h5>
 </doc-anchor-target>
 <p>You likely wont need to invoke <code v-pre>--snakemake</code> very often, if ever. That being said, here are what might be the most common use cases for this parameter.</p>
 <doc-anchor-target id="dry-run">
-    <h4>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#dry-run">#</doc-anchor-trigger>
         <span>Dry run</span>
-    </h4>
+    </h3>
 </doc-anchor-target>
 <doc-anchor-target id="--dry-run">
     <h5>
@@ -310,10 +310,10 @@ At the minimum, you will need:</p>
 </doc-anchor-target>
 <p>This is a directive in which Snakemake will build the DAG and &quot;pretend&quot; to run the Harpy workflow. Useful for knowing what you&#x27;re getting yourself into ahead of time. It&#x27;s also useful for debugging during development.</p>
 <doc-anchor-target id="rerun-an-incomplete-workflow">
-    <h4>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#rerun-an-incomplete-workflow">#</doc-anchor-trigger>
         <span>Rerun an incomplete workflow</span>
-    </h4>
+    </h3>
 </doc-anchor-target>
 <doc-anchor-target id="--rerun-incomplete">
     <h5>
@@ -341,6 +341,27 @@ Variants/leviathan-pop/lrezIndexed/2.bci</code></pre>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">harpy variants --leviathan -g genome.fasta  -d ReadMapping/ema --threads 8 -p samples.groups -s &quot;--rerun-incomplete&quot;</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="set-a-shadow-directory">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#set-a-shadow-directory">#</doc-anchor-trigger>
+        <span>Set a shadow directory</span>
+    </h3>
+</doc-anchor-target>
+<doc-anchor-target id="--shadow-prefix-dirname">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#--shadow-prefix-dirname">#</doc-anchor-trigger>
+        <span><code v-pre>--shadow-prefix &lt;dirname&gt;</code></span>
+    </h5>
+</doc-anchor-target>
+<p>If running Harpy on an HPC, your system administrator may enforce a policy that all data needs to be moved to a particular
+network-attached storage for execution. On some systems this is called a <code v-pre>SCRATCH/</code> drive (or something similar) and files
+are automatically deleted from that drive after the completion of an HPC-scheduled job. Rather than manually adding and removing
+your files into that workspace storage to make sure you keep the output of your work while not running afoul of your HPC&#x27;s policy,
+you may use <code v-pre>--shadow-prefix &lt;dirname&gt;</code> where <code v-pre>&lt;dirname&gt;</code> is the path to the mandatory directory you need to work out of. By
+configuring this &quot;shadow directory&quot; setting, Snakemake will automatically move the files in/out of that directory for you:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">harpy variants --leviathan -g genome.fasta  -d ReadMapping/ema --threads 8 -p samples.groups -s &quot;--shadow-prefix /SCRATCH/username/&quot;</code></pre>
+</doc-codeblock></div>
 <doc-anchor-target id="snakemake-etc">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#snakemake-etc">#</doc-anchor-trigger>
@@ -362,12 +383,9 @@ ory, the remaining lock was likely caused by a kill signal or a power loss. It
 can be removed with the --unlock argument.</code></pre>
 </doc-codeblock></div>
 <p>Like the error suggests, this can be overcome using the <code v-pre>--unlock</code> argument, which
-would be provided to Harpy as <code v-pre>-s &quot;--unlock&quot;</code>. However, whenever that happens, I
-am lazy and just remove the entire <code v-pre>.snakemake</code> directory in my working directory
-and that alleviates the issue. Choose your own adventure.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">$ rm -r .snakemake/</code></pre>
-</doc-codeblock></div>
+would be provided to Harpy as <code v-pre>-s &quot;--unlock&quot;</code>. However, I live dangerously and often
+remove the entire <code v-pre>.snakemake</code> directory in my working directory, alleviating the issue.
+Choose your own adventure.</p>
 
                                 
                                 <!-- Required only on API pages -->
