@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732299857863">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732730247113">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -34,11 +34,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="static/favicon.png" rel="icon" />
-    <link href="resources/css/retype.css?v=2.4.0.732299857863" rel="stylesheet" />
+    <link href="resources/css/retype.css?v=2.4.0.732730247113" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.732299857863" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.732730247113" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.732299857863" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.732730247113" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -244,10 +244,27 @@ the worklfow decision-making, but as a user, you just interact with it like a no
 program. Harpy uses both well known and niche programs to take raw haplotagging sequences and process
 them to become called SNP genotypes (or haplotypes). Most of the settings are pre-configured and the settings you
 can modify are done at the command line. There aren&#x27;t too many, which should make things a little simpler.</p>
-<doc-anchor-target id="modules">
+<doc-anchor-target id="what-is-haplotagging">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#modules">#</doc-anchor-trigger>
-        <span>Modules</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#what-is-haplotagging">#</doc-anchor-trigger>
+        <span>What is haplotagging?</span>
+    </h2>
+</doc-anchor-target>
+<p>Linked-read sequencing exists to combine the throughput and accuracy of short-read
+sequencing with the long range haplotype information of long-read sequencing.
+Haplotagging is an implementation of linked-read sequencing developed by
+<a href="https://doi.org/10.1073/pnas.2015005118">Meier <em>et al.</em></a> to:</p>
+<ol>
+<li>sequence a large number of samples</li>
+<li>achieve high molecular resolution</li>
+<li>do both within a reasonable budget</li>
+</ol>
+<p>If you don&#x27;t have haplotagged data, then Harpy will likely be of little to no use to you. See the <a href="http://fml.tuebingen.mpg.de/chan-group/haplotagging/">haplotagging site</a>
+for more information about haplotagging.</p>
+<doc-anchor-target id="harpy-modules">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#harpy-modules">#</doc-anchor-trigger>
+        <span>Harpy Modules</span>
     </h2>
 </doc-anchor-target>
 <p>Harpy is modular, meaning you can use different parts of it independent from each other. Need to only align reads?
@@ -294,7 +311,7 @@ Great! Only want to call variants? Awesome! All modules are called by <code v-pr
         <span>Using Harpy</span>
     </h2>
 </doc-anchor-target>
-<p>You can call <code v-pre>harpy</code> without any arguments (or with <code v-pre>--help</code>) to print the docstring to your terminal. You can likewise call any of the modules with <code v-pre>--help</code> (e.g. <code v-pre>harpy align --help</code>) to see their usage.</p>
+<p>You can call <code v-pre>harpy</code> without any arguments (or with <code v-pre>--help</code>) to print the docstring to your terminal. You can likewise call any of the modules with <code v-pre>--help</code> to see their usage  (e.g. <code v-pre>harpy align --help</code>).</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">harpy --help</div>
 <pre class="language-none"><code v-pre class="language-none"> Usage: harpy [OPTIONS] COMMAND [ARGS]...                     
@@ -303,7 +320,7 @@ Great! Only want to call variants? Awesome! All modules are called by <code v-pr
                             version: 0.1                            
                                                                     
  The pipeline trims reads, maps sequences, calls variants, imputes  
- genotypes, and phases haplotypes of Haplotagging data.             
+ genotypes, and phases haplotypes using Haplotagging data.             
                                                                     
  trim 🡒 align 🡒 variants 🡒 impute 🡒 phase                           
                                                                     

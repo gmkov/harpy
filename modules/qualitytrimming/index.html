@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732299857863">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732730247113">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.732299857863" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732730247113" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732299857863" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732730247113" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732299857863" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732299857863" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732730247113" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732730247113" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -369,10 +369,10 @@ Notice that the read pair part differs from the <a href="../readmapping/#fastq-f
 </div>
 </doc-panel>
 <hr />
-<doc-anchor-target id="fastp-workflow">
+<doc-anchor-target id="trimming-workflow">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#fastp-workflow">#</doc-anchor-trigger>
-        <span>Fastp Workflow</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#trimming-workflow">#</doc-anchor-trigger>
+        <span>Trimming Workflow</span>
     </h2>
 </doc-anchor-target>
 <p><a href="https://github.com/OpenGene/fastp">Fastp</a> is an ultra-fast all-in-one adapter remover, deduplicator,
@@ -380,7 +380,78 @@ and quality trimmer. Harpy uses it to remove adapters, low-quality bases, and tr
 length (default 150bp). Harpy uses the fastp overlap analysis to identify adapters for removal and a sliding window
 approach (<code v-pre>--cut-right</code>) to identify low quality bases. The workflow is quite simple.</p>
 <div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
-    A([trim reads]) --&gt; B([create reports])</pre></div>
+    A([fastp trim]) --&gt; B([create reports])</pre></div>
+<doc-anchor-target id="harpy-trim-outputs">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#harpy-trim-outputs">#</doc-anchor-trigger>
+        <span>harpy trim outputs</span>
+    </h3>
+</doc-anchor-target>
+<p>The <code v-pre>harpy trim</code> module creates a <code v-pre>Trimming</code> directory with the folder structure below. <code v-pre>Sample1</code> and <code v-pre>Sample2</code> are generic sample names for demonstration purposes.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Trimming/
+├── logs
+│   ├── err
+│   │   ├── Sample1.log
+│   │   └── Sample2.log
+│   ├── html
+│   │   ├── Sample1.html
+│   │   └── Sample2.html
+│   ├── json
+│   │   ├── Sample1.fastp.json
+│   │   └── Sample2.fastp.json
+│   └── trim.report.html
+├── Sample1.R1.fq.gz
+├── Sample1.R2.fq.gz
+├── Sample2.R1.fq.gz
+└── Sample2.R2.fq.gz</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="output-contents">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#output-contents">#</doc-anchor-trigger>
+        <span>output contents</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;">item</th>
+<th style="text-align: left;">contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>logs/</code></td>
+<td style="text-align: left;">all debug/diagnostic files that aren&#x27;t the trimmed reads <code v-pre>fastp</code> creates</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>logs/err</code></td>
+<td style="text-align: left;">what fastp prints to <code v-pre>stderr</code> when running</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>logs/html</code></td>
+<td style="text-align: left;">interactive html reports <code v-pre>fastp</code> creates from quality trimming</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>logs/json</code></td>
+<td style="text-align: left;">json representation of the data <code v-pre>fastp</code> uses to create the html reports</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>logs/trim.report.html</code></td>
+<td style="text-align: left;">single summary report generated by <code v-pre>multiqc</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>*.R1.fq.gz</code></td>
+<td style="text-align: left;">quality trimmed forward reads of the samples</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>*.R1.fq.gz</code></td>
+<td style="text-align: left;">quality trimmed reverse reads of the samples</td>
+</tr>
+</tbody>
+</table>
+</div>
 
                                 
                                 <!-- Required only on API pages -->

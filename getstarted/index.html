@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732299857863">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732730247113">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon" />
-    <link href="../resources/css/retype.css?v=2.4.0.732299857863" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.732730247113" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.732299857863" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.732730247113" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.732299857863" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.732299857863" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.732730247113" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.732730247113" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -250,12 +250,12 @@ At the minimum, you will need:</p>
 <li><code v-pre>00</code> indicates a missing/invalid barcode segment</li>
 </ul>
 </li>
-<li>the barcode must be preceded by a <code v-pre>BX:Z</code> tag in the read header
-<ul>
-<li><em>e.g.</em> <code v-pre>@A00470:481:HNYFWDRX2:1:2101:16062:1031 BX:Z:A62C38B38D99 1:N:0:TATCAGTA+TTACTACT</code></li>
+<li>the barcode must be preceded by a <code v-pre>BX:Z:</code> tag in the read header</li>
 </ul>
-</li>
-</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">example header</div>
+<pre class="language-none"><code v-pre class="language-none">@A00470:481:HNYFWDRX2:1:2101:16062:1031 BX:Z:A62C38B38D99 1:N:0:TATCAGTA+TTACTACT</code></pre>
+</doc-codeblock></div>
    </doc-panel>
    <doc-panel id="2-a-reference-genome-in-fasta-format">
        <template #title>2. A reference genome, in FASTA format</template>
@@ -347,12 +347,13 @@ Variants/leviathan-pop/lrezIndexed/2.bci</code></pre>
         <span>Specific file target</span>
     </h3>
 </doc-anchor-target>
-<p>Sometimes you want to generate a single (or a few files) rather than running the entire module to completion. For example,
+<p>Sometimes you want to generate a specific intermediate file (or files) rather than running the entire module to completion. For example,
 you want the beadtag report Harpy makes from the output of <code v-pre>EMA count</code>. To do this, just list the file/files (relative
 to your working directory) without any flags. Example for the beadtag report:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">harpy align -g genome.fasta -d Trimming -t 4 -s &quot;Alignemnts/ema/stats/beadtag.report.html&quot;</code></pre>
 </doc-codeblock></div>
+<p>This of course necessitates knowing the names of the files ahead of time. See the individual modules for a breakdown of expected outputs.</p>
 <doc-anchor-target id="set-a-shadow-directory">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#set-a-shadow-directory">#</doc-anchor-trigger>
