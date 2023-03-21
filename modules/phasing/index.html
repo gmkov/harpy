@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732735957821">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732738961178">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.732735957821" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732738961178" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732735957821" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732738961178" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732735957821" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732735957821" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732738961178" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732738961178" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -247,7 +247,12 @@ genotypes into haplotypes requires alignment files, such as those produced by <c
 a variant call file, such as those produced by <code v-pre>harpy variants</code> or <code v-pre>harpy impute</code>. <strong>Phasing only
 works on SNP data</strong>, and will not work for structural variants produced by <code v-pre>LEVIATHAN</code>. You can phase genotypes into haplotypes with Harpy using the <code v-pre>phase</code> module:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">usage</div>
 <pre class="language-bash"><code v-pre class="language-bash">harpy phase OPTIONS... </code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">example</div>
+<pre class="language-bash"><code v-pre class="language-bash">harpy phase --threads 20 --vcf Variants/variants.raw.bcf --dir Alignments/ema </code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="running-options">
     <h2>
@@ -349,6 +354,9 @@ value between 0-1 internally (<em>i.e.</em> <code v-pre>-p 7</code> is equivalen
         <span>Phasing Workflow</span>
     </h2>
 </doc-anchor-target>
+<doc-tabs>
+<doc-tab id="description">
+<template #title>description</template>
 <p>Phasing is performed using <a href="https://github.com/vibansal/HapCUT2">HapCut2</a>. Most of the tasks cannot
 be parallelized, but HapCut2 operates on a per-sample basis, so the workflow is parallelized
 across all of your samples to speed things along.</p>
@@ -368,12 +376,9 @@ across all of your samples to speed things along.</p>
     D--&gt;G
     G--&gt;H([index merged annotations])
     H--&gt;I([merge phased samples])</pre></div>
-<doc-anchor-target id="harpy-phase-outputs">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#harpy-phase-outputs">#</doc-anchor-trigger>
-        <span>harpy phase outputs</span>
-    </h3>
-</doc-anchor-target>
+</doc-tab>
+<doc-tab id="phasing-outputs">
+<template #title>phasing outputs</template>
 <p>The <code v-pre>harpy phase</code> module creates an <code v-pre>Phasing</code> directory with the folder structure below. <code v-pre>Sample1</code> is a generic sample name for demonstration purposes.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Phasing/
@@ -463,6 +468,8 @@ across all of your samples to speed things along.</p>
 </tbody>
 </table>
 </div>
+</doc-tab>
+</doc-tabs>
 
                                 
                                 <!-- Required only on API pages -->

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732735957821">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732738961178">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -34,12 +34,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.732735957821" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732738961178" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732735957821" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732738961178" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732735957821" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732735957821" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732738961178" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732738961178" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -248,7 +248,16 @@ be aligned to a reference genome. This module within Harpy expects filtered read
 such as those derived using <code v-pre>harpy trim</code>. You can map reads onto a genome assembly with Harpy
 using the <code v-pre>align</code> module:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">usage</div>
 <pre class="language-bash"><code v-pre class="language-bash">harpy align OPTIONS...</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">examples</div>
+<pre class="language-bash"><code v-pre class="language-bash"># align with EMA
+harpy align --threads 20 --genome genome.fasta --dir Sequences/ 
+
+# align with BWA
+harpy align --threads 20 --genome genome.fasta --dir Sequences/ --bwa</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="running-options">
     <h2>
@@ -357,7 +366,8 @@ using the <code v-pre>align</code> module:</p>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>The <code v-pre>--proximity</code> flag is for the genomic alignment coverage calculations, which occurs after sequence alignment. It therefore does not impact
+<p>The <code v-pre>--proximity</code> flag is for the genomic alignment coverage calculations, which are purely for reporting reasons
+and occur after sequence alignment. It therefore does not impact
 sequence alignment. The default value (<code v-pre>250</code>) means alignment intervals within 250bp will be merged and their coverages summed. If you don&#x27;t
 want intervals merged, set this argument as <code v-pre>--proximity 1</code> (1bp). Merging is useful for reducing file size (kilobytes vs mega/gigabytes),
 which makes visualization easier downstream too.</p>
@@ -422,15 +432,16 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
         <span>EMA workflow</span>
     </h2>
 </doc-anchor-target>
-<doc-panel id="ema-details">
-    <template #title>EMA details</template>
+<doc-tabs>
+<doc-tab id="details">
+<template #title>details</template>
 <ul>
 <li><strong>recommended</strong></li>
 <li>leverages the BX barcode information to improve mapping</li>
+<li>better downstream SV detection</li>
 <li>slower</li>
 <li>lots of temporary files</li>
 </ul>
-</doc-panel>
 <p>Since <a href="https://github.com/arshajii/ema">EMA</a> does extra things to account for barcode information, the EMA workflow is a bit more complicated under the hood. Reads with barcodes are aligned using EMA and reads without valid barcodes are separately mapped using BWA before merging all the alignments together again. EMA will mark duplicates within alignments, but the BWA alignments need duplicates marked manually using <a href="https://lomereiter.github.io/sambamba/">sambamba</a>. Thankfully, you shouldn&#x27;t need to worry about any of these details.</p>
 <doc-panel id="why-ema" collapsed>
     <template #title>Why EMA?</template>
@@ -454,12 +465,9 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
     X--&gt;F
     F--&gt;J([alignment stats])
     E--&gt;J</pre></div>
-<doc-anchor-target id="ema-output">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#ema-output">#</doc-anchor-trigger>
-        <span>EMA output</span>
-    </h3>
-</doc-anchor-target>
+</doc-tab>
+<doc-tab id="ema-output">
+<template #title>EMA output</template>
 <p>The <code v-pre>harpy align</code> module creates an <code v-pre>Alignments/ema</code> directory with the folder structure below. <code v-pre>Sample1</code> is a generic sample name for demonstration purposes.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Alignments/ema
@@ -556,6 +564,8 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
 </tbody>
 </table>
 </div>
+</doc-tab>
+</doc-tabs>
 <doc-anchor-target id="bwa-workflow">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#bwa-workflow">#</doc-anchor-trigger>
@@ -565,15 +575,12 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
 <doc-tabs>
 <doc-tab id="description">
 <template #title>description</template>
-<doc-panel id="bwa-details">
-    <template #title>BWA details</template>
 <ul>
 <li>ignores barcode information</li>
 <li>might be preferred depending on experimental design</li>
 <li>faster</li>
-<li>no temporary files</li>
+<li>substantially fewer temporary files</li>
 </ul>
-</doc-panel>
 <p>The <a href="https://github.com/lh3/bwa">BWA MEM</a> workflow is substantially simpler than the EMA workflow and maps all reads against the reference genome, no muss no fuss. Duplicates are marked at the end using <a href="https://lomereiter.github.io/sambamba/">sambamba</a>. The <code v-pre>BX:Z</code> tags in the read headers are still added to the alignment headers, even though barcodes are not used to inform mapping.</p>
 <div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
     Z([trimmed reads]) --&gt; B
@@ -582,8 +589,8 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
     C--&gt;D([mark duplicates])
     D--&gt;E([alignment stats])</pre></div>
 </doc-tab>
-<doc-tab id="output">
-<template #title>output</template>
+<doc-tab id="bwa-output">
+<template #title>BWA output</template>
 <p>The <code v-pre>harpy align --bwa</code> module creates an <code v-pre>Alignments/bwa</code> directory with the folder structure below. <code v-pre>Sample1</code> is a generic sample name for demonstration purposes.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Alignments/bwa

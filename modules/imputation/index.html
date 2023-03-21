@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732735957821">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732738961178">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.732735957821" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732738961178" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732735957821" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732738961178" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732735957821" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732735957821" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732738961178" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732738961178" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
     <link href="../../resources/css/katex.css?v=2.4.0" rel="stylesheet" />
     <script id="katex-js" type="text/javascript" src="../../resources/js/katex.js?v=2.4.0" defer></script>
@@ -250,7 +250,13 @@ method that is linked-read aware. Imputing genotypes requires a variant call fil
 genotypes with the variant call files produced by <code v-pre>LEVIATHAN</code>, as they do not contain SNPs.
 You can impute genotypes with Harpy using the <code v-pre>impute</code> module:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">usage</div>
 <pre class="language-bash"><code v-pre class="language-bash">harpy impute OPTIONS...</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">example</div>
+<pre class="language-bash"><code v-pre class="language-bash">harpy extra -s stitch.params  # create stitch parameter file 'stitch.params'
+harpy impute --threads 20 --vcf Variants/variants.raw.bcf --dir Alignments/ema --parameters stitch.params</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="running-options">
     <h2>
@@ -280,7 +286,7 @@ You can impute genotypes with Harpy using the <code v-pre>impute</code> module:<
 <td style="text-align: left;">Path to VCF/BCF file</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>--directory</code></td>
+<td style="text-align: left;"><code v-pre>--dir      </code></td>
 <td style="text-align: center;"><code v-pre>-d</code></td>
 <td style="text-align: left;">folder path</td>
 <td style="text-align: center;"></td>
@@ -554,6 +560,9 @@ robust to misspecifications of this parameter.</p>
         <span>STITCH Workflow</span>
     </h2>
 </doc-anchor-target>
+<doc-tabs>
+<doc-tab id="description">
+<template #title>description</template>
 <p><a href="https://github.com/rwdavies/STITCH">STITCH</a> is a genotype imputation software developed for use in
 the R programming language. It has quite a few model parameters that can be tweaked, but HARPY only
 focuses on a small handful that have the largest impact on the quality of the results. Imputation is
@@ -566,6 +575,11 @@ iterate over these model parameters.</p>
     D--&gt;E([STITCH imputation])
     E--&gt;F([merge output])
     G([create file list])--&gt;E</pre></div>
+</doc-tab>
+<doc-tab id="imputation-output">
+<template #title>imputation output</template>
+</doc-tab>
+</doc-tabs>
 
                                 
                                 <!-- Required only on API pages -->
