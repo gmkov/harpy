@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732731616951">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732735957821">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -34,12 +34,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.732731616951" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732735957821" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732731616951" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732735957821" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732731616951" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732731616951" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732735957821" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732735957821" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -457,7 +457,7 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
 <doc-anchor-target id="ema-output">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#ema-output">#</doc-anchor-trigger>
-        <span>ema output</span>
+        <span>EMA output</span>
     </h3>
 </doc-anchor-target>
 <p>The <code v-pre>harpy align</code> module creates an <code v-pre>Alignments/ema</code> directory with the folder structure below. <code v-pre>Sample1</code> is a generic sample name for demonstration purposes.</p>
@@ -562,6 +562,9 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
         <span>BWA workflow</span>
     </h2>
 </doc-anchor-target>
+<doc-tabs>
+<doc-tab id="description">
+<template #title>description</template>
 <doc-panel id="bwa-details">
     <template #title>BWA details</template>
 <ul>
@@ -578,13 +581,72 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
     B--&gt;C([sort alignments])
     C--&gt;D([mark duplicates])
     D--&gt;E([alignment stats])</pre></div>
-<doc-anchor-target id="bwa-output">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#bwa-output">#</doc-anchor-trigger>
-        <span>bwa output</span>
-    </h3>
-</doc-anchor-target>
-<p>The <code v-pre>harpy align --bwa</code> module creates an <code v-pre>Alignments/bwa</code> directory with the folder structure below. <code v-pre>Sample1</code> and <code v-pre>Sample2</code> are generic sample names for demonstration purposes.</p>
+</doc-tab>
+<doc-tab id="output">
+<template #title>output</template>
+<p>The <code v-pre>harpy align --bwa</code> module creates an <code v-pre>Alignments/bwa</code> directory with the folder structure below. <code v-pre>Sample1</code> is a generic sample name for demonstration purposes.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Alignments/bwa
+├── Sample1.bam
+├── Sample1.bam.bai
+└── stats
+    ├── markduplicates
+    │   ├── Sample1.markdup.log
+    ├── samtools_flagstat
+    │   ├── alignment.flagstat.html
+    │   ├── Sample1.flagstat
+    │   ├── Sample1.nobarcode.flagstat
+    └── samtools_stats
+        ├── alignment.stats.html
+        ├── Sample1.nobarcode.stats
+        └── Sample1.stats</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;">item</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>*.bam</code></td>
+<td style="text-align: left;">sequence alignments for each sample</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>*.bai</code></td>
+<td style="text-align: left;">sequence alignment indexes for each sample</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stats/</code></td>
+<td style="text-align: left;">various counts/statistics/reports relating to sequence alignment</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stats/markduplicates</code></td>
+<td style="text-align: left;">everything <code v-pre>sambamba markdup</code> writes to <code v-pre>stderr</code> during operation</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stats/samtools_flagstat/*flagstat</code></td>
+<td style="text-align: left;">results of <code v-pre>samtools flagstat</code> on all alignments for a sample</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stats/samtools_flagstat/*.nobarcode.flagstat</code></td>
+<td style="text-align: left;">results of <code v-pre>samtools flagstat</code> on alignments that had no/invalid BX barcodes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stats/samtools_flagstat/*html</code></td>
+<td style="text-align: left;">report summarizing <code v-pre>samtools flagstat</code> results across all samples from <code v-pre>multiqc</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stats/samtools_stats/*</code></td>
+<td style="text-align: left;">same as <code v-pre>samtools_flagstat</code> except for the results of <code v-pre>samtools stats</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</doc-tab>
+</doc-tabs>
 
                                 
                                 <!-- Required only on API pages -->
