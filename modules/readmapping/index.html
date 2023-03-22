@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732744028644">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732808616120">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -34,12 +34,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.732744028644" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732808616120" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732744028644" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732808616120" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732744028644" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732744028644" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732808616120" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732808616120" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -361,7 +361,6 @@ These are taken directly from the <a href="https://github.com/arshajii/ema">EMA 
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">ema arguments</div>
 <pre class="language-none"><code v-pre class="language-none">  -d: apply fragment read density optimization [off]
-  -p &lt;platform&gt;: sequencing platform (one of '10x', 'tru', 'cpt') [10x]
   -i &lt;index&gt;: index to follow 'BX' tag in SAM output [1]</code></pre>
 </doc-codeblock></div>
    </doc-panel>
@@ -385,8 +384,7 @@ These are taken directly from the <a href="https://bio-bwa.sourceforge.net/bwa.s
 -U INT 	Penalty for an unpaired read pair. BWA-MEM scores an unpaired read pair as scoreRead1+scoreRead2-INT and scores a paired as scoreRead1+scoreRead2-insertPenalty. It compares these two scores to determine whether we should force pairing. [9]
 -T INT 	Don’t output alignment with score lower than INT. This option only affects output. [30]
 -a 	Output all found alignments for single-end or unpaired paired-end reads. These alignments will be flagged as secondary alignments.
--H 	Use hard clipping ’H’ in the SAM output. This option may dramatically reduce the redundancy of output when mapping long contig or BAC sequences.
--M 	Mark shorter split hits as secondary (for Picard compatibility).</code></pre>
+-H 	Use hard clipping ’H’ in the SAM output. This option may dramatically reduce the redundancy of output when mapping long contig or BAC sequences.</code></pre>
 </doc-codeblock></div>
    </doc-panel>
 </doc-panels>
