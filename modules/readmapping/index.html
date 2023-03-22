@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732808616120">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732831581897">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -34,12 +34,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.732808616120" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732831581897" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732808616120" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732831581897" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732808616120" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732808616120" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732831581897" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732831581897" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -508,24 +508,31 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
 <pre class="language-none"><code v-pre class="language-none">Alignments/ema
 ├── Sample1.bam
 ├── Sample1.bam.bai
+├── barcoded
+│   └── Sample1.barcoded.bam
 ├── count
-│   ├── Sample1.ema-ncnt
+│   └── Sample1.ema-ncnt
 ├── preproc
 │   └── logs
-│       ├── Sample1.preproc.log
+│       └── Sample1.preproc.log
 └── stats
-    ├── beadtag.report.html
+    ├── reads.bxstats.html
+    ├── coverage
+    │   ├── Sample1.gencov.html
+    │   └── data
+    │       ├── Sample1.all.gencov
+    │       └── Sample1.bx.gencov
     ├── markduplicates
-    │   ├── Sample1.markdup.nobarcode.log
+    │   └── Sample1.markdup.nobarcode.log
     ├── moleculesize
     │   ├── Sample1.molsize
-    │   ├── Sample1.molsize.hist
+    │   └── Sample1.molsize.hist
     ├── readsperbx
-    │   ├── Sample1.readsperbx
+    │   └── Sample1.readsperbx
     ├── samtools_flagstat
     │   ├── alignment.flagstat.html
     │   ├── Sample1.flagstat
-    │   ├── Sample1.nobarcode.flagstat
+    │   └── Sample1.nobarcode.flagstat
     └── samtools_stats
         ├── alignment.stats.html
         ├── Sample1.nobarcode.stats
@@ -549,11 +556,15 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
 <td style="text-align: left;">sequence alignment indexes for each sample</td>
 </tr>
 <tr>
+<td style="text-align: left;"><code v-pre>barcoded/*.bam</code></td>
+<td style="text-align: left;">sequence alignments for each sample, containing only alignments with valid BX barcodes</td>
+</tr>
+<tr>
 <td style="text-align: left;"><code v-pre>count/</code></td>
 <td style="text-align: left;">output of <code v-pre>ema count</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>preproc/logs</code></td>
+<td style="text-align: left;"><code v-pre>preproc/logs/</code></td>
 <td style="text-align: left;">everything <code v-pre>ema preproc</code> wrote to <code v-pre>stderr</code> during operation</td>
 </tr>
 <tr>
@@ -561,12 +572,24 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
 <td style="text-align: left;">various counts/statistics/reports relating to sequence alignment</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/beadtag.report.html</code></td>
+<td style="text-align: left;"><code v-pre>stats/reads.bxstats .html</code></td>
 <td style="text-align: left;">interactive html report summarizing <code v-pre>ema count</code> across all samples</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/markduplicates</code></td>
-<td style="text-align: left;">everything <code v-pre>sambamba markdup</code> writes to <code v-pre>stderr</code> during operation on unbarcoded alignments</td>
+<td style="text-align: left;"><code v-pre>stats/coverage/*.html</code></td>
+<td style="text-align: left;">summary plots of alignment coverage per contig</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stats/coverage/data/*.all.gencov</code></td>
+<td style="text-align: left;">output from bedtools gencov from all alignments, used for plots</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stats/coverage/data/*.bx.gencov</code></td>
+<td style="text-align: left;">output from bedtools gencov from alignments with valid BX barcodes, used for plots</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stats/markduplicates/</code></td>
+<td style="text-align: left;">everything <code v-pre>sambamba markdup</code> writes to <code v-pre>stderr</code> during operation on alignments with invalid/missing barcodes</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>stats/moleculesize/*.molsize</code></td>
@@ -577,7 +600,7 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
 <td style="text-align: left;">molecule lengths as inferred from BX tags, binned as a histogram</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/readsperbx</code></td>
+<td style="text-align: left;"><code v-pre>stats/readsperbx/</code></td>
 <td style="text-align: left;">inferred number of alignments per BX barcode</td>
 </tr>
 <tr>
@@ -632,12 +655,16 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
 ├── Sample1.bam
 ├── Sample1.bam.bai
 └── stats
+    ├── coverage
+    │   ├── Sample1.gencov.html
+    │   └── data
+    │       └── Sample1.gencov
     ├── markduplicates
-    │   ├── Sample1.markdup.log
+    │   └── Sample1.markdup.log
     ├── samtools_flagstat
     │   ├── alignment.flagstat.html
     │   ├── Sample1.flagstat
-    │   ├── Sample1.nobarcode.flagstat
+    │   └── Sample1.nobarcode.flagstat
     └── samtools_stats
         ├── alignment.stats.html
         ├── Sample1.nobarcode.stats
@@ -663,6 +690,14 @@ Notice that the read pair part differs from the <a href="../qualitytrimming/#fas
 <tr>
 <td style="text-align: left;"><code v-pre>stats/</code></td>
 <td style="text-align: left;">various counts/statistics/reports relating to sequence alignment</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stats/coverage/*.html</code></td>
+<td style="text-align: left;">summary plots of alignment coverage per contig</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stats/coverage/data/*.gencov</code></td>
+<td style="text-align: left;">output from bedtools gencov from all alignments, used for plots</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>stats/markduplicates</code></td>
