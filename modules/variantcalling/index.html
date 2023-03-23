@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732833740978">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732895250669">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.732833740978" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732895250669" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732833740978" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732895250669" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732833740978" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732833740978" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732895250669" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732895250669" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -434,8 +434,6 @@ you only the raw variants file (in <code v-pre>.bcf</code> format), the index of
 <pre class="language-none"><code v-pre class="language-none">Variants/mpileup
 ├── variants.raw.bcf
 ├── variants.raw.bcf.csi
-├── variants.raw.html
-├── variants.raw.stats
 ├── logs
 │   ├── contig1.call.log
 │   ├── contig1.mpileup.log
@@ -445,7 +443,9 @@ you only the raw variants file (in <code v-pre>.bcf</code> format), the index of
 │   └── samples.names
 └── stats
     ├── contig1.stats
-    └── contig2.stats</code></pre>
+    ├── contig2.stats
+    ├── variants.raw.html
+    └── variants.raw.stats</code></pre>
 </doc-codeblock></div>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
@@ -465,14 +465,6 @@ you only the raw variants file (in <code v-pre>.bcf</code> format), the index of
 <td style="text-align: left;">index file for <code v-pre>variants.raw.bcf</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>variants.raw.html</code></td>
-<td style="text-align: left;">report summarizing final variants</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>variants.raw.stats</code></td>
-<td style="text-align: left;">output of <code v-pre>bcftools stats variants.raw.bcf</code></td>
-</tr>
-<tr>
 <td style="text-align: left;"><code v-pre>logs/*.call.log</code></td>
 <td style="text-align: left;">what <code v-pre>bcftools call</code> writes to <code v-pre>stderr</code></td>
 </tr>
@@ -489,8 +481,12 @@ you only the raw variants file (in <code v-pre>.bcf</code> format), the index of
 <td style="text-align: left;">list of sample names associated with alignment files used for variant calling</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/</code></td>
-<td style="text-align: left;">per-contig variant calling stats</td>
+<td style="text-align: left;"><code v-pre>stats/*.stats</code></td>
+<td style="text-align: left;">output of <code v-pre>bcftools stats</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stats/variants.raw.html</code></td>
+<td style="text-align: left;">report summarizing final variants</td>
 </tr>
 </tbody>
 </table>
@@ -552,7 +548,7 @@ to make sure each sample has a unique <code v-pre>C</code>, otherwise it might c
 </doc-tab>
 <doc-tab id="leviathan-output">
 <template #title>leviathan output</template>
-<p>The <code v-pre>harpy variants --leviathan</code> module creates a <code v-pre>Variants/leviathan</code> directory with the folder structure below. <code v-pre>sample1</code> and <code v-pre>sample2</code> are generic sample names for demonstration purposes.</p>
+<p>The <code v-pre>harpy variants --leviathan</code> module creates a <code v-pre>Variants/leviathan</code> (or <code v-pre>leviathan-pop</code>) directory with the folder structure below. <code v-pre>sample1</code> and <code v-pre>sample2</code> are generic sample names for demonstration purposes.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Variants/leviathan/
 ├── sample1.bcf
