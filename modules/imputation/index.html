@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732902119149">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732990418287">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.732902119149" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732990418287" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732902119149" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732990418287" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732902119149" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732902119149" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732990418287" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732990418287" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
     <link href="../../resources/css/katex.css?v=2.4.0" rel="stylesheet" />
     <script id="katex-js" type="text/javascript" src="../../resources/js/katex.js?v=2.4.0" defer></script>
@@ -599,6 +599,101 @@ contigs have at least 2 biallelic SNPs, then performs imputation on only those c
 </doc-tab>
 <doc-tab id="imputation-output">
 <template #title>imputation output</template>
+<p>The <code v-pre>harpy impute</code> module creates an <code v-pre>Imputation</code> directory with the folder structure below. <code v-pre>contig1</code> and <code v-pre>contig2</code>
+are generic contig names from an imaginary <code v-pre>genome.fasta</code> for demonstration purposes. The directory <code v-pre>model1/</code>
+is a generic name to reflect the corresponding parameter row in the stitch parameter
+file, which would have explicit names in real use (e.g. <code v-pre>modelpseudoHaploid_useBXTrue_k10_s1_nGen50/</code>).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Imputation/
+├── input
+│   ├── contig1.stitch
+│   ├── contig2.stitch
+│   ├── samples.list
+│   ├── samples.names
+└── model1
+    ├── concat.log
+    ├── variants.imputed.bcf
+    ├── variants.imputed.bcf.csi
+    ├── variants.imputed.html
+    ├── variants.imputed.stats
+    └── contigs
+        ├── contig1
+        │   ├──contig1.log
+        │   ├──contig1.impute.html
+        │   ├──contig1.stats
+        │   ├──contig1.vcf.gz
+        │   ├──contig1.vcf.gz.tbi
+        └── contig2
+            ├──contig2.log
+            ├──contig2.impute.html
+            ├──contig2.stats
+            ├──contig2.vcf.gz
+            └──contig2.vcf.gz.tbi</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;">item</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>input/*.stitch</code></td>
+<td style="text-align: left;">biallelic SNPs used for imputation</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>input/samples.list</code></td>
+<td style="text-align: left;">list of input BAM files</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>input/samples.names</code></td>
+<td style="text-align: left;">list of sample names</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>model*/concat.log</code></td>
+<td style="text-align: left;">output from bcftools concat to create final imputed bcf</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>model*/variants.imputed.bcf</code></td>
+<td style="text-align: left;">final bcf file of imputed genotypes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>model*/variants.imputed.bcf.csi</code></td>
+<td style="text-align: left;">index of <code v-pre>variants.imputed.bcf</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>model*/variants.imputed.bcf.html</code></td>
+<td style="text-align: left;">report summarizing <code v-pre>bcftools stats</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>model*/variants.imputed.bcf.stats</code></td>
+<td style="text-align: left;">result of <code v-pre>bcftools stats</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>model*/contigs/*/*.impute.html</code></td>
+<td style="text-align: left;">summary of STITCH imputation</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>model*/contigs/*/*.log</code></td>
+<td style="text-align: left;">what STITCH writes to <code v-pre>stdout</code> and <code v-pre>stderr</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>model*/contigs/*/*.stats</code></td>
+<td style="text-align: left;">results of <code v-pre>bcftools stats</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>model*/contigs/*/*.vcf.gz</code></td>
+<td style="text-align: left;">variants resulting from imputation</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>model*/contigs/*/*.vcf.gz.tbi</code></td>
+<td style="text-align: left;">index of variant file</td>
+</tr>
+</tbody>
+</table>
+</div>
 </doc-tab>
 </doc-tabs>
 

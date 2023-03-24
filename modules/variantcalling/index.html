@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732902119149">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732990418287">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.732902119149" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732990418287" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732902119149" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732990418287" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732902119149" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732902119149" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732990418287" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732990418287" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -425,13 +425,17 @@ you only the raw variants file (in <code v-pre>.bcf</code> format), the index of
     C--&gt;D([index BCFs])
     D--&gt;E([combine BCFs])
     C--&gt;E
-    E--&gt;F([generate reports])</pre></div>
+    E--&gt;G([normalize variants])
+    E--&gt;F([generate reports])
+    G--&gt;F</pre></div>
 </doc-tab>
 <doc-tab id="mpileup-output">
 <template #title>mpileup output</template>
-<p>The <code v-pre>harpy variants</code> module creates a <code v-pre>Variants/mpileup</code> directory with the folder structure below. <code v-pre>contig1</code> and <code v-pre>contig2</code> are generic contig names for demonstration purposes.</p>
+<p>The <code v-pre>harpy variants</code> module creates a <code v-pre>Variants/mpileup</code> directory with the folder structure below. <code v-pre>contig1</code> and <code v-pre>contig2</code> are generic contig names from an imaginary <code v-pre>genome.fasta</code> for demonstration purposes.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Variants/mpileup
+├── variants.normalized.bcf
+├── variants.normalized.bcf.csi
 ├── variants.raw.bcf
 ├── variants.raw.bcf.csi
 ├── logs
@@ -444,6 +448,8 @@ you only the raw variants file (in <code v-pre>.bcf</code> format), the index of
 └── stats
     ├── contig1.stats
     ├── contig2.stats
+    ├── variants.normalized.html
+    ├── variants.normalized.stats
     ├── variants.raw.html
     └── variants.raw.stats</code></pre>
 </doc-codeblock></div>
@@ -458,11 +464,15 @@ you only the raw variants file (in <code v-pre>.bcf</code> format), the index of
 <tbody>
 <tr>
 <td style="text-align: left;"><code v-pre>variants.raw.bcf</code></td>
-<td style="text-align: left;">final vcf file produced from variant calling, contains all samples and loci</td>
+<td style="text-align: left;">vcf file produced from variant calling, contains all samples and loci</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>variants.raw.bcf.csi</code></td>
-<td style="text-align: left;">index file for <code v-pre>variants.raw.bcf</code></td>
+<td style="text-align: left;"><code v-pre>variants.normalized.bcf</code></td>
+<td style="text-align: left;">left-aligned (parsimonious) variants with multiallelic sites decomposed and duplicates removed</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>variants.*.bcf.csi</code></td>
+<td style="text-align: left;">index file for <code v-pre>variants.*.bcf</code></td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>logs/*.call.log</code></td>
@@ -485,8 +495,8 @@ you only the raw variants file (in <code v-pre>.bcf</code> format), the index of
 <td style="text-align: left;">output of <code v-pre>bcftools stats</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/variants.raw.html</code></td>
-<td style="text-align: left;">report summarizing final variants</td>
+<td style="text-align: left;"><code v-pre>stats/variants.*.html</code></td>
+<td style="text-align: left;">report summarizing variants</td>
 </tr>
 </tbody>
 </table>
