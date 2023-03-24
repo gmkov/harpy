@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732990418287">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732991663520">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon" />
-    <link href="../resources/css/retype.css?v=2.4.0.732990418287" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.732991663520" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.732990418287" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.732991663520" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.732990418287" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.732990418287" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.732991663520" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.732991663520" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -241,7 +241,7 @@
 <p>Before you start using Harpy for your haplotagging data processing, you will need to make sure you have a few things on hand for things to go smoothly.
 At the minimum, you will need:</p>
 <doc-panels>
-   <doc-panel id="1-haplotagging-sequences-in-b-gzipped-fastq-format">
+   <doc-panel id="1-haplotagging-sequences-in-b-gzipped-fastq-format" collapsed>
        <template #title>1. Haplotagging sequences, in b/gzipped FASTQ format</template>
 <ul>
 <li>the haplotagging sequences <strong>must</strong> have the barcode in the read headers.</li>
@@ -257,7 +257,7 @@ At the minimum, you will need:</p>
 <pre class="language-none"><code v-pre class="language-none">@A00470:481:HNYFWDRX2:1:2101:16062:1031 BX:Z:A62C38B38D99 1:N:0:TATCAGTA+TTACTACT</code></pre>
 </doc-codeblock></div>
    </doc-panel>
-   <doc-panel id="2-a-reference-genome-in-fasta-format">
+   <doc-panel id="2-a-reference-genome-in-fasta-format" collapsed>
        <template #title>2. A reference genome, in FASTA format</template>
 <p>A plain haploid genome assembly in uncompressed FASTA format, where contigs names begin with <code v-pre>&gt;</code> like the standard format.</p>
    </doc-panel>
@@ -290,31 +290,28 @@ At the minimum, you will need:</p>
 <li><code v-pre>--config</code></li>
 </ul>
 <doc-anchor-target id="use-cases">
-    <h5>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#use-cases">#</doc-anchor-trigger>
         <span>Use cases</span>
-    </h5>
-</doc-anchor-target>
-<p>You likely wont need to invoke <code v-pre>--snakemake</code> very often, if ever. That being said, here are what might be the most common use cases for this parameter.</p>
-<doc-anchor-target id="dry-run">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#dry-run">#</doc-anchor-trigger>
-        <span>Dry run</span>
     </h3>
 </doc-anchor-target>
+<p>You likely wont need to invoke <code v-pre>--snakemake</code> very often, if ever. However, here are common use cases for this parameter.</p>
+<doc-panels>
+   <doc-panel id="dry-run" collapsed>
+       <template #title>Dry run</template>
 <doc-anchor-target id="--dry-run">
     <h5>
         <doc-anchor-trigger class="header-anchor-trigger" to="#--dry-run">#</doc-anchor-trigger>
         <span><code v-pre>--dry-run</code></span>
     </h5>
 </doc-anchor-target>
-<p>This is a directive in which Snakemake will build the DAG and &quot;pretend&quot; to run the Harpy workflow. Useful for knowing what you&#x27;re getting yourself into ahead of time. It&#x27;s also useful for debugging during development.</p>
-<doc-anchor-target id="rerun-an-incomplete-workflow">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#rerun-an-incomplete-workflow">#</doc-anchor-trigger>
-        <span>Rerun an incomplete workflow</span>
-    </h3>
-</doc-anchor-target>
+<p>This is a directive in which Snakemake will build the DAG and &quot;pretend&quot; to run the Harpy workflow. Useful for knowing what you&#x27;re getting yourself into ahead of time. It&#x27;s also useful for debugging during development. Here is an example of dry-running variant calling:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">harpy variants -g genome.fasta  -d ReadMapping/ema -s &quot;--dry-run&quot;</code></pre>
+</doc-codeblock></div>
+   </doc-panel>
+   <doc-panel id="rerun-an-incomplete-workflow" collapsed>
+       <template #title>Rerun an incomplete workflow</template>
 <doc-anchor-target id="--rerun-incomplete">
     <h5>
         <doc-anchor-trigger class="header-anchor-trigger" to="#--rerun-incomplete">#</doc-anchor-trigger>
@@ -341,25 +338,19 @@ Variants/leviathan-pop/lrezIndexed/2.bci</code></pre>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">harpy variants --leviathan -g genome.fasta  -d ReadMapping/ema --threads 8 -p samples.groups -s &quot;--rerun-incomplete&quot;</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="specific-file-target">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#specific-file-target">#</doc-anchor-trigger>
-        <span>Specific file target</span>
-    </h3>
-</doc-anchor-target>
+   </doc-panel>
+   <doc-panel id="specific-file-target" collapsed>
+       <template #title>Specific file target</template>
 <p>Sometimes you want to generate a specific intermediate file (or files) rather than running the entire module to completion. For example,
 you want the beadtag report Harpy makes from the output of <code v-pre>EMA count</code>. To do this, just list the file/files (relative
 to your working directory) without any flags. Example for the beadtag report:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">harpy align -g genome.fasta -d Trimming -t 4 -s &quot;Alignemnts/ema/stats/beadtag.report.html&quot;</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy align -g genome.fasta -d Trimming -t 4 -s &quot;Alignemnts/ema/stats/reads.bxstats.html&quot;</code></pre>
 </doc-codeblock></div>
 <p>This of course necessitates knowing the names of the files ahead of time. See the individual modules for a breakdown of expected outputs.</p>
-<doc-anchor-target id="set-a-shadow-directory">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#set-a-shadow-directory">#</doc-anchor-trigger>
-        <span>Set a shadow directory</span>
-    </h3>
-</doc-anchor-target>
+   </doc-panel>
+   <doc-panel id="set-a-shadow-directory" collapsed>
+       <template #title>Set a shadow directory</template>
 <doc-anchor-target id="--shadow-prefix-dirname">
     <h5>
         <doc-anchor-trigger class="header-anchor-trigger" to="#--shadow-prefix-dirname">#</doc-anchor-trigger>
@@ -375,12 +366,9 @@ configuring this &quot;shadow directory&quot; setting, Snakemake will automatica
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">harpy variants --leviathan -g genome.fasta  -d ReadMapping/ema --threads 8 -p samples.groups -s &quot;--shadow-prefix /SCRATCH/username/&quot;</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="snakemake-etc">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#snakemake-etc">#</doc-anchor-trigger>
-        <span>Snakemake etc.</span>
-    </h2>
-</doc-anchor-target>
+   </doc-panel>
+   <doc-panel id="unlocking-the-directory" collapsed>
+       <template #title>Unlocking the directory</template>
 <p>Sometimes Snakemake might scold/warn you about something you didn&#x27;t realize you did. One
 common case is when you prematurely terminate Harpy with <code v-pre>ctrl + c</code> or by terminating
 the process by other means. You might try to rerun Harpy afterwards and be met with a
@@ -396,9 +384,12 @@ ory, the remaining lock was likely caused by a kill signal or a power loss. It
 can be removed with the --unlock argument.</code></pre>
 </doc-codeblock></div>
 <p>Like the error suggests, this can be overcome using the <code v-pre>--unlock</code> argument, which
-would be provided to Harpy as <code v-pre>-s &quot;--unlock&quot;</code>. However, I live dangerously and often
-remove the entire <code v-pre>.snakemake</code> directory in my working directory, alleviating the issue.
-Choose your own adventure.</p>
+would be provided to Harpy as <code v-pre>-s &quot;--unlock&quot;</code>. You may also remove
+<code v-pre>.snakemake/</code> your working directory. Choose your own adventure, although unlocking
+is likely safer. Unlocking the directory does not run Harpy, it just exists after unlocking (a snakemake nuance),
+so you will need to run Harpy again  without this parameter.</p>
+   </doc-panel>
+</doc-panels>
 
                                 
                                 <!-- Required only on API pages -->
