@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734458957724">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734472134877">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -22,24 +22,24 @@
     <meta property="og:url" content="https://pdimens.github.io/HARPY/modules/readmapping/">
     <meta property="og:title" content=" Mapping Reads onto a genome | Harpy">
     <meta property="og:description" content="Align haplotagged sequences to a reference genome with Harpy">
-    <meta property="og:image" content="https://pdimens.github.io/HARPY/static/mq.plot.png">
+    <meta property="og:image" content="https://pdimens.github.io/HARPY/static/ema.fig3.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://pdimens.github.io/HARPY/modules/readmapping/">
     <meta property="twitter:title" content=" Mapping Reads onto a genome | Harpy">
     <meta property="twitter:description" content="Align haplotagged sequences to a reference genome with Harpy">
-    <meta property="twitter:image" content="https://pdimens.github.io/HARPY/static/mq.plot.png">
+    <meta property="twitter:image" content="https://pdimens.github.io/HARPY/static/ema.fig3.png">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.734458957724" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.734472134877" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.734458957724" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.734472134877" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.734458957724" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.734458957724" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.734472134877" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.734472134877" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -450,12 +450,8 @@ These are taken directly from the <a href="https://bio-bwa.sourceforge.net/bwa.s
 <p>The <code v-pre>--quality</code> argument filters out alignments below a given <code v-pre>MQ</code> threshold. The default, <code v-pre>7</code>, keeps alignments
 that are at least 80% likely accurately mapped. Set this value to <code v-pre>1</code> if you only want alignments with
 MQ = 0 removed, or set it to <code v-pre>0</code> to keep all alignments. This plot shows the relationship
-between MQ score and alignment correctness.
-<figure class="content-center">
-    <img src="../../static/mq.plot.png" alt="Explanation of Mapping Quality" />
-    <figcaption class="caption">Explanation of Mapping Quality</figcaption>
-</figure>
-</p>
+between MQ score and alignment correctness.</p>
+<iframe width="100%" height="400" frameborder="0" scrolling="no" src="//plotly.com/~pdimens/7.embed"></iframe>
 <hr />
 <doc-anchor-target id="ema-workflow">
     <h2>
