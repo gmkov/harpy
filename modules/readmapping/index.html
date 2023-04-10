@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734472134877">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734473121676">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -34,12 +34,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.734472134877" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.734473121676" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.734472134877" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.734473121676" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.734472134877" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.734472134877" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.734473121676" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.734473121676" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
 </head>
 <body>
@@ -350,18 +350,18 @@ harpy align --threads 20 --genome genome.fasta --dir Sequences/ --bwa</code></pr
 <tr>
 <td style="text-align: left;"><code v-pre>--ema-bins</code></td>
 <td style="text-align: center;"><code v-pre>-e</code></td>
-<td style="text-align: left;">integer</td>
+<td style="text-align: left;">integer (1-1000)</td>
 <td style="text-align: center;">500</td>
 <td style="text-align: center;">no</td>
 <td style="text-align: left;">Number of barcode bins for EMA</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>--quality</code></td>
+<td style="text-align: left;"><code v-pre>--quality-filter</code></td>
 <td style="text-align: center;"><code v-pre>-q</code></td>
-<td style="text-align: left;">integer</td>
+<td style="text-align: left;">integer (0-40)</td>
 <td style="text-align: center;">7</td>
 <td style="text-align: center;">no</td>
-<td style="text-align: left;">SAM <code v-pre>MQ</code> (mapping quality) filtering cutoff</td>
+<td style="text-align: left;">Minimum <code v-pre>MQ</code> (SAM mapping quality) to pass filtering</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>--bwa</code></td>
