@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734551963369">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734552224367">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -34,12 +34,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.734551963369" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.734552224367" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.734551963369" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.734552224367" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.734551963369" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.734551963369" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.734552224367" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.734552224367" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
     <link href="../../resources/css/katex.css?v=2.4.0" rel="stylesheet" />
     <script id="katex-js" type="text/javascript" src="../../resources/js/katex.js?v=2.4.0" defer></script>
@@ -451,7 +451,7 @@ These are taken directly from the <a href="https://bio-bwa.sourceforge.net/bwa.s
 </doc-anchor-target>
 <doc-panel id="what-is-a-mq-score" collapsed>
     <template #title>What is a <span class="math">MQ</span> score?</template>
-<p>Every alignment in a BAM file has an associated mapping quality (<span class="math">MQ</span>) score that informs you of the likelihood
+<p>Every alignment in a BAM file has an associated mapping quality score (<span class="math">MQ</span>) that informs you of the likelihood
 that the alignment is accurate. This score can range from 0-40, where higher numbers mean the alignment is more
 likely correct. The math governing the <span class="math">MQ</span> score actually calculates the percent chance the alignment is <em><strong>incorrect</strong></em>:</p>
 <div class="math"><pre>\%\ chance\ incorrect = 10^\frac{-MQ}{10} \times 100\\
@@ -462,10 +462,10 @@ likely correct. The math governing the <span class="math">MQ</span> score actual
 \%\ chance\ correct = (1 - 10^\frac{-MQ}{10}) \times 100</pre></div>
 </doc-panel>
 <p>The <code v-pre>--quality</code> argument filters out alignments below a given <span class="math">MQ</span> threshold. The default, <code v-pre>20</code>, keeps alignments
-that are at least 99% likely accurately mapped (100 - 1% incorrect). Set this value to <code v-pre>1</code> if you only want alignments removed with
+that are at least 99% likely correctly mapped. Set this value to <code v-pre>1</code> if you only want alignments removed with
 <span class="math">MQ = 0</span> (100% likely incorrect). You may also set it to <code v-pre>0</code> to keep all alignments for diagnostic purposes.
 The plot below shows the relationship between <span class="math">MQ</span> score and the likelihood the alignment is wrong and will serve to help you decide
-on a value you may want to use. It is common to filter out alignments with <span class="math">MQ &lt;20</span> (&lt;99% chance correct) or <span class="math">MQ &lt;30</span> (&lt;99.9% chance correct).</p>
+on a value you may want to use. It is common to remove alignments with <span class="math">MQ &lt;20</span> (&lt;99% chance correct) or <span class="math">MQ &lt;30</span> (&lt;99.9% chance correct).</p>
 <p>
 <figure>
     <div class="relative w-full mb-6 overflow-hidden pt-9/16">
