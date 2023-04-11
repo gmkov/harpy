@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734547484722">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734551428809">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -34,13 +34,15 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.734547484722" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.734551428809" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.734547484722" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.734551428809" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.734547484722" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.734547484722" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.734551428809" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.734551428809" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
+    <link href="../../resources/css/katex.css?v=2.4.0" rel="stylesheet" />
+    <script id="katex-js" type="text/javascript" src="../../resources/js/katex.js?v=2.4.0" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -447,11 +449,20 @@ These are taken directly from the <a href="https://bio-bwa.sourceforge.net/bwa.s
         <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M2.75 6a.75.75 0 000 1.5h18.5a.75.75 0 000-1.5H2.75zM6 11.75a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H6.75a.75.75 0 01-.75-.75zm4 4.938a.75.75 0 01.75-.75h2.5a.75.75 0 010 1.5h-2.5a.75.75 0 01-.75-.75z"/></g></g></svg> Quality filtering</span>
     </h2>
 </doc-anchor-target>
-<p>The <code v-pre>--quality</code> argument filters out alignments below a given <code v-pre>MQ</code> threshold. The default, <code v-pre>20</code>, keeps alignments
-that are at least 99% likely accurately mapped. Set this value to <code v-pre>1</code> if you only want alignments with
-MQ = 0 removed, or set it to <code v-pre>0</code> to keep all alignments. This plot shows the relationship
-between MQ score and alignment correctness and will serve to help you decide
-on a value you may want to use.</p>
+<p>Every alignment in a BAM file has an associated mapping quality (<span class="math">MQ</span>) score that informs you of the likelihood
+that the alignment is accurate. This score can range from 0-40, where higher numbers mean the alignment is more
+likely correct. The math governing the <span class="math">MQ</span> score actually calculates the percent chance the alignment is <em><strong>incorrect</strong></em>:</p>
+<div class="math"><pre>\%\ chance\ incorrect = 10^\frac{-MQ}{10} \times 100\\
+\text{where }0\le MQ\le 40</pre></div>
+<p>You can simply subtract it from 100 to determine the percent chance the alignment is <em><strong>correct</strong></em>:</p>
+<div class="math"><pre>\%\ chance\ correct = 100 - \%\ chance\ incorrect\\
+\text{or} \\
+\%\ chance\ correct = (1 - 10^\frac{-MQ}{10}) \times 100</pre></div>
+<p>The <code v-pre>--quality</code> argument filters out alignments below a given <span class="math">MQ</span> threshold. The default, <code v-pre>20</code>, keeps alignments
+that are at least 99% likely accurately mapped (100 - 1% incorrect). Set this value to <code v-pre>1</code> if you only want alignments with
+<span class="math">MQ = 0</span> removed (100% likely incorrect). You may also set it to <code v-pre>0</code> to keep all alignments for diagnostic purposes.
+The plot below shows the relationship between <span class="math">MQ</span> score and the likelihood the alignment is wrong and will serve to help you decide
+on a value you may want to use. It is common to filter out alignments with <span class="math">MQ &lt;20</span> (&lt;99% chance correct) or <span class="math">MQ &lt;30</span> (&lt;99.9% chance correct).</p>
 <p>
 <figure>
     <div class="relative w-full mb-6 overflow-hidden pt-9/16">
@@ -795,6 +806,6 @@ on a value you may want to use.</p>
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "Read Mapping", level: 2, icon: "file", hasPrism: true, hasMermaid: true, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Read Mapping", level: 2, icon: "file", hasPrism: true, hasMermaid: true, hasMath: true }</script>
 </body>
 </html>
