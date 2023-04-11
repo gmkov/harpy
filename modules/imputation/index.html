@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734555065824">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734555855287">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.734555065824" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.734555855287" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.734555065824" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.734555855287" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.734555065824" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.734555065824" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.734555855287" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.734555855287" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
     <link href="../../resources/css/katex.css?v=2.4.0" rel="stylesheet" />
     <script id="katex-js" type="text/javascript" src="../../resources/js/katex.js?v=2.4.0" defer></script>
@@ -335,7 +335,7 @@ harpy impute --threads 20 --vcf Variants/variants.raw.bcf --dir Alignments/ema -
     </h2>
 </doc-anchor-target>
 <p>Typically, one runs STITCH multiple times, exploring how results vary with
-different model parameters. The solution Harpy uses for this is to have the user
+different model parameters (explained in next section). The solution Harpy uses for this is to have the user
 provide a tab-delimited dataframe file where the columns are the 5 STITCH model
 parameters and the rows are the values for those parameters. The parameter file
 is required and can be created manually or with <code v-pre>harpy extra -s &lt;filename&gt;</code>.
@@ -450,17 +450,21 @@ pseudoHaploid   TRUE    15      10      100</code></pre>
 </div>
 </doc-tab>
 </doc-tabs>
-<doc-anchor-target id="model">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#model">#</doc-anchor-trigger>
-        <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M10.97 8.265a1.45 1.45 0 00-.487.57.75.75 0 01-1.341-.67c.2-.402.513-.826.997-1.148C10.627 6.69 11.244 6.5 12 6.5c.658 0 1.369.195 1.934.619a2.45 2.45 0 011.004 2.006c0 1.033-.513 1.72-1.027 2.215-.19.183-.399.358-.579.508l-.147.123a4.329 4.329 0 00-.435.409v1.37a.75.75 0 11-1.5 0v-1.473c0-.237.067-.504.247-.736.22-.28.486-.517.718-.714l.183-.153.001-.001c.172-.143.324-.27.47-.412.368-.355.569-.676.569-1.136a.953.953 0 00-.404-.806C12.766 8.118 12.384 8 12 8c-.494 0-.814.121-1.03.265zM13 17a1 1 0 11-2 0 1 1 0 012 0z"/><path fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zM2.5 12a9.5 9.5 0 1119 0 9.5 9.5 0 01-19 0z"/></g></g></svg> model</span>
-    </h3>
+<doc-anchor-target id="stitch-parameters">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#stitch-parameters">#</doc-anchor-trigger>
+        <span>STITCH Parameters</span>
+    </h2>
 </doc-anchor-target>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white">
+<doc-tabs>
+<doc-tab id="model">
+<template #title>model</template>
+<doc-anchor-target id="which-method-to-use">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#which-method-to-use">#</doc-anchor-trigger>
         <span>Which method to use</span>
-    </div>
-    <div class="px-5 py-3 docs-columns-content">
+    </h5>
+</doc-anchor-target>
 <p>STITCH uses one of three &quot;methods&quot; reflecting different statistical and biological models:</p>
 <ul>
 <li><code v-pre>diploid</code>: the best general method with the best statistical properties
@@ -480,76 +484,60 @@ pseudoHaploid   TRUE    15      10      100</code></pre>
 </li>
 </ul>
 <p>Each model assumes the samples are diploid and all methods output diploid genotypes and probabilities.</p>
-    </div>
-</div>
-<doc-anchor-target id="usebx">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#usebx">#</doc-anchor-trigger>
-        <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M10.97 8.265a1.45 1.45 0 00-.487.57.75.75 0 01-1.341-.67c.2-.402.513-.826.997-1.148C10.627 6.69 11.244 6.5 12 6.5c.658 0 1.369.195 1.934.619a2.45 2.45 0 011.004 2.006c0 1.033-.513 1.72-1.027 2.215-.19.183-.399.358-.579.508l-.147.123a4.329 4.329 0 00-.435.409v1.37a.75.75 0 11-1.5 0v-1.473c0-.237.067-.504.247-.736.22-.28.486-.517.718-.714l.183-.153.001-.001c.172-.143.324-.27.47-.412.368-.355.569-.676.569-1.136a.953.953 0 00-.404-.806C12.766 8.118 12.384 8 12 8c-.494 0-.814.121-1.03.265zM13 17a1 1 0 11-2 0 1 1 0 012 0z"/><path fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zM2.5 12a9.5 9.5 0 1119 0 9.5 9.5 0 01-19 0z"/></g></g></svg> useBX</span>
-    </h3>
-</doc-anchor-target>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white">
+</doc-tab>
+<doc-tab id="usebx">
+<template #title>useBX</template>
+<doc-anchor-target id="use-bx-barcodes">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#use-bx-barcodes">#</doc-anchor-trigger>
         <span>Use BX barcodes</span>
-    </div>
-    <div class="px-5 py-3 docs-columns-content">
+    </h5>
+</doc-anchor-target>
 <p>The <code v-pre>useBX</code> parameter is given as a true/false. Simulations suggest including linked-read information isn&#x27;t helpful
 in species with short haploblocks (it might makes things worse). So, it&#x27;s worth trying both options if you aren&#x27;t
 sure about the length of haplotype blocks in your species.</p>
-    </div>
-</div>
-<doc-anchor-target id="k">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#k">#</doc-anchor-trigger>
-        <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M10.97 8.265a1.45 1.45 0 00-.487.57.75.75 0 01-1.341-.67c.2-.402.513-.826.997-1.148C10.627 6.69 11.244 6.5 12 6.5c.658 0 1.369.195 1.934.619a2.45 2.45 0 011.004 2.006c0 1.033-.513 1.72-1.027 2.215-.19.183-.399.358-.579.508l-.147.123a4.329 4.329 0 00-.435.409v1.37a.75.75 0 11-1.5 0v-1.473c0-.237.067-.504.247-.736.22-.28.486-.517.718-.714l.183-.153.001-.001c.172-.143.324-.27.47-.412.368-.355.569-.676.569-1.136a.953.953 0 00-.404-.806C12.766 8.118 12.384 8 12 8c-.494 0-.814.121-1.03.265zM13 17a1 1 0 11-2 0 1 1 0 012 0z"/><path fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zM2.5 12a9.5 9.5 0 1119 0 9.5 9.5 0 01-19 0z"/></g></g></svg> k</span>
-    </h3>
-</doc-anchor-target>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white">
+</doc-tab>
+<doc-tab id="k">
+<template #title>k</template>
+<doc-anchor-target id="number-ancestral-haplotypes">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#number-ancestral-haplotypes">#</doc-anchor-trigger>
         <span>Number ancestral haplotypes</span>
-    </div>
-    <div class="px-5 py-3 docs-columns-content">
+    </h5>
+</doc-anchor-target>
 <p>The <code v-pre>k</code> parameter is the number of ancestral haplotypes in the model. Larger K allows for more accurate imputation for
 large samples and coverages, but takes longer and accuracy may suffer with lower coverage. There&#x27;s value in in trying a
 few values of <code v-pre>k</code> and assess performance using either external validation, or the distribution of quality scores
 (<em>e.g.</em> mean / median INFO score). The best <code v-pre>k</code> gives you the best performance (accuracy, correlation or quality score distribution)
 within computational constraints, while also ensuring <code v-pre>k</code> is not too large given your sequencing coverage (<em>e.g.</em> try to ensure
 that each ancestral haplotype gets at least a certain average _X of coverage, like 10X, given your number of samples and average depth).</p>
-    </div>
-</div>
-<doc-anchor-target id="s">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#s">#</doc-anchor-trigger>
-        <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M10.97 8.265a1.45 1.45 0 00-.487.57.75.75 0 01-1.341-.67c.2-.402.513-.826.997-1.148C10.627 6.69 11.244 6.5 12 6.5c.658 0 1.369.195 1.934.619a2.45 2.45 0 011.004 2.006c0 1.033-.513 1.72-1.027 2.215-.19.183-.399.358-.579.508l-.147.123a4.329 4.329 0 00-.435.409v1.37a.75.75 0 11-1.5 0v-1.473c0-.237.067-.504.247-.736.22-.28.486-.517.718-.714l.183-.153.001-.001c.172-.143.324-.27.47-.412.368-.355.569-.676.569-1.136a.953.953 0 00-.404-.806C12.766 8.118 12.384 8 12 8c-.494 0-.814.121-1.03.265zM13 17a1 1 0 11-2 0 1 1 0 012 0z"/><path fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zM2.5 12a9.5 9.5 0 1119 0 9.5 9.5 0 01-19 0z"/></g></g></svg> s</span>
-    </h3>
-</doc-anchor-target>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white">
+</doc-tab>
+<doc-tab id="s">
+<template #title>s</template>
+<doc-anchor-target id="number-of-ancestral-haplotypes-to-average-over">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#number-of-ancestral-haplotypes-to-average-over">#</doc-anchor-trigger>
         <span>Number of ancestral haplotypes to average over</span>
-    </div>
-    <div class="px-5 py-3 docs-columns-content">
+    </h5>
+</doc-anchor-target>
 <p>The <code v-pre>s</code> parameter controls the number of sets of ancestral haplotypes used and which final results are averaged over.
 This may be useful for wild or large populations, like humans. The <code v-pre>s</code> value should affect RAM and run time in a near-linearly.</p>
-    </div>
-</div>
-<doc-anchor-target id="ngen">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#ngen">#</doc-anchor-trigger>
-        <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M10.97 8.265a1.45 1.45 0 00-.487.57.75.75 0 01-1.341-.67c.2-.402.513-.826.997-1.148C10.627 6.69 11.244 6.5 12 6.5c.658 0 1.369.195 1.934.619a2.45 2.45 0 011.004 2.006c0 1.033-.513 1.72-1.027 2.215-.19.183-.399.358-.579.508l-.147.123a4.329 4.329 0 00-.435.409v1.37a.75.75 0 11-1.5 0v-1.473c0-.237.067-.504.247-.736.22-.28.486-.517.718-.714l.183-.153.001-.001c.172-.143.324-.27.47-.412.368-.355.569-.676.569-1.136a.953.953 0 00-.404-.806C12.766 8.118 12.384 8 12 8c-.494 0-.814.121-1.03.265zM13 17a1 1 0 11-2 0 1 1 0 012 0z"/><path fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zM2.5 12a9.5 9.5 0 1119 0 9.5 9.5 0 01-19 0z"/></g></g></svg> nGen</span>
-    </h3>
-</doc-anchor-target>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white">
+</doc-tab>
+<doc-tab id="ngen">
+<template #title>nGen</template>
+<doc-anchor-target id="recombination-rate-between-samples">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recombination-rate-between-samples">#</doc-anchor-trigger>
         <span>Recombination rate between samples</span>
-    </div>
-    <div class="px-5 py-3 docs-columns-content">
+    </h5>
+</doc-anchor-target>
 <p>The <code v-pre>nGen</code> parameter controls recombination rate between the sequenced samples and the ancestral haplotypes.
 It&#x27;s probably fine to set it to <span class="math">\frac {4 \times Ne} {k}</span> given some estimate of effective population size <span class="math">{Ne}</span> .
 If you think your population can be reasonably approximated as having been founded some number of generations
 ago or reduced to <span class="math">2 \times k</span> that many generations ago, use that generation time estimate. STITCH should be fairly
 robust to misspecifications of this parameter.</p>
-    </div>
-</div>
+</doc-tab>
+</doc-tabs>
 <hr />
 <doc-anchor-target id="imputation-workflow">
     <h2>
