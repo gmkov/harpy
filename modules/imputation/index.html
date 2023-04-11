@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734552224367">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734555065824">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.734552224367" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.734555065824" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.734552224367" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.734555065824" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.734552224367" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.734552224367" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.734555065824" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.734555065824" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=2.4.0" defer></script>
     <link href="../../resources/css/katex.css?v=2.4.0" rel="stylesheet" />
     <script id="katex-js" type="text/javascript" src="../../resources/js/katex.js?v=2.4.0" defer></script>
@@ -350,6 +350,20 @@ that you will need to adjust for your study. The parameter must follow a particu
 </ul>
 </li>
 </ul>
+<doc-tabs>
+<doc-tab id="example-file">
+<template #title>example file</template>
+<p>This file is tab-delimited, note the column names:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">paramaters.txt</div>
+<pre class="language-none"><code v-pre class="language-none">model   useBX   k       s       nGen
+pseudoHaploid   TRUE    10      5       50
+pseudoHaploid   TRUE    10      1       50
+pseudoHaploid   TRUE    15      10      100</code></pre>
+</doc-codeblock></div>
+</doc-tab>
+<doc-tab id="parameter-file-columns">
+<template #title>parameter file columns</template>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -394,22 +408,9 @@ that you will need to adjust for your study. The parameter must follow a particu
 </tbody>
 </table>
 </div>
-<doc-panel id="example-parameter-file" collapsed>
-    <template #title>example parameter file</template>
-<doc-tabs>
-<doc-tab id="tab-delimited">
-<template #title>tab-delimited</template>
-<p>This file is tab-delimited, note the column names:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">paramaters.txt</div>
-<pre class="language-none"><code v-pre class="language-none">model   useBX   k       s       nGen
-pseudoHaploid   TRUE    10      5       50
-pseudoHaploid   TRUE    10      1       50
-pseudoHaploid   TRUE    15      10      100</code></pre>
-</doc-codeblock></div>
 </doc-tab>
-<doc-tab id="table-view">
-<template #title>table-view</template>
+<doc-tab id="example-file-as-a-table">
+<template #title>example file  (as a table)</template>
 <p>This is the table view of the tab-delimited file, shown here for clarity.</p>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
@@ -449,7 +450,6 @@ pseudoHaploid   TRUE    15      10      100</code></pre>
 </div>
 </doc-tab>
 </doc-tabs>
-</doc-panel>
 <doc-anchor-target id="model">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#model">#</doc-anchor-trigger>
