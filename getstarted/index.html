@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735245695938">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735316437932">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon" />
-    <link href="../resources/css/retype.css?v=2.4.0.735245695938" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.735316437932" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.735245695938" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.735316437932" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.735245695938" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.735245695938" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.735316437932" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.735316437932" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -244,6 +244,13 @@ At the minimum, you will need:</p>
    <doc-panel id="1-haplotagging-sequences-in-b-gzipped-fastq-format" collapsed>
        <template #title>1. Haplotagging sequences, in b/gzipped FASTQ format</template>
 <ul>
+<li>file names must not have any wierd special characters or dot (<code v-pre>.</code>) separators in the sample name
+<ul>
+<li>legal: <code v-pre>sample_01_pop1.F.fq.gz</code></li>
+<li>legal: <code v-pre>sample-01.F.fq.gz</code></li>
+<li><strong>illegal</strong>: <code v-pre>sample.01.pop1.F.fq.gz</code></li>
+</ul>
+</li>
 <li>the haplotagging sequences <strong>must</strong> have the barcode in the read headers.</li>
 <li>the barcode must be in the format <code v-pre>AXXCXXBXXDXX</code>, where <code v-pre>XX</code> is a number between <code v-pre>00</code> and <code v-pre>96</code>
 <ul>
