@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.735316437932">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.737046163173">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon" />
-    <link href="../resources/css/retype.css?v=2.4.0.735316437932" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.737046163173" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.735316437932" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.737046163173" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.735316437932" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.735316437932" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.737046163173" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.737046163173" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -261,8 +261,12 @@ At the minimum, you will need:</p>
 </ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">example header</div>
-<pre class="language-none"><code v-pre class="language-none">@A00470:481:HNYFWDRX2:1:2101:16062:1031 BX:Z:A62C38B38D69 1:N:0:TATCAGTA+TTACTACT</code></pre>
+<pre class="language-none"><code v-pre class="language-none">@A00814:267:HTMH3DRXX:2:1101:4580:1000 BX:Z:A02C01B11D46        RX:Z:GAAACGACCAACA+CGAACACGTTAGC   QX:Z:F,FFFFFFFFFFF+FF,FFF:FFFFFF</code></pre>
 </doc-codeblock></div>
+<p>Notably, only the sequence ID (<code v-pre>@...</code>) and <code v-pre>BX:Z:</code> tag are required. In the example above, there are additional tags
+(<code v-pre>RX:Z:</code> and <code v-pre>QX:Z:</code>) which arent used by Harpy, but they conform to the
+<a href="https://samtools.github.io/hts-specs/SAMv1.pdf">SAM comment spec (section 1.5)</a> of <code v-pre>TAG:TYPE:VALUE</code>. The takeaway
+is that the <code v-pre>BX:Z</code> tag can be anywhere in the read header after the sequence ID as long as any tags after it conform to the SAM spec <code v-pre>TAG:TYPE:VALUE</code>.</p>
    </doc-panel>
    <doc-panel id="2-a-reference-genome-in-fasta-format" collapsed>
        <template #title>2. A reference genome, in FASTA format</template>
