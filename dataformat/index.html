@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.738267318947">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.738272609852">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,11 +32,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon" />
-    <link href="../resources/css/retype.css?v=2.4.0.738267318947" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.738272609852" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.738267318947" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.738272609852" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.738267318947" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.738272609852" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -298,23 +298,12 @@ anyway.</p>
         <span>sample names</span>
     </h3>
 </doc-anchor-target>
-<p>Sample names must not have any unusual special characters or dot (<code v-pre>.</code>) separators in them.</p>
+<p>Sample names must not have any unusual special characters in them. Keep to common conventions, such as underscore (<code v-pre>_</code>) or hyphen (<code v-pre>-</code>) separators. Examples:</p>
 <ul>
-<li><span class="docs-emoji">&#x1F535;</span> good: <code v-pre>sample_01_pop1</code>
-<ul>
-<li>example: <code v-pre>sample_01_pop1.F.fastq.gz</code></li>
-</ul>
-</li>
-<li><span class="docs-emoji">&#x1F535;</span> good: <code v-pre>sample-01</code>
-<ul>
-<li>example: <code v-pre>sample-01.R.fastq.gz</code></li>
-</ul>
-</li>
-<li><span class="docs-emoji">&#x1F6AB;</span> <strong>bad</strong>: <code v-pre>sample.01.pop1</code>
-<ul>
-<li>example: <code v-pre>sample_01.pop1.F.fastq.gz</code></li>
-</ul>
-</li>
+<li>sample001</li>
+<li>sample_001</li>
+<li>sample-001</li>
+<li>sample_001_pop2</li>
 </ul>
 <doc-anchor-target id="file-extensions">
     <h3>
