@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.737046163173">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.738260322694">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon" />
-    <link href="../resources/css/retype.css?v=2.4.0.737046163173" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.738260322694" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.737046163173" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.738260322694" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.737046163173" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.737046163173" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.738260322694" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.738260322694" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -236,60 +236,57 @@
     <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M3.5 3.75a.25.25 0 01.25-.25h13.5a.25.25 0 01.25.25v10a.75.75 0 001.5 0v-10A1.75 1.75 0 0017.25 2H3.75A1.75 1.75 0 002 3.75v16.5c0 .966.784 1.75 1.75 1.75h7a.75.75 0 000-1.5h-7a.25.25 0 01-.25-.25V3.75z"/><path d="M6.25 7a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm-.75 4.75a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75zm16.28 4.53a.75.75 0 10-1.06-1.06l-4.97 4.97-1.97-1.97a.75.75 0 10-1.06 1.06l2.5 2.5a.75.75 0 001.06 0l5.5-5.5z"/></g></g></svg> You will need</template>
 <p>A working installation of <a href="https://conda.io/projects/conda/en/latest/user-guide/install/index.html">conda</a>. We recommend you use <a href="https://mamba.readthedocs.io/en/latest/installation.html">mamba</a>. It&#x27;s <strong>so</strong> much faster and uses a <strong>lot</strong> less memory. If using mamba, replace <code v-pre>conda</code> with <code v-pre>mamba</code> in the instructions below.</p>
 </doc-panel>
-<doc-anchor-target id="clone-the-repository">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#clone-the-repository">#</doc-anchor-trigger>
-        <span>Clone the repository</span>
-    </h2>
-</doc-anchor-target>
-<p>Until this pipeline gets completed and hosted on Bioconda, it will be available by cloning/downloading <a href="https://github.com/pdimens/harpy">the repository</a>.</p>
+<p>Harpy is now hosted on <a href="https://anaconda.org/bioconda/harpy">Bioconda</a>! That means to install it, you just need to have <code v-pre>conda</code> (or <code v-pre>mamba</code>) on your system and install it with a simple command. You can install Harpy into an existing environment or create a new one for it (recommended).</p>
+<doc-panels>
+   <doc-panel id="install-into-a-new-environment">
+       <template #title>install into a new environment</template>
+<p>The code snippet below creates a new environment called <code v-pre>harpy</code> (the <code v-pre>-n harpy</code> part) and installs harpy into it from the bioconda channel (<code v-pre>-c bioconda</code> part). You can name this
+environment anything (e.g. <code v-pre>haplotagging</code>, <code v-pre>jeanclaudevandamme</code>, etc.).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">install harpy</div>
+<pre class="language-bash"><code v-pre class="language-bash">conda create -n harpy -c bioconda harpy</code></pre>
+</doc-codeblock></div>
+<p>Once conda finishes the install, you can activate the environment and <code v-pre>harpy</code> will be callable
+from the command line.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">activate harpy environment</div>
+<pre class="language-bash"><code v-pre class="language-bash">conda activate &lt;env_name&gt;</code></pre>
+</doc-codeblock></div>
+   </doc-panel>
+   <doc-panel id="install-into-an-existing-evironment" collapsed>
+       <template #title>install into an existing evironment</template>
+<p>If you want to install harpy into an existing environment, then with an environment already activated (via <code v-pre>conda activate &lt;env_name&gt;</code>) simply use the <code v-pre>conda install</code> command and harpy
+will be callable from the command line.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">install harpy</div>
+<pre class="language-bash"><code v-pre class="language-bash">conda install -c bioconda harpy</code></pre>
+</doc-codeblock></div>
+   </doc-panel>
+   <doc-panel id="local-install-for-devleopment" collapsed>
+       <template #title>local install for devleopment</template>
+<p><span class="docs-emoji">&#x26A0;&#xFE0F;</span> <strong>Not intended for regular users</strong> <span class="docs-emoji">&#x26A0;&#xFE0F;</span></p>
+<p>If intent on installing harpy for development, you can do so by cloning the harpy
+repository, installing the preconfigured conda environment, and running the <code v-pre>misc/build.sh</code> script to move all the necessary files to the <code v-pre>/bin/</code> path within your active conda environment.</p>
+<p><strong>Clone the repository</strong></p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">clone the repository</div>
 <pre class="language-bash"><code v-pre class="language-bash">git clone https://github.com/pdimens/HARPY.git</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="install-the-dependencies">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#install-the-dependencies">#</doc-anchor-trigger>
-        <span>Install the dependencies</span>
-    </h2>
-</doc-anchor-target>
-<p>The dependencies can be installed into a conda environment using the provided <code v-pre>harpyenv.yaml</code>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">install the dependencies with conda</div>
 <pre class="language-bash"><code v-pre class="language-bash">conda env create --name harpy --file misc/harpyenv.yaml</code></pre>
 </doc-codeblock></div>
 <p>This will create a conda environment named <code v-pre>harpy</code> with all the bits necessary to successfully run Harpy. You can change the name of this environment by specifying
 <code v-pre>--name something</code>.</p>
-<doc-anchor-target id="activate-the-environment">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#activate-the-environment">#</doc-anchor-trigger>
-        <span>Activate the environment</span>
-    </h2>
-</doc-anchor-target>
+<p><strong>Activate the environment</strong></p>
 <p>The environment with all the preinstalled dependencies can be activated with:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">activate the conda environment</div>
 <pre class="language-bash"><code v-pre class="language-bash"># assuming the environment name is harpy from the step above
 conda activate harpy</code></pre>
 </doc-codeblock></div>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>EMA fork</h5>
-<p>The version of <a href="https://github.com/arshajii/ema">EMA</a> bundled in this repository (<code v-pre>ema-h</code>) is a <a href="https://github.com/EdHarry/ema/tree/haplotag">fork</a> of the orignal EMA modified to work with Generation 1 haplotag beadtags (AxxCxxBxxDxx). You will need to add the <code v-pre>ema-h</code> binary to your <code v-pre>PATH</code>. e.g. <code v-pre>cp ema/ema-h /usr/local/bin</code>.</p>
-        </div>
-    </div>
-</div>
+   </doc-panel>
+</doc-panels>
 
                                 
                                 <!-- Required only on API pages -->
@@ -315,10 +312,10 @@ conda activate harpy</code></pre>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../getstarted/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../dataformat/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Before you start</span>
+                                                <span class="block mt-1">Haplotag data format</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
