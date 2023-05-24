@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.738266155366">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.738267318947">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -32,11 +32,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon" />
-    <link href="../resources/css/retype.css?v=2.4.0.738266155366" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.738267318947" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.738266155366" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.738267318947" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.738266155366" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.738267318947" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -238,8 +238,11 @@
     </h2>
 </doc-anchor-target>
 <p>While barcodes are actually combinatorial bases, in the read headers they are represented
-with the format <code v-pre>AxxCxxBxxDxx</code>, where <code v-pre>xx</code> is a number between <code v-pre>00</code> and <code v-pre>96</code>. A <code v-pre>00</code> barcode
-indicates a missing/invalid barcode segment, which invalidates the entire barcode. Each segment represents a unique barcode segment used in your experiment (e.g. <code v-pre>C33</code> might actually correspond to <code v-pre>CCATCA</code>).</p>
+with the format <code v-pre>AxxCxxBxxDxx</code>, where each barcode segment is denoted as <code v-pre>Axx</code> (or <code v-pre>Bxx</code>, etc.).
+The capital letter denotes which preparation microwell plate the barcode segment is from (plate <code v-pre>A</code>, <code v-pre>B</code>, <code v-pre>C</code>, or <code v-pre>D</code>)
+and <code v-pre>xx</code> is a number between <code v-pre>00</code> and <code v-pre>96</code> corresponding to the well from that microplate.
+So, the <code v-pre>A14</code> segment would correspond with the barcode from Plate <code v-pre>A</code>, well <code v-pre>14</code>.
+A <code v-pre>00</code> barcode (e.g. <code v-pre>C00</code>) indicates a missing/invalid barcode segment, which invalidates the entire barcode.</p>
 <doc-anchor-target id="where-the-barcodes-go">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#where-the-barcodes-go">#</doc-anchor-trigger>
