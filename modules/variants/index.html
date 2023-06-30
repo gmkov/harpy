@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.0.3.741450337328">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.0.3.741451963742">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.0.3">
@@ -32,12 +32,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon" />
-    <link href="../../resources/css/retype.css?v=3.0.3.741450337328" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=3.0.3.741451963742" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=3.0.3.741450337328" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=3.0.3.741451963742" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=3.0.3" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=3.0.3.741450337328" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=3.0.3.741450337328" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=3.0.3.741451963742" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=3.0.3.741451963742" defer></script>
     <script id="mermaid-js" type="text/javascript" src="../../resources/js/mermaid.js?v=3.0.3" defer></script>
 </head>
 <body>
@@ -521,9 +521,23 @@ refer to the <a href="http://www.htslib.org/doc/samtools-mpileup.html#OPTIONS">m
 <doc-tabs>
 <doc-tab id="details">
 <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M15 13.25a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0Zm-12.5 6a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0Zm0-14.5a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0ZM5.75 6.5a1.75 1.75 0 1 0-.001-3.501A1.75 1.75 0 0 0 5.75 6.5Zm0 14.5a1.75 1.75 0 1 0-.001-3.501A1.75 1.75 0 0 0 5.75 21Zm12.5-6a1.75 1.75 0 1 0-.001-3.501A1.75 1.75 0 0 0 18.25 15Z"/><path d="M6.5 7.25c0 2.9 2.35 5.25 5.25 5.25h4.5V14h-4.5A6.75 6.75 0 0 1 5 7.25Z"/><path d="M5.75 16.75A.75.75 0 0 1 5 16V8a.75.75 0 0 1 1.5 0v8a.75.75 0 0 1-.75.75Z"/></g></g></svg> details</template>
-<p><a href="https://github.com/raphael-group/NAIBR">Naibr</a> is an alternative variant caller that uses linked read barcode information
-to call structural variants (indels, inversions, etc.) exclusively, meaning it does not call SNPs. The authors of Naibr have not been updating or improving it, so Harpy uses
-<a href="https://github.com/pontushojer/NAIBR">an active fork</a> of it that is available on <a href="https://anaconda.org/bioconda/naibr-plus">Bioconda</a> under the name <code v-pre>naibr-plus</code>. This fork includes improved accuracy as well as quality-of-life updates.</p>
+<p><a href="https://github.com/raphael-group/NAIBR">Naibr</a> is an alternative variant caller that
+uses linked read barcode information to call structural variants (indels, inversions, etc.)
+exclusively, meaning it does not call SNPs. The authors of Naibr have not been updating or
+improving it, so Harpy uses <a href="https://github.com/pontushojer/NAIBR">an active fork</a> of it that
+is available on <a href="https://anaconda.org/bioconda/naibr-plus">Bioconda</a> under the name <code v-pre>naibr-plus</code>.
+This fork includes improved accuracy as well as quality-of-life updates.</p>
+<doc-panel id="phased-input" collapsed>
+    <template #title><span class="docs-emoji">&#x26A0;&#xFE0F;</span> Phased input</template>
+<p>Interestingly, NAIBR requires the <em>phased</em> BAM files as input, meaning the alignments should have
+an <code v-pre>HP:i:</code> tag indicating their phasing (<code v-pre>HP</code> would mean &quot;haplotype&quot; and would be a number like 0,1,2).
+BWA alignments do not report phasing information. However, it&#x27;s possible to phase alignments based
+on phased SNPs using <code v-pre>whatshap haplotag</code> (the &quot;haplotag&quot; naming is unrelated to haplotag linked-read
+sequencing). This process would require you to call SNPs, then phase them with <code v-pre>HapCut2</code> as you normally
+would, then use the phased haplotype VCF file to phase the original BAM file, which would then be used
+to call structural variants with NAIBR. We&#x27;re currently testing to see if the inclusion of this workflow
+would be practical.</p>
+</doc-panel>
 <doc-anchor-target id="single-sample-variant-calling">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#single-sample-variant-calling">#</doc-anchor-trigger>
@@ -584,12 +598,46 @@ group-level variants, if that&#x27;s what your primary interest is.</p>
     ├── sample1.vcf
     └── sample2.vcf</code></pre>
 </doc-codeblock></div>
-<p>| item          | description                                              |
-|:--------------|:---------------------------------------------------------|
-| <code v-pre>*.bedpe</code>     | structural variants identified by NAIBR                  |
-| <code v-pre>configs/</code>    | the configuration files harpy generated for each sample  |
-| <code v-pre>filtered/</code>   | the variants that failed NAIBR&#x27;s internal filters        |
-| <code v-pre>IGV/</code>        | same as the output .bedpe<code v-pre>files but in IGV format       | |</code>logs/*.log<code v-pre> | what NAIBR writes to</code>stderr<code v-pre>during operation           | |</code>reports/<code v-pre>   | summary reports with interactive plots of detected SV    | |</code>vcf/<code v-pre>       | the resulting variants, but in</code>.VCF&#x60; format             |</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;">item</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>*.bedpe</code></td>
+<td style="text-align: left;">structural variants identified by NAIBR</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>configs/</code></td>
+<td style="text-align: left;">the configuration files harpy generated for each sample</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>filtered/</code></td>
+<td style="text-align: left;">the variants that failed NAIBR&#x27;s internal filters</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>IGV/</code></td>
+<td style="text-align: left;">same as the output <code v-pre>.bedpe</code> files but in IGV format</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>logs/*.log</code></td>
+<td style="text-align: left;">what NAIBR writes to <code v-pre>stderr</code> during operation</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>reports/</code></td>
+<td style="text-align: left;">summary reports with interactive plots of detected SV</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>vcf/</code></td>
+<td style="text-align: left;">the resulting variants, but in <code v-pre>.VCF</code> format</td>
+</tr>
+</tbody>
+</table>
+</div>
 </doc-tab>
 <doc-tab id="naibr-parameters">
 <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M10.3 8.24a.75.75 0 0 1-.04 1.06L7.352 12l2.908 2.7a.75.75 0 1 1-1.02 1.1l-3.5-3.25a.75.75 0 0 1 0-1.1l3.5-3.25a.75.75 0 0 1 1.06.04Zm3.44 1.06a.75.75 0 1 1 1.02-1.1l3.5 3.25a.75.75 0 0 1 0 1.1l-3.5 3.25a.75.75 0 1 1-1.02-1.1l2.908-2.7-2.908-2.7Z"/><path d="M2 3.75C2 2.784 2.784 2 3.75 2h16.5c.966 0 1.75.784 1.75 1.75v16.5A1.75 1.75 0 0 1 20.25 22H3.75A1.75 1.75 0 0 1 2 20.25Zm1.75-.25a.25.25 0 0 0-.25.25v16.5c0 .138.112.25.25.25h16.5a.25.25 0 0 0 .25-.25V3.75a.25.25 0 0 0-.25-.25Z"/></g></g></svg> naibr parameters</template>
