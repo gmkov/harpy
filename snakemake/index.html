@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.0.3.740899984556">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.0.3.741450337328">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.0.3">
 
     <!-- Primary Meta Tags -->
-    <title> Sneaky Snakemake | Harpy</title>
-    <meta name="title" content=" Sneaky Snakemake | Harpy">
-    <meta name="description" content="Harpy relies on Snakemake under the hood to handle file and job dependencies." />
+    <title> Adding Snakamake parameters | Harpy</title>
+    <meta name="title" content=" Adding Snakamake parameters | Harpy">
+    <meta name="description" content="Harpy relies on Snakemake under the hood to handle file and job dependencies. Most of these details have been abstracted away from the end-user, but..." />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://pdimens.github.io/HARPY/snakemake/" />
@@ -20,24 +20,24 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pdimens.github.io/HARPY/snakemake/">
-    <meta property="og:title" content=" Sneaky Snakemake | Harpy">
-    <meta property="og:description" content="Harpy relies on Snakemake under the hood to handle file and job dependencies.">
+    <meta property="og:title" content=" Adding Snakamake parameters | Harpy">
+    <meta property="og:description" content="Harpy relies on Snakemake under the hood to handle file and job dependencies. Most of these details have been abstracted away from the end-user, but...">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://pdimens.github.io/HARPY/snakemake/">
-    <meta property="twitter:title" content=" Sneaky Snakemake | Harpy">
-    <meta property="twitter:description" content="Harpy relies on Snakemake under the hood to handle file and job dependencies.">
+    <meta property="twitter:title" content=" Adding Snakamake parameters | Harpy">
+    <meta property="twitter:description" content="Harpy relies on Snakemake under the hood to handle file and job dependencies. Most of these details have been abstracted away from the end-user, but...">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon" />
-    <link href="../resources/css/retype.css?v=3.0.3.740899984556" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=3.0.3.741450337328" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=3.0.3.740899984556" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=3.0.3.741450337328" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=3.0.3" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=3.0.3.740899984556" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=3.0.3.740899984556" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=3.0.3.741450337328" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=3.0.3.741450337328" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -226,19 +226,17 @@
                                 <div id="docs-sidebar-right-toggle"></div>
                 
                                 <!-- Page content  -->
-<doc-anchor-target id="sneaky-snakemake" class="break-words">
+<doc-anchor-target id="adding-snakamake-parameters" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#sneaky-snakemake">#</doc-anchor-trigger>
-        <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M9.25 12a.75.75 0 0 1-.22.53l-2.75 2.75a.75.75 0 0 1-1.06-1.06L7.44 12 5.22 9.78a.75.75 0 1 1 1.06-1.06l2.75 2.75c.141.14.22.331.22.53Zm2 2a.75.75 0 0 0 0 1.5h5a.75.75 0 0 0 0-1.5h-5Z"/><path d="M0 4.75C0 3.784.784 3 1.75 3h20.5c.966 0 1.75.784 1.75 1.75v14.5A1.75 1.75 0 0 1 22.25 21H1.75A1.75 1.75 0 0 1 0 19.25Zm1.75-.25a.25.25 0 0 0-.25.25v14.5c0 .138.112.25.25.25h20.5a.25.25 0 0 0 .25-.25V4.75a.25.25 0 0 0-.25-.25Z"/></g></g></svg> Sneaky Snakemake</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#adding-snakamake-parameters">#</doc-anchor-trigger>
+        <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M9.25 12a.75.75 0 0 1-.22.53l-2.75 2.75a.75.75 0 0 1-1.06-1.06L7.44 12 5.22 9.78a.75.75 0 1 1 1.06-1.06l2.75 2.75c.141.14.22.331.22.53Zm2 2a.75.75 0 0 0 0 1.5h5a.75.75 0 0 0 0-1.5h-5Z"/><path d="M0 4.75C0 3.784.784 3 1.75 3h20.5c.966 0 1.75.784 1.75 1.75v14.5A1.75 1.75 0 0 1 22.25 21H1.75A1.75 1.75 0 0 1 0 19.25Zm1.75-.25a.25.25 0 0 0-.25.25v14.5c0 .138.112.25.25.25h20.5a.25.25 0 0 0 .25-.25V4.75a.25.25 0 0 0-.25-.25Z"/></g></g></svg> Adding Snakamake parameters</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="adding-additional-snakamake-parameters">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#adding-additional-snakamake-parameters">#</doc-anchor-trigger>
-        <span>Adding additional Snakamake parameters</span>
-    </h2>
-</doc-anchor-target>
-<p>Harpy relies on Snakemake under the hood to handle file and job dependencies. Most of these details have been abstracted away from the end-user, but every module of Harpy (except <code v-pre>extra</code>) has an optional flag <code v-pre>-s</code> (<code v-pre>--snakemake</code>) that you can use to augment the Snakemake workflow if necessary. Whenever you use this flag, your argument must be enclosed in quotation marks, for example:</p>
+<p>Harpy relies on Snakemake under the hood to handle file and job dependencies.
+Most of these details have been abstracted away from the end-user, but every
+module of Harpy (except <code v-pre>extra</code>) has an optional flag <code v-pre>-s</code> (<code v-pre>--snakemake</code>)
+that you can use to augment the Snakemake workflow if necessary. Whenever you
+use this flag, your argument must be enclosed in quotation marks, for example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">harpy trim -d rawseq -s &quot;--dry-run&quot;</code></pre>
 </doc-codeblock></div>
@@ -259,12 +257,16 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>reserved/forbidden arguments</h5>
-<p>Harpy calls Snakemake with a given set of arguments, meaning you cannot append these again to the internal command line call. Well, you can, but Snakemake will error and exit. <a href="https://snakemake.readthedocs.io/en/stable/executing/cli.html#all-options">Everything else</a> is allowed. The reserved (<strong>forbidden</strong>) arguments are:</p>
+<p>Harpy calls Snakemake with a given set of arguments, meaning you cannot append
+these again to the internal command line call. Well, you can, but Snakemake will
+error and exit. <a href="https://snakemake.readthedocs.io/en/stable/executing/cli.html#all-options">Everything else</a>
+is allowed. The reserved (<strong>forbidden</strong>) arguments are:</p>
 <ul>
 <li><code v-pre>--directory</code></li>
 <li><code v-pre>--cores</code></li>
 <li><code v-pre>--snakefile</code></li>
 <li><code v-pre>--config</code></li>
+<li><code v-pre>--rerun-incomplete</code></li>
 </ul>
         </div>
     </div>
@@ -275,7 +277,8 @@
         <span>Common use cases</span>
     </h3>
 </doc-anchor-target>
-<p>You likely wont need to invoke <code v-pre>--snakemake</code> very often, if ever. However, here are common use cases for this parameter.</p>
+<p>You likely wont need to invoke <code v-pre>--snakemake</code> very often, if ever. However,
+here are common use cases for this parameter.</p>
 <doc-panels>
    <doc-panel id="dry-run" collapsed>
        <template #title>Dry run</template>
@@ -285,38 +288,12 @@
         <span><code v-pre>--dry-run</code></span>
     </h5>
 </doc-anchor-target>
-<p>This is a directive in which Snakemake will build the DAG and &quot;pretend&quot; to run the Harpy workflow. Useful for knowing what you&#x27;re getting yourself into ahead of time. It&#x27;s also useful for debugging during development. Here is an example of dry-running variant calling:</p>
+<p>This is a directive in which Snakemake will build the DAG and &quot;pretend&quot; to
+run the Harpy workflow. Useful for knowing what you&#x27;re getting yourself into
+ahead of time. It&#x27;s also useful for debugging during development. Here is an
+example of dry-running variant calling:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">harpy variants -g genome.fasta  -d ReadMapping/ema -s &quot;--dry-run&quot;</code></pre>
-</doc-codeblock></div>
-   </doc-panel>
-   <doc-panel id="rerun-an-incomplete-workflow" collapsed>
-       <template #title>Rerun an incomplete workflow</template>
-<doc-anchor-target id="--rerun-incomplete">
-    <h5>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#--rerun-incomplete">#</doc-anchor-trigger>
-        <span><code v-pre>--rerun-incomplete</code></span>
-    </h5>
-</doc-anchor-target>
-<p>There will be plenty of reasons that Harpy/Snakemake might end prematurely, like corrupt files, system errors, insufficient resources, etc.
-When this happens, Snakemake has a save-state in the <code v-pre>.snakemake</code> folder where it knows the last run was incomplete, and when you try to run
-Harpy again, Snakemake will complain. Something like this:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">$ harpy variants --leviathan -g genome.fasta  -d ReadMapping/ema --threads 8 -p samples.groups
-Building DAG of jobs...
-IncompleteFilesException:
-The files below seem to be incomplete. If you are sure that certain files are n
-ot incomplete, mark them as complete with
-
-    snakemake --cleanup-metadata &lt;filenames&gt;
-
-To re-generate the files rerun your command with the --rerun-incomplete flag.
-Incomplete files:
-Variants/leviathan-pop/lrezIndexed/2.bci</code></pre>
-</doc-codeblock></div>
-<p>So, the easiest workaround would be to regenerate the incomplete files and use <code v-pre>-s &quot;--rerun-incomplete&quot;</code>, like so:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">harpy variants --leviathan -g genome.fasta  -d ReadMapping/ema --threads 8 -p samples.groups -s &quot;--rerun-incomplete&quot;</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy variants -g genome.fasta  -d Align/ema -s &quot;--dry-run&quot;</code></pre>
 </doc-codeblock></div>
    </doc-panel>
    <doc-panel id="specific-file-target" collapsed>
@@ -325,7 +302,7 @@ Variants/leviathan-pop/lrezIndexed/2.bci</code></pre>
 you want the beadtag report Harpy makes from the output of <code v-pre>EMA count</code>. To do this, just list the file/files (relative
 to your working directory) without any flags. Example for the beadtag report:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">harpy align -g genome.fasta -d Trimming -t 4 -s &quot;Alignemnts/ema/stats/reads.bxstats.html&quot;</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy align -g genome.fasta -d Trim/ -t 4 -s &quot;Alignemnts/ema/stats/reads.bxstats.html&quot;</code></pre>
 </doc-codeblock></div>
 <p>This of course necessitates knowing the names of the files ahead of time. See the individual modules for a breakdown of expected outputs.</p>
    </doc-panel>
@@ -344,7 +321,7 @@ your files into that workspace storage to make sure you keep the output of your 
 you may use <code v-pre>--shadow-prefix &lt;dirname&gt;</code> where <code v-pre>&lt;dirname&gt;</code> is the path to the mandatory directory you need to work out of. By
 configuring this &quot;shadow directory&quot; setting, Snakemake will automatically move the files in/out of that directory for you:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">harpy variants --leviathan -g genome.fasta  -d ReadMapping/ema --threads 8 -p samples.groups -s &quot;--shadow-prefix /SCRATCH/username/&quot;</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy variants --method leviathan -g genome.fasta  -d Align/bwa --threads 8 -p samples.groups -s &quot;--shadow-prefix /SCRATCH/username/&quot;</code></pre>
 </doc-codeblock></div>
    </doc-panel>
    <doc-panel id="unlocking-the-directory" collapsed>
@@ -385,11 +362,11 @@ so you will need to run Harpy again  without this parameter.</p>
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../modules/phasing/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../modules/phase/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Phase Haplotypes</span>
+                                                <span class="block mt-1">Phase</span>
                                             </span>
                                         </a>
                                     </div>

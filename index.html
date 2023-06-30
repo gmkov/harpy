@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.0.3.740899984556">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.0.3.741450337328">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.0.3">
@@ -34,11 +34,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="static/favicon.png" rel="icon" />
-    <link href="resources/css/retype.css?v=3.0.3.740899984556" rel="stylesheet" />
+    <link href="resources/css/retype.css?v=3.0.3.741450337328" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=3.0.3.740899984556" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="resources/js/config.js?v=3.0.3.741450337328" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="resources/js/retype.js?v=3.0.3" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=3.0.3.740899984556" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=3.0.3.741450337328" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -316,27 +316,27 @@ Great! Only want to call variants? Awesome! All modules are called by <code v-pr
 <div class="codeblock-title">harpy --help</div>
 <pre class="language-none"><code v-pre class="language-none"> Usage: harpy COMMAND [ARGS]...                     
                                                               
-               Haplotagging Research Pipeline (HARPY)               
-                                                                    
- The pipeline trims reads, maps sequences, calls variants, imputes genotypes, and phases         
- haplotypes of Haplotagging data.             
-                                                                    
- trim 🡒 align 🡒 variants 🡒 impute 🡒 phase                           
-                                                                    
- Documentation: https://pdimens.github.io/HARPY/                    
-                                                                                                     
-╭─ Options ────────────────────────────────────────────────────────╮
-│ --version      Show the version and exit.                        │
-│ --help     -h  Show this message and exit.                       │
-╰──────────────────────────────────────────────────────────────────╯
-╭─ Commands ───────────────────────────────────────────────────────╮
-│ align     Align sample sequences to a reference genome           │
-│ extra     Create various associated/necessary files              │
-│ impute    Impute genotypes using variants and sequences          │
-│ phase     Phase SNPs into haplotypes                             │
-│ trim      Remove adapters and quality trim sequences             │
-│ variants  Call variants from sample alignments                   │
-╰──────────────────────────────────────────────────────────────────╯</code></pre>
+                     Harpy haplotagging pipeline                     
+ An automated workflow to trim reads, map sequences, call variants,  
+ impute genotypes, and phase haplotypes of Haplotagging data.        
+ Batteries included.                                                 
+                                                                     
+ trim &gt;&gt; align &gt;&gt; variants &gt;&gt; impute &gt;&gt; phase                        
+                                                                     
+ Documentation: https://pdimens.github.io/harpy/                     
+                                                                     
+╭─ Options ─────────────────────────────────────────────────────────╮
+│ --version      Show the version and exit.                         │
+│ --help     -h  Show this message and exit.                        │
+╰───────────────────────────────────────────────────────────────────╯
+╭─ Commands ────────────────────────────────────────────────────────╮
+│ align     Align sample sequences to a reference genome            │
+│ extra     Create various optional/necessary input files           │
+│ impute    Impute genotypes using variants and sequences           │
+│ phase     Phase SNPs into haplotypes                              │
+│ trim      Remove adapters and quality trim sequences              │
+│ variants  Call variants from sample alignments                    │
+╰───────────────────────────────────────────────────────────────────╯</code></pre>
 </doc-codeblock></div>
 
                                 
