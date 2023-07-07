@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.0.3.741451963742">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.0.3.742068069370">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.0.3">
@@ -32,11 +32,13 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon" />
-    <link href="../resources/css/retype.css?v=3.0.3.741451963742" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=3.0.3.742068069370" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=3.0.3.741451963742" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=3.0.3.742068069370" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=3.0.3" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=3.0.3.741451963742" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=3.0.3.742068069370" data-turbo-eval="false" defer></script>
+    <link href="../resources/css/katex.css?v=3.0.3" rel="stylesheet" />
+    <script id="katex-js" type="text/javascript" src="../resources/js/katex.js?v=3.0.3" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -243,6 +245,17 @@ The capital letter denotes which preparation microwell plate the barcode segment
 and <code v-pre>xx</code> is a number between <code v-pre>00</code> and <code v-pre>96</code> corresponding to the well from that microplate.
 So, the <code v-pre>A14</code> segment would correspond with the barcode from Plate <code v-pre>A</code>, well <code v-pre>14</code>.
 A <code v-pre>00</code> barcode (e.g. <code v-pre>C00</code>) indicates a missing/invalid barcode segment, which invalidates the entire barcode.</p>
+<doc-anchor-target id="barcode-protocol-varieties">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#barcode-protocol-varieties">#</doc-anchor-trigger>
+        <span>barcode protocol varieties</span>
+    </h3>
+</doc-anchor-target>
+<p>If you think haplotagging is as simple as exactly <span class="math">96^4</span> unique barcodes, you would only be half-correct. The original haplotagging
+protocol in Meier <em>et al.</em> is good, but the authors (and others) have been working to improve this linked-read technology to improve
+things like reduce PCR duplicates, improve successful barcode sequencing and error correction, etc. As a result, a few updated variants
+of the beadtags will appear, each likely with their own way of properly demultiplexing the raw sequences. Harpy will aim to incorporate
+demultiplexing these beadtag variants as they become available.</p>
 <doc-anchor-target id="where-the-barcodes-go">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#where-the-barcodes-go">#</doc-anchor-trigger>
@@ -251,7 +264,7 @@ A <code v-pre>00</code> barcode (e.g. <code v-pre>C00</code>) indicates a missin
 </doc-anchor-target>
 <p>Chromium 10X linked-reads have a particular format where the barcode is the leading 16 bases
 of the read. However, haplotagging data <strong>does not use that format</strong>, nor do the tools
-implemented in Harpy work correctly with it. Simply put, haplotagging sequences should look like regular FASTQ files of inserts and the barcode is stored in a <code v-pre>BX:Z:</code> tag in the read header. Again, <strong>do not include the barcode in the sequence</strong>.</p>
+implemented in Harpy work correctly with it. Simply put, haplotagging sequences should look like regular FASTQ files of inserts and the barcode is stored in a <code v-pre>BX:Z:AxxCxxBxxDxx</code> tag in the read header. Again, <strong>do not include the barcode in the sequence</strong>.</p>
 <doc-anchor-target id="read-headers">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#read-headers">#</doc-anchor-trigger>
@@ -473,6 +486,6 @@ alignment. This is deliberate to make sure trimmed reads have a different conven
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "Haplotag data format", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Haplotag data format", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: true }</script>
 </body>
 </html>
