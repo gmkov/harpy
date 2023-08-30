@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.2.0.746656426808">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.2.0.746721044442">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.2.0">
@@ -22,22 +22,24 @@
     <meta property="og:url" content="https://pdimens.github.io/HARPY/development/">
     <meta property="og:title" content=" Developing Harpy | Harpy">
     <meta property="og:description" content="Harpy is an open source program written using a combination of BASH, R, RMarkdown, Python, and Snakemake. This page provides information on Harpy's">
+    <meta property="og:image" content="https://pdimens.github.io/HARPY/static/errormsg.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://pdimens.github.io/HARPY/development/">
     <meta property="twitter:title" content=" Developing Harpy | Harpy">
     <meta property="twitter:description" content="Harpy is an open source program written using a combination of BASH, R, RMarkdown, Python, and Snakemake. This page provides information on Harpy's">
+    <meta property="twitter:image" content="https://pdimens.github.io/HARPY/static/errormsg.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("/HARPY/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon">
-    <link href="../resources/css/retype.css?v=3.2.0.746656426808" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.2.0.746721044442" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.2.0.746656426808" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.2.0.746721044442" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.2.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.2.0.746656426808" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.2.0.746656426808" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.2.0.746721044442" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.2.0.746721044442" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -236,9 +238,8 @@ development and how to contribute to it, if you were inclined to do so.</p>
 <doc-panel id="design-philosophy">
     <template #title>Design Philosophy</template>
 <p>Before we get into the technical details, you, dear reader, need to understand
-why Harpy is the way it is. Harpy is a program similar to dDocent in that it
-uses well-established programs to create a pipeline rather than reinvent the
-wheel. However, there is a lot of extra stuff in Harpy to make it user
+why Harpy is the way it is. Harpy may be a pipeline for other software, but
+there is a lot of extra stuff built in to make it user
 friendly. Not just friendly, but <em>compassionate</em>. That means there is a lot
 of code that checks input files, runtime details, etc. to exit before
 Snakemake takes over. This is done to minimize time wasted on minor
@@ -248,13 +249,21 @@ errors that only show their ugly heads 18 hours into a 96 hour process. With tha
 some point, and that person could be future-you who hasn&#x27;t seen or thought
 about that code for a while. Write nicely. Annotate.</li>
 <li><strong>Error messages should provide all the information a user needs to fix the problem and retry</strong>. It&#x27;s not enough to exit when an error is identified. Collate
-the things causing the error, explain to the user what and why. Harpy follows the
-style of <a href="https://github.com/pdimens/harpy/blob/86ffd25b05e7fe25d0ec3c0b7af0a4f35c294914/src/harpy/harpymisc.py#L93">presenting and explaining</a> the error, then providing a solution and showing exactly what files/rows/columns/etc. caused the error. Be kind to users.</li>
+the things causing the error, explain to the user what and why. Harpy follows a
+style of presenting and explaining the error, then providing a solution and showing exactly what files/rows/columns/etc. caused the error. Be kind to users.</li>
+</ol>
+<p><figure class="content-center">
+    <img src="../static/errormsg.png" alt="These are Harpy error messages">
+    <figcaption class="caption">These are Harpy error messages</figcaption>
+</figure>
+</p>
+<ol start="3">
 <li><strong>Documentation is just as important as the code</strong>. No features are undocumented,
 and the documentation should read like something that a new student can
 pick up and understand. Good documentation, written compassionately, will lower
 the barrier of entry to people who just want to process their haplotag data. Harpy
-isn&#x27;t about ego, it&#x27;s about accessibility.</li>
+isn&#x27;t about ego, it&#x27;s about accessibility. We invest in this documentation because
+we <em>want</em> to, not because we need to.</li>
 </ol>
 </doc-panel>
 <doc-anchor-target id="installing-harpy-for-development">
@@ -266,15 +275,15 @@ isn&#x27;t about ego, it&#x27;s about accessibility.</li>
 <p>The process follows cloning the harpy repository, installing the preconfigured conda environment, and running the <code v-pre>misc/buildlocal.sh</code>
 script to move all the necessary files to the <code v-pre>/bin/</code> path within your active conda environment.</p>
 <doc-panels>
-   <doc-panel id="clone-the-repository" collapsed>
-       <template #title>Clone the repository</template>
+   <doc-panel id="step-1-clone-the-repository" collapsed>
+       <template #title>Step 1: clone the repository</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">clone the repository</div>
 <pre class="language-bash"><code v-pre class="language-bash">git clone https://github.com/pdimens/harpy.git</code></pre>
 </doc-codeblock></div>
    </doc-panel>
-   <doc-panel id="install-the-conda-environment-dependencies" collapsed>
-       <template #title>Install the conda environment dependencies</template>
+   <doc-panel id="step-2-install-the-conda-environment-dependencies" collapsed>
+       <template #title>Step 2: install the conda environment dependencies</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">install the dependencies with conda/mamba</div>
 <pre class="language-bash"><code v-pre class="language-bash">mamba env create --name harpy --file misc/harpyenv.yaml</code></pre>
@@ -282,8 +291,8 @@ script to move all the necessary files to the <code v-pre>/bin/</code> path with
 <p>This will create a conda environment named <code v-pre>harpy</code> with all the bits necessary to successfully run Harpy. You can change the name of this environment by specifying
 <code v-pre>--name something</code>.</p>
    </doc-panel>
-   <doc-panel id="activate-the-environment" collapsed>
-       <template #title>Activate the environment</template>
+   <doc-panel id="step-3-activate-the-environment" collapsed>
+       <template #title>Step 3: activate the environment</template>
 <p>The environment with all the preinstalled dependencies can be activated with:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">activate the conda environment</div>
@@ -291,11 +300,13 @@ script to move all the necessary files to the <code v-pre>/bin/</code> path with
 mamba activate harpy</code></pre>
 </doc-codeblock></div>
    </doc-panel>
-   <doc-panel id="install-the-harpy-files" collapsed>
-       <template #title>Install the Harpy files</template>
-<p>Call the <code v-pre>misc/buildlocal.sh</code> bash script to install the Harpy-specific files into the conda environment:</p>
+   <doc-panel id="step-4-install-the-harpy-files" collapsed>
+       <template #title>Step 4: install the Harpy files</template>
+<p>Call the <code v-pre>misc/buildlocal.sh</code> bash script to finish the installation.
+This will build the <code v-pre>harpy</code> python program, and copy all the additional files Harpy needs to run
+to the <code v-pre>bin/</code> directory of your active conda environment.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">install the repo into the environment</div>
+<div class="codeblock-title">install harpy and the necessary files</div>
 <pre class="language-bash"><code v-pre class="language-bash">bash misc/buildlocal.sh</code></pre>
 </doc-codeblock></div>
    </doc-panel>
@@ -317,15 +328,15 @@ mamba activate harpy</code></pre>
 <li>it recieves command line inputs and parses them</li>
 <li>uses the parsed command line inputs to run a specific Snakemake workflow</li>
 </ol>
-<p>To accomplish this, Harpy is written as a Python program, using <code v-pre>rich-click</code>
+<p>To accomplish this, Harpy is written as a Python program, using <a href="https://github.com/ewels/rich-click">rich-click</a>
 for the aesthetically pleasing interface. Since Harpy also relies on Snakemake
 snakefiles for each module, bash scripts, python scripts, and rmarkdown files,
 not all of it can be installed as a pure python program using <code v-pre>setuptools</code>.
-The build process installs Harpy as a pure-python command line program, but
-all the extra files Harpy needs to run need to be installed separately. This
-is handled by <code v-pre>misc/buildlocal.sh</code> and the <code v-pre>build.sh</code> script used for distribution
-via bioconda. It&#x27;s a little circuitous, but it&#x27;s how we can keep the source code
-modular, installable, and have the flexibility of using non-python code.</p>
+The build process installs part of Harpy as a pure-python command line program, but
+all the extra files Harpy needs to run need to be installed separately. All of
+this is handled by <code v-pre>misc/buildlocal.sh</code>. It&#x27;s a little circuitous, but it&#x27;s how
+we can keep the source code modular, installable, and have the flexibility of
+using non-python code.</p>
 <doc-anchor-target id="bioconda-recipe">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#bioconda-recipe">#</doc-anchor-trigger>
@@ -372,7 +383,7 @@ table below:</p>
 <tbody>
 <tr>
 <td style="text-align: left;"><code v-pre>main</code></td>
-<td style="text-align: left;">houses the source code of the most recent release and used for new bioconda releases</td>
+<td style="text-align: left;">the source code of the current release and used for new bioconda releases</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>dev</code></td>
@@ -380,11 +391,11 @@ table below:</p>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>docs</code></td>
-<td style="text-align: left;">contains all the source files (markdown and configurations) that is deployed for the current documentation</td>
+<td style="text-align: left;">the source documentation files (markdown and configs) that are deployed for the current documentation</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>docs_dev</code></td>
-<td style="text-align: left;">contains the updated documentation intended for the next release and is not deployed</td>
+<td style="text-align: left;">the updated documentation intended for the next release and is not deployed</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>retype</code></td>
@@ -401,10 +412,11 @@ table below:</p>
 </doc-anchor-target>
 <p>The dev workflow is reasonably standard:</p>
 <ol>
-<li>create a fork (on github) of Harpy</li>
-<li>within your fork, create a new branch based off of the <code v-pre>dev</code> branch, name it something relevant to what you intend to do (<em>e.g.</em>, <code v-pre>naibr_bugfix</code>, <code v-pre>add_deepvariant</code>)
+<li><a href="https://github.com/pdimens/harpy/fork">create a fork</a> of Harpy</li>
+<li>within your fork, create a new branch, name it something relevant to what you intend to do (<em>e.g.</em>, <code v-pre>naibr_bugfix</code>, <code v-pre>add_deepvariant</code>)
 <ul>
-<li>create a branch off of <code v-pre>main</code> instead if you are trying to fix a bug in the release version</li>
+<li>create a branch off of <code v-pre>main</code> if you are trying to fix a bug in the release version</li>
+<li>create a branch off of <code v-pre>dev</code> if you are adding a new feature or breaking change</li>
 </ul>
 </li>
 <li>add and modify code with your typical coding workflow, pushing your changes to your Harpy fork</li>
@@ -416,15 +428,16 @@ table below:</p>
         <span>Testing and CI</span>
     </h2>
 </doc-anchor-target>
-<p>CI (Continuous Integration) is a term used to describe automated actions that do
+<p>CI (<strong>C</strong>ontinuous <strong>I</strong>ntegration) is a term describing automated actions that do
 things to/with your code and are triggered by how you interact with a repository.
-Harpy has a series of GitHub Actions setup in the <code v-pre>dev</code> branch (in <code v-pre>.github/workflows</code>)
+Harpy has a series of GitHub Actions triggered by interactions with the <code v-pre>dev</code> branch (in <code v-pre>.github/workflows</code>)
 to test the Harpy modules depending on which files are being changed by the push or
 pull request. It&#x27;s setup such that, for example, when files associated with
 demultiplexing are altered, it will run <code v-pre>harpy demultiplex</code> on the test data
 in the cloud and notify the Harpy devs if for some reason <code v-pre>harpy demultiplex</code>
 could not run successfully to completion. These tests do not test for accuracy,
-but test for breaking behavior.</p>
+but test for breaking behavior. You&#x27;d be shocked to find out how many errors
+crop up this way and require more development so Harpy can be resilient to more use cases.</p>
 
                                 
                                 <!-- Required only on API pages -->
