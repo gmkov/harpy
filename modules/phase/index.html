@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.749834087896">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.751738917935">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -22,22 +22,24 @@
     <meta property="og:url" content="https://pdimens.github.io/HARPY/modules/phase/">
     <meta property="og:title" content=" Phase SNPs into Haplotypes | Harpy">
     <meta property="og:description" content="Phase haplotypes for haplotagged data with Harpy">
+    <meta property="og:image" content="https://pdimens.github.io/HARPY/static/report_phase.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://pdimens.github.io/HARPY/modules/phase/">
     <meta property="twitter:title" content=" Phase SNPs into Haplotypes | Harpy">
     <meta property="twitter:description" content="Phase haplotypes for haplotagged data with Harpy">
+    <meta property="twitter:image" content="https://pdimens.github.io/HARPY/static/report_phase.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.5.0.749834087896" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.751738917935" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.749834087896" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.751738917935" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.749834087896" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.749834087896" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.751738917935" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.751738917935" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../resources/js/mermaid.js?v=3.5.0" defer></script>
 </head>
 <body>
@@ -54,11 +56,12 @@
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-2xl">
-                            <span class="grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="../../static/logo.png">
-                                <img class="max-h-10 hidden dark:inline-block" src="../../static/logo.png">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../static/favicon.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../static/favicon.png">
                             </span>
-                        </a>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.4.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -242,7 +245,7 @@
 than unphased genotypes (higher polymorphism, captures relationship between genotypes). Phasing
 genotypes into haplotypes requires alignment files, such as those produced by <code v-pre>harpy align</code> and
 a variant call file, such as those produced by <code v-pre>harpy variants</code> or <code v-pre>harpy impute</code>. <strong>Phasing only
-works on SNP data</strong>, and will not work for structural variants produced by <code v-pre>LEVIATHAN</code>. You can
+works on SNP data</strong>, and will not work for structural variants produced by <code v-pre>LEVIATHAN</code> or <code v-pre>NAIBR</code>. You can
 phase genotypes into haplotypes with Harpy using the <code v-pre>phase</code> module:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">usage</div>
@@ -300,9 +303,9 @@ phase genotypes into haplotypes with Harpy using the <code v-pre>phase</code> mo
 <td style="text-align: left;"><code v-pre>--molecule-distance</code></td>
 <td style="text-align: center;"><code v-pre>-m</code></td>
 <td style="text-align: left;">integer</td>
-<td style="text-align: center;">50000</td>
+<td style="text-align: center;">100000</td>
 <td style="text-align: center;">no</td>
-<td style="text-align: left;">Base-pair distance dilineating separate molecules</td>
+<td style="text-align: left;">Base-pair distance threshold to separate molecules</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>--prune-threshold</code></td>
@@ -366,8 +369,8 @@ originated from the same DNA molecule rather than having the same barcodes by ch
 Feel free to play around with this number if you aren&#x27;t sure. A larger distance means
 you are allowing the program to be more lenient in assuming two alignments with the
 same barcode originated from the same DNA molecule. The HapCut2 default is <code v-pre>20000</code> (20kbp),
-but Harpy&#x27;s default is more lenient with <code v-pre>50000</code> (50kbp). Unless you have strong evidence
-in favor of it, a distance above <code v-pre>200000</code> (200kbp) would probably do more harm than good.
+but Harpy&#x27;s default is more lenient with <code v-pre>100000</code> (100kbp). Unless you have strong evidence
+in favor of it, a distance above <code v-pre>250000</code> (250kbp) would probably do more harm than good.
 See <a href="../../haplotagdata/#barcode-thresholds">haplotag data</a> for a more thorough explanation.</p>
 <doc-anchor-target id="pruning-threshold">
     <h3>
@@ -543,7 +546,30 @@ Advanced Options:
 <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M2.5 2.75a.75.75 0 0 0-1.5 0v18.5c0 .414.336.75.75.75H20a.75.75 0 0 0 0-1.5H2.5V2.75Z"/><path d="M22.28 7.78a.75.75 0 0 0-1.06-1.06l-5.72 5.72-3.72-3.72a.75.75 0 0 0-1.06 0l-6 6a.75.75 0 1 0 1.06 1.06l5.47-5.47 3.72 3.72a.75.75 0 0 0 1.06 0l6.25-6.25Z"/></g></g></svg> reports</template>
 <p>These are the summary reports Harpy generates for this workflow. You may right-click
 the image and open it in a new tab if you wish to see the example in better detail.</p>
-<p>Under development!</p>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white border-r">
+        <span>Overall Phasing</span>
+    </div>
+    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white">
+        <span>Per Sample Phasing</span>
+    </div>
+    <div class="px-5 py-3 docs-columns-content border-r border-gray-200 dark:border-dark-650">
+<p>Aggregates phasing metrics across all samples.
+<figure class="content-center">
+    <img src="../../static/report_phase.png" alt="reports/phase.html">
+    <figcaption class="caption">reports/phase.html</figcaption>
+</figure>
+</p>
+    </div>
+    <div class="px-5 py-3 docs-columns-content">
+<p>The second tab shows haplotype metrics for every sample
+<figure class="content-center">
+    <img src="../../static/report_phase2.png" alt="reports/phase.html">
+    <figcaption class="caption">reports/phase.html</figcaption>
+</figure>
+</p>
+    </div>
+</div>
 </doc-tab>
 </doc-tabs>
 

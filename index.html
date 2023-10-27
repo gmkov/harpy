@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.749834087896">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.751738917935">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -22,23 +22,23 @@
     <meta property="og:url" content="https://pdimens.github.io/HARPY/">
     <meta property="og:title" content=" Home | Harpy">
     <meta property="og:description" content="Using Harpy to process your haplotagged data">
-    <meta property="og:image" content="https://pdimens.github.io/HARPY/static/logo.png">
+    <meta property="og:image" content="https://pdimens.github.io/HARPY/static/logo_trans.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://pdimens.github.io/HARPY/">
     <meta property="twitter:title" content=" Home | Harpy">
     <meta property="twitter:description" content="Using Harpy to process your haplotagged data">
-    <meta property="twitter:image" content="https://pdimens.github.io/HARPY/static/logo.png">
+    <meta property="twitter:image" content="https://pdimens.github.io/HARPY/static/logo_trans.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="static/favicon.png" rel="icon">
-    <link href="resources/css/retype.css?v=3.5.0.749834087896" rel="stylesheet">
+    <link href="resources/css/retype.css?v=3.5.0.751738917935" rel="stylesheet">
 
-    <script data-cfasync="false" src="resources/js/config.js?v=3.5.0.749834087896" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="resources/js/config.js?v=3.5.0.751738917935" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="resources/js/lunr.js?v=3.5.0.749834087896" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="resources/js/lunr.js?v=3.5.0.751738917935" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -54,11 +54,12 @@
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="" class="flex items-center leading-snug text-2xl">
-                            <span class="grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="static/logo.png">
-                                <img class="max-h-10 hidden dark:inline-block" src="static/logo.png">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="static/favicon.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="static/favicon.png">
                             </span>
-                        </a>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.4.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -231,7 +232,7 @@
     </h1>
 </doc-anchor-target>
 <p><figure class="content-center">
-    <img src="static/logo.png" alt="">
+    <img src="static/logo_trans.png" alt="">
     <figcaption class="caption"></figcaption>
 </figure>
 </p>
@@ -239,8 +240,8 @@
 magic of <a href="https://snakemake.readthedocs.io/en/stable/">Snakemake</a> under the hood to handle
 the worklfow decision-making, but as a user, you just interact with it like a normal command-line
 program. Harpy uses both well known and niche programs to take raw haplotagging sequences and process
-them to become called SNP genotypes (or haplotypes). Most of the settings are pre-configured and the settings you
-can modify are done at the command line. There aren&#x27;t too many, which should make things a little simpler.</p>
+them to become called SNP genotypes (or haplotypes) or large structural variants (inversions, deletions, duplications).
+Most of the settings are pre-configured and the settings you can modify are done at the command line.</p>
 <doc-anchor-target id="what-is-haplotagging">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#what-is-haplotagging">#</doc-anchor-trigger>
@@ -280,11 +281,15 @@ Great! Only want to call variants? Awesome! All modules are called by <code v-pr
 <td style="text-align: left;">Create various associated or necessary files</td>
 </tr>
 <tr>
+<td style="text-align: left;"><code v-pre>preflight</code></td>
+<td style="text-align: left;">Run various format checks for FASTQ and BAM files</td>
+</tr>
+<tr>
 <td style="text-align: left;"><code v-pre>demultiplex</code></td>
 <td style="text-align: left;">Demultiplex haplotagged FASTQ files</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>trim</code></td>
+<td style="text-align: left;"><code v-pre>qc</code></td>
 <td style="text-align: left;">Remove adapters and quality trim sequences</td>
 </tr>
 <tr>
@@ -292,8 +297,12 @@ Great! Only want to call variants? Awesome! All modules are called by <code v-pr
 <td style="text-align: left;">Align sample sequences to a reference genome</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>variants</code></td>
-<td style="text-align: left;">Call variants from sample alignments</td>
+<td style="text-align: left;"><code v-pre>snp</code></td>
+<td style="text-align: left;">Call SNPs and small indels</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>sv</code></td>
+<td style="text-align: left;">Call large structural variants</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>impute</code></td>
@@ -317,28 +326,32 @@ Great! Only want to call variants? Awesome! All modules are called by <code v-pr
 <div class="codeblock-title">harpy --help</div>
 <pre class="language-none"><code v-pre class="language-none"> Usage: harpy COMMAND [ARGS]...                     
                                                               
-                     Harpy haplotagging pipeline                     
- An automated workflow to trim reads, map sequences, call variants,  
- impute genotypes, and phase haplotypes of Haplotagging data.        
- Batteries included.                                                 
-                                                                     
- demultiplex &gt;&gt; trim &gt;&gt; align &gt;&gt; variants &gt;&gt; impute &gt;&gt; phase                        
-                                                                     
- Documentation: https://pdimens.github.io/harpy/                     
-                                                                     
-╭─ Options ─────────────────────────────────────────────────────────╮
-│ --version      Show the version and exit.                         │
-│ --help     -h  Show this message and exit.                        │
-╰───────────────────────────────────────────────────────────────────╯
-╭─ Commands ────────────────────────────────────────────────────────╮
-│ align        Align sample sequences to a reference genome         │
-│ demultiplex  Demultiplex haplotagged FASTQ files                  │
-│ extra        Create various optional/necessary input files        │
-│ impute       Impute genotypes using variants and sequences        │
-│ phase        Phase SNPs into haplotypes                           │
-│ trim         Remove adapters and quality trim sequences           │
-│ variants     Call variants from sample alignments                 │
-╰───────────────────────────────────────────────────────────────────╯</code></pre>
+                  Harpy haplotagging pipeline                  
+ An automated workflow to demultiplex sequences, trim and qc   
+ reads, map sequences, call variants, impute genotypes, and    
+ phase haplotypes of Haplotagging data. Batteries included.    
+                                                               
+ demultiplex &gt;&gt; qc &gt;&gt; align &gt;&gt; snp &gt;&gt; impute &gt;&gt; phase          
+                                                               
+ Documentation: https://pdimens.github.io/harpy/               
+                                                               
+╭─ Options ───────────────────────────────────────────────────╮
+│ --version      Show the version and exit.                   │
+│ --help     -h  Show this message and exit.                  │
+╰─────────────────────────────────────────────────────────────╯
+╭─ Modules ───────────────────────────────────────────────────╮
+│ demultiplex  Demultiplex haplotagged FASTQ files            │
+│ qc           Remove adapters and quality trim sequences     │
+│ align        Align sample sequences to a reference genome   │
+│ snp          Call SNPs and small indels                     │
+│ sv           Call large structural variants                 │
+│ impute       Impute genotypes using variants and sequences  │
+│ phase        Phase SNPs into haplotypes                     │
+╰─────────────────────────────────────────────────────────────╯
+╭─ Other Commands ────────────────────────────────────────────╮
+│ preflight  Run file format checks on haplotag data          │
+│ extra      Create various optional/necessary input files    │
+╰─────────────────────────────────────────────────────────────╯</code></pre>
 </doc-codeblock></div>
 
                                 
