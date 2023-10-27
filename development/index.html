@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.751738917935">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.751751519443">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon">
-    <link href="../resources/css/retype.css?v=3.5.0.751738917935" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.751751519443" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.751738917935" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.751751519443" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.751738917935" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.751738917935" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.751751519443" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.751751519443" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -240,7 +240,8 @@ development and how to contribute to it, if you were inclined to do so.</p>
 <p>Before we get into the technical details, you, dear reader, need to understand
 why Harpy is the way it is. Harpy may be a pipeline for other software, but
 there is a lot of extra stuff built in to make it user
-friendly. Not just friendly, but <em>compassionate</em>. That means there is a lot
+friendly. Not just friendly, but <em>compassionate</em>. The guiding ethos for Harpy is
+<strong>&quot;We don&#x27;t hate the user&quot;</strong>. That means there is a lot
 of code that checks input files, runtime details, etc. to exit before
 Snakemake takes over. This is done to minimize time wasted on minor
 errors that only show their ugly heads 18 hours into a 96 hour process. With that in mind:</p>
@@ -350,10 +351,9 @@ build script is also stored in <code v-pre>misc/meta.yml</code> and <code v-pre>
 is the metadata of the package, including software deps and their versions. The
 build script is how conda will install all of Harpy&#x27;s parts. In order to modify
 these files for a new release, you need to fork <code v-pre>bioconda/bioconda-recipes</code>,
-create a new branch, modify the Harpy <code v-pre>meta.yml</code> and <code v-pre>build.sh</code> files, then open
-a pull request onto the <code v-pre>master</code> branch of <code v-pre>bioconda/bioconda-recipes</code>. There is
-also an automation that submits a pull request on your behalf when you change the
-version number.</p>
+create a new branch, modify the Harpy <code v-pre>meta.yml</code> (and possibly <code v-pre>build.sh</code>) files. Bioconda
+has an bot that looks for changes to the version number in the <code v-pre>meta.yml</code> file
+and will automatically submit a Pull Request when it notices that&#x27;s been changed.</p>
 <doc-anchor-target id="the-harpy-repository">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#the-harpy-repository">#</doc-anchor-trigger>

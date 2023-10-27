@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.751738917935">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.751751519443">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,11 +34,11 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="static/favicon.png" rel="icon">
-    <link href="resources/css/retype.css?v=3.5.0.751738917935" rel="stylesheet">
+    <link href="resources/css/retype.css?v=3.5.0.751751519443" rel="stylesheet">
 
-    <script data-cfasync="false" src="resources/js/config.js?v=3.5.0.751738917935" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="resources/js/config.js?v=3.5.0.751751519443" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="resources/js/lunr.js?v=3.5.0.751738917935" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="resources/js/lunr.js?v=3.5.0.751751519443" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -277,10 +277,6 @@ Great! Only want to call variants? Awesome! All modules are called by <code v-pr
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code v-pre>extra</code></td>
-<td style="text-align: left;">Create various associated or necessary files</td>
-</tr>
-<tr>
 <td style="text-align: left;"><code v-pre>preflight</code></td>
 <td style="text-align: left;">Run various format checks for FASTQ and BAM files</td>
 </tr>
@@ -312,6 +308,18 @@ Great! Only want to call variants? Awesome! All modules are called by <code v-pr
 <td style="text-align: left;"><code v-pre>phase</code></td>
 <td style="text-align: left;">Phase SNPs into haplotypes</td>
 </tr>
+<tr>
+<td style="text-align: left;"><code v-pre>popgroup</code></td>
+<td style="text-align: left;">Create a sample grouping file</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>stitchparams</code></td>
+<td style="text-align: left;">Create a template STITCH parameter file</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>hpc</code></td>
+<td style="text-align: left;">Create a config file to run Harpy on an HPC</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -331,27 +339,29 @@ Great! Only want to call variants? Awesome! All modules are called by <code v-pr
  reads, map sequences, call variants, impute genotypes, and    
  phase haplotypes of Haplotagging data. Batteries included.    
                                                                
- demultiplex &gt;&gt; qc &gt;&gt; align &gt;&gt; snp &gt;&gt; impute &gt;&gt; phase          
+ demultiplex &gt;&gt; qc &gt;&gt; align &gt;&gt; snp &gt;&gt; impute &gt;&gt; phase &gt;&gt; sv          
                                                                
  Documentation: https://pdimens.github.io/harpy/               
                                                                
-╭─ Options ───────────────────────────────────────────────────╮
-│ --version      Show the version and exit.                   │
-│ --help     -h  Show this message and exit.                  │
-╰─────────────────────────────────────────────────────────────╯
-╭─ Modules ───────────────────────────────────────────────────╮
-│ demultiplex  Demultiplex haplotagged FASTQ files            │
-│ qc           Remove adapters and quality trim sequences     │
-│ align        Align sample sequences to a reference genome   │
-│ snp          Call SNPs and small indels                     │
-│ sv           Call large structural variants                 │
-│ impute       Impute genotypes using variants and sequences  │
-│ phase        Phase SNPs into haplotypes                     │
-╰─────────────────────────────────────────────────────────────╯
-╭─ Other Commands ────────────────────────────────────────────╮
-│ preflight  Run file format checks on haplotag data          │
-│ extra      Create various optional/necessary input files    │
-╰─────────────────────────────────────────────────────────────╯</code></pre>
+╭─ Options ──────────────────────────────────────────────────╮
+│ --version      Show the version and exit.                  │
+│ --help     -h  Show this message and exit.                 │
+╰────────────────────────────────────────────────────────────╯
+╭─ Modules ──────────────────────────────────────────────────╮
+│ demultiplex  Demultiplex haplotagged FASTQ files           │
+│ qc           Remove adapters and quality trim sequences    │
+│ align        Align sample sequences to a reference genome  │
+│ snp          Call SNPs and small indels                    │
+│ sv           Call large structural variants                │
+│ impute       Impute genotypes using variants and sequences │
+│ phase        Phase SNPs into haplotypes                    │
+╰────────────────────────────────────────────────────────────╯
+╭─ Other Commands ───────────────────────────────────────────╮
+│ preflight     Run file format checks on haplotag data      │
+│ popgroup      Create a sample grouping file                │
+│ stitchparams  Create a template STITCH parameter file      │
+│ hpc           Create a config file to run Harpy on an HPC  │
+╰────────────────────────────────────────────────────────────╯</code></pre>
 </doc-codeblock></div>
 
                                 
