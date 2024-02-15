@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760737878453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761346101834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -32,12 +32,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon">
-    <link href="../resources/css/retype.css?v=3.5.0.760737878453" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.761346101834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.760737878453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.761346101834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.760737878453" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.760737878453" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.761346101834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.761346101834" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -58,7 +58,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../static/favicon.png">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.4.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.5.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -263,9 +263,11 @@ is allowed. The reserved (<strong>forbidden</strong>) arguments are:</p>
 <li><code v-pre>--directory</code></li>
 <li><code v-pre>--cores</code></li>
 <li><code v-pre>--snakefile</code></li>
-<li><code v-pre>--config</code></li>
+<li><code v-pre>--configfile</code></li>
 <li><code v-pre>--rerun-incomplete</code></li>
 <li><code v-pre>--nolock</code></li>
+<li><code v-pre>--use-conda</code></li>
+<li><code v-pre>--conda-prefix</code></li>
 </ul>
         </div>
     </div>
@@ -292,7 +294,7 @@ run the Harpy workflow. Useful for knowing what you&#x27;re getting yourself int
 ahead of time. It&#x27;s also useful for debugging during development. Here is an
 example of dry-running variant calling:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">harpy variants snp -g genome.fasta  -d Align/ema -s &quot;--dry-run&quot;</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy snp mpileup -g genome.fasta  -d Align/ema -s &quot;--dry-run&quot;</code></pre>
 </doc-codeblock></div>
    </doc-panel>
    <doc-panel id="specific-file-target" collapsed>
@@ -301,7 +303,7 @@ example of dry-running variant calling:</p>
 you want the beadtag report Harpy makes from the output of <code v-pre>EMA count</code>. To do this, just list the file/files (relative
 to your working directory) without any flags. Example for the beadtag report:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">harpy align -g genome.fasta -d QC/ -t 4 -s &quot;Align/ema/stats/reads.bxstats.html&quot;</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy align bwa -g genome.fasta -d QC/ -t 4 -s &quot;Align/ema/stats/reads.bxstats.html&quot;</code></pre>
 </doc-codeblock></div>
 <p>This of course necessitates knowing the names of the files ahead of time. See the individual modules for a breakdown of expected outputs.</p>
    </doc-panel>
@@ -320,7 +322,7 @@ your files into that workspace storage to make sure you keep the output of your 
 you may use <code v-pre>--shadow-prefix &lt;dirname&gt;</code> where <code v-pre>&lt;dirname&gt;</code> is the path to the mandatory directory you need to work out of. By
 configuring this &quot;shadow directory&quot; setting, Snakemake will automatically move the files in/out of that directory for you:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">harpy variants sv --method leviathan -g genome.fasta  -d Align/bwa --threads 8 -p samples.groups -s &quot;--shadow-prefix /SCRATCH/username/&quot;</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy sv leviathan -g genome.fasta  -d Align/bwa --threads 8 -p samples.groups -s &quot;--shadow-prefix /SCRATCH/username/&quot;</code></pre>
 </doc-codeblock></div>
    </doc-panel>
 </doc-panels>

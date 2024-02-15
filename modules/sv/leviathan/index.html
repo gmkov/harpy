@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760737878453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761346101834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../static/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.760737878453" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761346101834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.760737878453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761346101834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.760737878453" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.760737878453" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761346101834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761346101834" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../../resources/js/mermaid.js?v=3.5.0" defer></script>
 </head>
 <body>
@@ -61,7 +61,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../../static/favicon.png">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.4.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.5.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -274,8 +274,8 @@ BWA-generated alignments if intending to call variants with leviathan.</p>
 </li>
 <li>the groups can be numbers or text (<em>i.e.</em> meaningful population names)</li>
 <li>you can comment out lines with <code v-pre>#</code> for Harpy to ignore them</li>
-<li>create with <code v-pre>harpy extra -p &lt;samplefolder&gt;</code> or manually</li>
-<li>if created with <code v-pre>harpy extra -p</code>, all the samples will be assigned to group <code v-pre>pop1</code>
+<li>create with <code v-pre>harpy extra popgroup -d &lt;samplefolder&gt;</code> or manually</li>
+<li>if created with <code v-pre>harpy extra popgroup</code>, all the samples will be assigned to group <code v-pre>pop1</code>
 <ul>
 <li>make sure to edit the second column to reflect your data correctly.</li>
 </ul>
@@ -453,7 +453,6 @@ in the alignments, then it calls variants using Leviathan.</p>
 ├── sample1.bcf
 ├── sample2.bcf
 ├── logs
-│   ├── harpy.variants.log
 │   ├── sample1.leviathan.log
 │   ├── sample1.candidates
 │   ├── sample2.leviathan.log
@@ -481,10 +480,6 @@ in the alignments, then it calls variants using Leviathan.</p>
 <tr>
 <td style="text-align: left;"><code v-pre>logs/sample.groups</code></td>
 <td style="text-align: left;">if provided, a copy of the file provided to <code v-pre>--populations</code> with commented lines removed</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>logs/*.leviathan.log</code></td>
-<td style="text-align: left;">what LEVIATHAN writes to <code v-pre>stderr</code> during operation</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>logs/*candidates</code></td>

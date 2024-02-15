@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760737878453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761346101834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../static/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.760737878453" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761346101834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.760737878453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761346101834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.760737878453" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.760737878453" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761346101834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761346101834" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../../resources/js/mermaid.js?v=3.5.0" defer></script>
     <link href="../../../resources/css/katex.css?v=3.5.0" rel="stylesheet">
     <script id="katex-js" data-cfasync="false" src="../../../resources/js/katex.js?v=3.5.0" defer></script>
@@ -63,7 +63,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../../static/favicon.png">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.4.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.5.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -299,20 +299,28 @@ using the <code v-pre>align</code> module:</p>
 <td style="text-align: left;">Genome assembly for read mapping</td>
 </tr>
 <tr>
+<td style="text-align: left;"><code v-pre>--platform</code></td>
+<td style="text-align: center;"><code v-pre>-p</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">haplotag</td>
+<td style="text-align: center;"><strong>yes</strong></td>
+<td style="text-align: left;">Linked read technology: <code v-pre>haplotag</code> or <code v-pre>10x</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--whitelist</code></td>
+<td style="text-align: center;"><code v-pre>-w</code></td>
+<td style="text-align: left;">file path</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">no</td>
+<td style="text-align: left;">Path to barcode whitelist (<code v-pre>--platform 10x</code> only)</td>
+</tr>
+<tr>
 <td style="text-align: left;"><code v-pre>--directory</code></td>
 <td style="text-align: center;"><code v-pre>-d</code></td>
 <td style="text-align: left;">folder path</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><strong>yes</strong></td>
 <td style="text-align: left;">Directory with sample sequences</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>--molecule-distance</code></td>
-<td style="text-align: center;"><code v-pre>-m</code></td>
-<td style="text-align: left;">integer</td>
-<td style="text-align: center;">100000</td>
-<td style="text-align: center;">no</td>
-<td style="text-align: left;">Base-pair distance threshold to consider molecules as separate</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>--ema-bins</code></td>
@@ -341,16 +349,16 @@ using the <code v-pre>align</code> module:</p>
 </tbody>
 </table>
 </div>
-<doc-anchor-target id="molecule-distance">
+<doc-anchor-target id="barcode-whitelist">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#molecule-distance">#</doc-anchor-trigger>
-        <span>Molecule distance</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#barcode-whitelist">#</doc-anchor-trigger>
+        <span>Barcode whitelist</span>
     </h3>
 </doc-anchor-target>
-<p>Unlike the manual <code v-pre>MI:i</code> assignment in the BWA workflow, the EMA aligner will assign
-a unique Molecular Identifier <code v-pre>MI:i</code> tag to alignments using its own heuristics.
-Instead, the EMA workflow uses this value to calculate statistics for the haplotag
-barcodes identified in the alignments.</p>
+<p>Some linked-read methods (e.g. 10x, Tellseq) require the inclusion of a barcode &quot;whitelist.&quot; This file is a
+simple text file that has one barcode per line so a given software knows what barcodes to expect in your data.
+If you need to process 10x data, then you will need to include the whitelist file (usually provided by 10x).
+Conveniently, <strong>haplotag data doesn&#x27;t require this file</strong>.</p>
 <doc-anchor-target id="quality-filtering">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#quality-filtering">#</doc-anchor-trigger>
@@ -424,18 +432,14 @@ to worry about any of these details.</p>
 <pre class="language-none"><code v-pre class="language-none">Align/ema
 ├── Sample1.bam
 ├── Sample1.bam.bai
-├── align
-│   ├── Sample1.bam
-│   └── Sample1.bam.bai
 ├── count
 │   └── Sample1.ema-ncnt
 ├── logs
-│   ├── harpy.align.log
 │   ├── markduplicates
 │   │   └── Sample1.markdup.nobarcode.log
 │   └── preproc
 │       └── Sample1.preproc.log
-└── stats
+└── reports
     ├── ema.stats.html
     ├── reads.bxcounts.html
     ├── BXstats
@@ -467,16 +471,8 @@ to worry about any of these details.</p>
 <td style="text-align: left;">sequence alignment indexes for each sample</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>align/*bam*</code></td>
-<td style="text-align: left;">symlinks to the alignment files for snakemake purporses</td>
-</tr>
-<tr>
 <td style="text-align: left;"><code v-pre>count/</code></td>
 <td style="text-align: left;">output of <code v-pre>ema count</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>logs/harpy.align.log</code></td>
-<td style="text-align: left;">relevant runtime parameters for the align module</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>logs/markduplicates/</code></td>
@@ -487,39 +483,39 @@ to worry about any of these details.</p>
 <td style="text-align: left;">everything <code v-pre>ema preproc</code> writes to <code v-pre>stderr</code> during operation</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/</code></td>
+<td style="text-align: left;"><code v-pre>reports/</code></td>
 <td style="text-align: left;">various counts/statistics/reports relating to sequence alignment</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/ema.stats.html</code></td>
+<td style="text-align: left;"><code v-pre>reports/ema.stats.html</code></td>
 <td style="text-align: left;">report summarizing <code v-pre>samtools flagstat and stats</code> results across all samples from <code v-pre>multiqc</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/reads.bxstats.html</code></td>
+<td style="text-align: left;"><code v-pre>reports/reads.bxstats.html</code></td>
 <td style="text-align: left;">interactive html report summarizing <code v-pre>ema count</code> across all samples</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/coverage/*.html</code></td>
+<td style="text-align: left;"><code v-pre>reports/coverage/*.html</code></td>
 <td style="text-align: left;">summary plots of alignment coverage per contig</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/coverage/data/*.all.gencov.gz</code></td>
+<td style="text-align: left;"><code v-pre>reports/coverage/data/*.all.gencov.gz</code></td>
 <td style="text-align: left;">output from samtools bedcov from all alignments, used for plots</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/coverage/data/*.bx.gencov.gz</code></td>
+<td style="text-align: left;"><code v-pre>reports/coverage/data/*.bx.gencov.gz</code></td>
 <td style="text-align: left;">output from samtools bedcov from alignments with valid BX barcodes, used for plots</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/BXstats/</code></td>
+<td style="text-align: left;"><code v-pre>reports/BXstats/</code></td>
 <td style="text-align: left;">reports summarizing molecule size and reads per molecule</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/BXstats/*.bxstats.html</code></td>
+<td style="text-align: left;"><code v-pre>reports/BXstats/*.bxstats.html</code></td>
 <td style="text-align: left;">interactive html report summarizing inferred molecule size</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/BXstats/data/</code></td>
+<td style="text-align: left;"><code v-pre>reports/BXstats/data/</code></td>
 <td style="text-align: left;">tabular data containing the information used to generate the BXstats reports</td>
 </tr>
 </tbody>

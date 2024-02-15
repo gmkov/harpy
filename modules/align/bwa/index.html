@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760737878453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761346101834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../static/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.760737878453" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761346101834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.760737878453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761346101834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.760737878453" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.760737878453" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761346101834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761346101834" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../../resources/js/mermaid.js?v=3.5.0" defer></script>
     <link href="../../../resources/css/katex.css?v=3.5.0" rel="stylesheet">
     <script id="katex-js" data-cfasync="false" src="../../../resources/js/katex.js?v=3.5.0" defer></script>
@@ -63,7 +63,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../../static/favicon.png">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.4.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.5.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -404,14 +404,10 @@ for alignment molecule assignment.</p>
 <pre class="language-none"><code v-pre class="language-none">Align/bwa
 ├── Sample1.bam
 ├── Sample1.bam.bai
-├── align
-│   ├── Sample1.bam
-│   └── Sample1.bam.bai
 ├── logs
-│   ├── harpy.align.log
 │   └── markduplicates
 │       └── Sample1.markdup.log
-└── stats
+└── reports
     ├── bwa.stats.html
     ├── BXstats
     │   ├── Sample1.bxstats.html
@@ -442,47 +438,39 @@ for alignment molecule assignment.</p>
 <td style="text-align: left;">sequence alignment indexes for each sample</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>align/*bam*</code></td>
-<td style="text-align: left;">symlinks to the alignment files for snakemake purporses</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>logs/harpy.align.log</code></td>
-<td style="text-align: left;">relevant runtime parameters for the align module</td>
-</tr>
-<tr>
 <td style="text-align: left;"><code v-pre>logs/markduplicates</code></td>
 <td style="text-align: left;">everything <code v-pre>sambamba markdup</code> writes to <code v-pre>stderr</code> during operation</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/</code></td>
+<td style="text-align: left;"><code v-pre>reports/</code></td>
 <td style="text-align: left;">various counts/statistics/reports relating to sequence alignment</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/bwa.stats.html</code></td>
+<td style="text-align: left;"><code v-pre>reports/bwa.stats.html</code></td>
 <td style="text-align: left;">report summarizing <code v-pre>samtools flagstat and stats</code> results across all samples from <code v-pre>multiqc</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/reads.bxstats.html</code></td>
+<td style="text-align: left;"><code v-pre>reports/reads.bxstats.html</code></td>
 <td style="text-align: left;">interactive html report summarizing valid vs invalid barcodes across all samples</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/BXstats/*.bxstats.html</code></td>
+<td style="text-align: left;"><code v-pre>reports/BXstats/*.bxstats.html</code></td>
 <td style="text-align: left;">interactive html report summarizing inferred molecule size</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/coverage/*.html</code></td>
+<td style="text-align: left;"><code v-pre>reports/coverage/*.html</code></td>
 <td style="text-align: left;">summary plots of alignment coverage per contig</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/coverage/data/*.gencov.gz</code></td>
+<td style="text-align: left;"><code v-pre>reports/coverage/data/*.gencov.gz</code></td>
 <td style="text-align: left;">output from samtools bedcov from all alignments, used for plots</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/BXstats/</code></td>
+<td style="text-align: left;"><code v-pre>reports/BXstats/</code></td>
 <td style="text-align: left;">reports summarizing molecule size and reads per molecule</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/BXstats/data/</code></td>
+<td style="text-align: left;"><code v-pre>reports/BXstats/data/</code></td>
 <td style="text-align: left;">tabular data containing the information used to generate the BXstats reports</td>
 </tr>
 </tbody>

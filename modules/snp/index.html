@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.760737878453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761346101834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.5.0.760737878453" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.761346101834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.760737878453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.761346101834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.760737878453" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.760737878453" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.761346101834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.761346101834" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../resources/js/mermaid.js?v=3.5.0" defer></script>
 </head>
 <body>
@@ -61,7 +61,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../static/favicon.png">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.4.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.5.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -254,8 +254,8 @@
 </li>
 <li>the groups can be numbers or text (<em>i.e.</em> meaningful population names)</li>
 <li>you can comment out lines with <code v-pre>#</code> for Harpy to ignore them</li>
-<li>create with <code v-pre>harpy extra -p &lt;samplefolder&gt;</code> or manually</li>
-<li>if created with <code v-pre>harpy extra -p</code>, all the samples will be assigned to group <code v-pre>pop1</code>, so make sure to edit the second column to reflect your data correctly.</li>
+<li>create with <code v-pre>harpy extra popgroup -d &lt;samplefolder&gt;</code> or manually</li>
+<li>if created with <code v-pre>harpy extra popgroup</code>, all the samples will be assigned to group <code v-pre>pop1</code>, so make sure to edit the second column to reflect your data correctly.</li>
 </ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">example file for --populations</div>
@@ -440,7 +440,7 @@ call SNPs and small indels. Like mpileup, this method is ubiquitous in bioinform
 </doc-tab>
 <doc-tab v-cloak id="snp-output">
 <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M2 4.75C2 3.784 2.784 3 3.75 3h4.971c.58 0 1.12.286 1.447.765l1.404 2.063c.046.069.124.11.207.11h8.471c.966 0 1.75.783 1.75 1.75V19.25A1.75 1.75 0 0 1 20.25 21H3.75A1.75 1.75 0 0 1 2 19.25Zm1.75-.25a.25.25 0 0 0-.25.25v14.5c0 .138.112.25.25.25h16.5a.25.25 0 0 0 .25-.25V7.687a.25.25 0 0 0-.25-.25h-8.471a1.75 1.75 0 0 1-1.447-.765L8.928 4.61a.252.252 0 0 0-.208-.11Z"/></g></g></svg> snp output</template>
-<p>The <code v-pre>harpy variants snp</code> module creates a <code v-pre>Variants/METHOD</code> directory with the folder structure below where <code v-pre>METHOD</code> is what
+<p>The <code v-pre>harpy snp</code> module creates a <code v-pre>Variants/METHOD</code> directory with the folder structure below where <code v-pre>METHOD</code> is what
 you specify as the <code v-pre>--method</code> (mpileup or freebayes). <code v-pre>contig1</code> and <code v-pre>contig2</code> are generic contig names from an imaginary
 <code v-pre>genome.fasta</code> for demonstration purposes.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -454,11 +454,10 @@ you specify as the <code v-pre>--method</code> (mpileup or freebayes). <code v-p
 │   ├── contig1.METHOD.log
 │   ├── contig2.call.log   # mpileup only
 │   ├── contig2.METHOD.log
-│   ├── harpy.variants.log
 │   ├── sample.groups
 │   ├── samples.files
 │   └── samples.names
-└── stats
+└── reports
     ├── contig1.stats
     ├── contig2.stats
     ├── variants.normalized.html
@@ -496,10 +495,6 @@ you specify as the <code v-pre>--method</code> (mpileup or freebayes). <code v-p
 <td style="text-align: left;">what <code v-pre>bcftools mpileup</code> or <code v-pre>freebayes</code> writes to <code v-pre>stderr</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>logs/harpy.variants.log</code></td>
-<td style="text-align: left;">relevant runtime parameters for the variants module</td>
-</tr>
-<tr>
 <td style="text-align: left;"><code v-pre>logs/sample.groups</code></td>
 <td style="text-align: left;">if provided, a copy of the file provided to <code v-pre>--populations</code> with commented lines removed</td>
 </tr>
@@ -512,11 +507,11 @@ you specify as the <code v-pre>--method</code> (mpileup or freebayes). <code v-p
 <td style="text-align: left;">list of sample names associated with alignment files used for variant calling</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/*.stats</code></td>
+<td style="text-align: left;"><code v-pre>reports/*.stats</code></td>
 <td style="text-align: left;">output of <code v-pre>bcftools stats</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>stats/variants.*.html</code></td>
+<td style="text-align: left;"><code v-pre>reports/variants.*.html</code></td>
 <td style="text-align: left;">report summarizing variants</td>
 </tr>
 </tbody>
