@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761346405168">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761673813496">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../static/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.761346405168" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761673813496" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761346405168" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761673813496" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761346405168" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761346405168" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761673813496" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761673813496" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../../resources/js/mermaid.js?v=3.5.0" defer></script>
     <link href="../../../resources/css/katex.css?v=3.5.0" rel="stylesheet">
     <script id="katex-js" data-cfasync="false" src="../../../resources/js/katex.js?v=3.5.0" defer></script>
@@ -63,7 +63,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../../static/favicon.png">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.5.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.6.1</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -362,7 +362,7 @@ Conveniently, <strong>haplotag data doesn&#x27;t require this file</strong>.</p>
 <doc-anchor-target id="quality-filtering">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#quality-filtering">#</doc-anchor-trigger>
-        <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M2.75 6a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 0-1.5H2.75ZM6 11.75a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H6.75a.75.75 0 0 1-.75-.75Zm4 4.938a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"/></g></g></svg> Quality filtering</span>
+        <span>Quality filtering</span>
     </h2>
 </doc-anchor-target>
 <doc-panel id="what-is-a-mq-score" collapsed>
@@ -389,6 +389,17 @@ on a value you may want to use. It is common to remove alignments with <span cla
     </div>
 </figure>
 </p>
+<doc-anchor-target id="marking-pcr-duplicates">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#marking-pcr-duplicates">#</doc-anchor-trigger>
+        <span>Marking PCR duplicates</span>
+    </h2>
+</doc-anchor-target>
+<p>EMA marks duplicates in the resulting alignments, however the read with invalid barcodes
+are aligned separately with BWA. Therefore, Harpy uses <code v-pre>samtools markdup</code> to mark putative
+PCR duplicates in the reads with invalid barcodes. Duplicate marking uses the <code v-pre>-S</code> option
+to mark supplementary (chimeric) alignments as duplicates if the primary alignment was
+marked as a duplicate. Duplicates get marked but <strong>are not removed</strong>.</p>
 <hr>
 <doc-anchor-target id="ema-workflow">
     <h2>
@@ -423,7 +434,14 @@ to worry about any of these details.</p>
     Z--&gt;Y([sort alignments])
     Y--&gt;X([mark duplicates])
     X--&gt;F
-    F--&gt;J([alignment stats])</pre></div>
+    F--&gt;J([alignment stats])
+    subgraph markdp [mark duplicates via `samtools`]
+        direction LR
+        collate--&gt;fixmate
+        fixmate--&gt;sort
+        sort--&gt;markdup
+    end
+</pre></div>
 </doc-tab>
 <doc-tab v-cloak id="ema-output">
 <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M2 4.75C2 3.784 2.784 3 3.75 3h4.971c.58 0 1.12.286 1.447.765l1.404 2.063c.046.069.124.11.207.11h8.471c.966 0 1.75.783 1.75 1.75V19.25A1.75 1.75 0 0 1 20.25 21H3.75A1.75 1.75 0 0 1 2 19.25Zm1.75-.25a.25.25 0 0 0-.25.25v14.5c0 .138.112.25.25.25h16.5a.25.25 0 0 0 .25-.25V7.687a.25.25 0 0 0-.25-.25h-8.471a1.75 1.75 0 0 1-1.447-.765L8.928 4.61a.252.252 0 0 0-.208-.11Z"/></g></g></svg> EMA output</template>
@@ -476,7 +494,7 @@ to worry about any of these details.</p>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>logs/markduplicates/</code></td>
-<td style="text-align: left;">everything <code v-pre>sambamba markdup</code> writes to <code v-pre>stderr</code> during operation on alignments with invalid/missing barcodes</td>
+<td style="text-align: left;">stats provided by <code v-pre>samtools markdup</code> for alignments with invalid/missing barcodes</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>logs/preproc/*.preproc.log</code></td>
@@ -556,32 +574,32 @@ the images and open them in a new tab if you wish to see the examples in better 
     <div class="px-5 py-3 docs-columns-content border-r border-gray-200 dark:border-dark-650">
 <p>Reports the depth of alignments in 10kb windows.
 <figure class="content-center">
-    <img src="../../../static/report_align_coverage.png" alt="stats/coverage/*.html">
-    <figcaption class="caption">stats/coverage/*.html</figcaption>
+    <img src="../../../static/report_align_coverage.png" alt="reports/coverage/*.html">
+    <figcaption class="caption">reports/coverage/*.html</figcaption>
 </figure>
 </p>
     </div>
     <div class="px-5 py-3 docs-columns-content border-r border-gray-200 dark:border-dark-650">
 <p>Reports the number of valid/invalid barcodes in the alignments.
 <figure class="content-center">
-    <img src="../../../static/report_align_bxstats.png" alt="stats/reads.bxstats.html">
-    <figcaption class="caption">stats/reads.bxstats.html</figcaption>
+    <img src="../../../static/report_align_bxstats.png" alt="reports/reads.bxstats.html">
+    <figcaption class="caption">reports/reads.bxstats.html</figcaption>
 </figure>
 </p>
     </div>
     <div class="px-5 py-3 docs-columns-content border-r border-gray-200 dark:border-dark-650">
 <p>Reports the inferred molecule sized based on barcodes in the alignments.
 <figure class="content-center">
-    <img src="../../../static/report_align_bxmol.png" alt="stats/BXstats/*.bxstats.html">
-    <figcaption class="caption">stats/BXstats/*.bxstats.html</figcaption>
+    <img src="../../../static/report_align_bxmol.png" alt="reports/BXstats/*.bxstats.html">
+    <figcaption class="caption">reports/BXstats/*.bxstats.html</figcaption>
 </figure>
 </p>
     </div>
     <div class="px-5 py-3 docs-columns-content">
 <p>Reports the general statistics computed by samtools <code v-pre>stats</code> and <code v-pre>flagstat</code>
 <figure class="content-center">
-    <img src="../../../static/report_align_flagstat.png" alt="stats/samtools_*stat/*html">
-    <figcaption class="caption">stats/samtools_*stat/*html</figcaption>
+    <img src="../../../static/report_align_flagstat.png" alt="reports/samtools_*stat/*html">
+    <figcaption class="caption">reports/samtools_*stat/*html</figcaption>
 </figure>
 </p>
     </div>
