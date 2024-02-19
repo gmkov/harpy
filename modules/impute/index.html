@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761673813496">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761684717131">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.5.0.761673813496" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.761684717131" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.761673813496" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.761684717131" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.761673813496" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.761673813496" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.761684717131" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.761684717131" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../resources/js/mermaid.js?v=3.5.0" defer></script>
     <link href="../../resources/css/katex.css?v=3.5.0" rel="stylesheet">
     <script id="katex-js" data-cfasync="false" src="../../resources/js/katex.js?v=3.5.0" defer></script>
@@ -638,7 +638,8 @@ contigs have at least 2 biallelic SNPs, then performs imputation on only those c
 <p>The <code v-pre>harpy impute</code> module creates an <code v-pre>Imputation</code> directory with the folder structure below. <code v-pre>contig1</code> and <code v-pre>contig2</code>
 are generic contig names from an imaginary <code v-pre>genome.fasta</code> for demonstration purposes. The directory <code v-pre>model1/</code>
 is a generic name to reflect the corresponding parameter row in the stitch parameter
-file, which would have explicit names in real use (e.g. <code v-pre>modelpseudoHaploid_useBXTrue_k10_s1_nGen50/</code>).</p>
+file, which would have explicit names in real use (e.g. <code v-pre>modelpseudoHaploid_useBXTrue_k10_s1_nGen50/</code>).
+The resulting folder also includes a <code v-pre>workflow</code> directory (not shown) with workflow-relevant runtime files and information.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Impute/
 ├── input

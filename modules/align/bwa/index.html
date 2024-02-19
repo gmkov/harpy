@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761673813496">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761684717131">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../static/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.761673813496" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761684717131" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761673813496" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761684717131" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761673813496" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761673813496" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761684717131" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761684717131" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../../resources/js/mermaid.js?v=3.5.0" defer></script>
     <link href="../../../resources/css/katex.css?v=3.5.0" rel="stylesheet">
     <script id="katex-js" data-cfasync="false" src="../../../resources/js/katex.js?v=3.5.0" defer></script>
@@ -392,11 +392,10 @@ if the primary alignment was marked as a duplicate. Duplicates get marked but <s
 <li>ignores (but retains) barcode information</li>
 <li>fast</li>
 </ul>
-<p>The <a href="https://github.com/lh3/bwa">BWA MEM</a> workflow is substantially simpler and faster than the EMA workflow
-and maps all reads against the reference genome, no muss no fuss. Duplicates are marked using
-<a href="https://lomereiter.github.io/sambamba/">sambamba</a>. The <code v-pre>BX:Z</code> tags in the read headers are still added
-to the alignment headers, even though barcodes are not used to inform mapping. The <code v-pre>-m</code> threshold is used
-for alignment molecule assignment.</p>
+<p>The <a href="https://github.com/lh3/bwa">BWA MEM</a> workflow is much simpler and faster than the EMA workflow
+and maps all reads against the reference genome. Duplicates are marked using <code v-pre>samtools markdup</code>.
+The <code v-pre>BX:Z</code> tags in the read headers are still added to the alignment headers, even though barcodes
+are not used to inform mapping. The <code v-pre>-m</code> threshold is used for alignment molecule assignment.</p>
 <div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
     Z([trimmed reads]) --&gt; B
     A([index genome]) --&gt; B([align to genome])
@@ -415,7 +414,8 @@ for alignment molecule assignment.</p>
 </doc-tab>
 <doc-tab v-cloak id="bwa-output">
 <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M2 4.75C2 3.784 2.784 3 3.75 3h4.971c.58 0 1.12.286 1.447.765l1.404 2.063c.046.069.124.11.207.11h8.471c.966 0 1.75.783 1.75 1.75V19.25A1.75 1.75 0 0 1 20.25 21H3.75A1.75 1.75 0 0 1 2 19.25Zm1.75-.25a.25.25 0 0 0-.25.25v14.5c0 .138.112.25.25.25h16.5a.25.25 0 0 0 .25-.25V7.687a.25.25 0 0 0-.25-.25h-8.471a1.75 1.75 0 0 1-1.447-.765L8.928 4.61a.252.252 0 0 0-.208-.11Z"/></g></g></svg> BWA output</template>
-<p>The <code v-pre>harpy align</code> module creates an <code v-pre>Align/bwa</code> directory with the folder structure below. <code v-pre>Sample1</code> is a generic sample name for demonstration purposes.</p>
+<p>The <code v-pre>harpy align</code> module creates an <code v-pre>Align/bwa</code> directory with the folder structure below. <code v-pre>Sample1</code> is a generic sample name for demonstration purposes.
+The resulting folder also includes a <code v-pre>workflow</code> directory (not shown) with workflow-relevant runtime files and information.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Align/bwa
 ├── Sample1.bam
