@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761763982618">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761771887257">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon">
-    <link href="../resources/css/retype.css?v=3.5.0.761763982618" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.761771887257" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.761763982618" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.761771887257" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.761763982618" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.761763982618" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.761771887257" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.761771887257" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -335,7 +335,7 @@ snakefiles for each module, bash scripts, python scripts, and rmarkdown files,
 not all of it can be installed as a pure python program using <code v-pre>setuptools</code>.
 The build process installs part of Harpy as a pure-python command line program, but
 all the extra files Harpy needs to run need to be installed separately. All of
-this is handled by <code v-pre>misc/buildlocal.sh</code>. It&#x27;s a little circuitous, but it&#x27;s how
+this is handled by <code v-pre>resources/buildlocal.sh</code>. It&#x27;s a little circuitous, but it&#x27;s how
 we can keep the source code modular, installable, and have the flexibility of
 using non-python code.</p>
 <doc-anchor-target id="bioconda-recipe">
@@ -347,13 +347,12 @@ using non-python code.</p>
 <p>For the ease of installation for end-users, Harpy has a <a href="https://github.com/bioconda/bioconda-recipes/blob/master/recipes/harpy/meta.yaml">recipe</a>
 and <a href="https://github.com/bioconda/bioconda-recipes/blob/master/recipes/harpy/build.sh">build script</a> in Bioconda,
 which makes it available for download and installation. A copy of the recipe and
-build script is also stored in <code v-pre>misc/meta.yml</code> and <code v-pre>misc/build.sh</code>. The yaml file
+build script is also stored in <code v-pre>resources/meta.yml</code> and <code v-pre>resources/build.sh</code>. The yaml file
 is the metadata of the package, including software deps and their versions. The
-build script is how conda will install all of Harpy&#x27;s parts. In order to modify
-these files for a new release, you need to fork <code v-pre>bioconda/bioconda-recipes</code>,
-create a new branch, modify the Harpy <code v-pre>meta.yml</code> (and possibly <code v-pre>build.sh</code>) files. Bioconda
-has an bot that looks for changes to the version number in the <code v-pre>meta.yml</code> file
-and will automatically submit a Pull Request when it notices that&#x27;s been changed.</p>
+build script is how conda will install all of Harpy&#x27;s parts. Now that Harpy is hosted on
+bioconda, when a new version is tagged with a release, Bioconda will automatically create
+a pull request (after a delay), typically not requiring any intervention on the development side
+for the newest Harpy version to be released for conda installation.</p>
 <doc-anchor-target id="the-harpy-repository">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#the-harpy-repository">#</doc-anchor-trigger>
@@ -422,11 +421,17 @@ table below:</p>
 <li>add and modify code with your typical coding workflow, pushing your changes to your Harpy fork</li>
 <li>when it&#x27;s ready for inclusion into Harpy (and testing), create a Pull Request to merge your changes into the Harpy <code v-pre>dev</code> branch</li>
 </ol>
-<doc-anchor-target id="testing-and-ci">
+<doc-anchor-target id="automations">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#testing-and-ci">#</doc-anchor-trigger>
-        <span>Testing and CI</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#automations">#</doc-anchor-trigger>
+        <span>Automations</span>
     </h2>
+</doc-anchor-target>
+<doc-anchor-target id="testing">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#testing">#</doc-anchor-trigger>
+        <span>Testing</span>
+    </h3>
 </doc-anchor-target>
 <p>CI (<strong>C</strong>ontinuous <strong>I</strong>ntegration) is a term describing automated actions that do
 things to/with your code and are triggered by how you interact with a repository.
@@ -438,6 +443,25 @@ in the cloud and notify the Harpy devs if for some reason <code v-pre>harpy demu
 could not run successfully to completion. These tests do not test for accuracy,
 but test for breaking behavior. You&#x27;d be shocked to find out how many errors
 crop up this way and require more development so Harpy can be resilient to more use cases.</p>
+<doc-anchor-target id="releases">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#releases">#</doc-anchor-trigger>
+        <span>Releases</span>
+    </h3>
+</doc-anchor-target>
+<p>To save on disk space, there is an automation to strip out the unnecessary files and upload a
+cleaned tarball to the new release. This is triggered automatically when a new version is tagged.
+Tagging is easily accomplished with Git commands in the command line:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># make sure you're on the main branch
+$ git checkout main
+
+# create the tag locally, where X.X.X is something like 1.7.1
+$ git tag X.X.X
+
+# push the new tag to the repository
+$ git push origin X.X.X</code></pre>
+</doc-codeblock></div>
 
                                 
                                 <!-- Required only on API pages -->
