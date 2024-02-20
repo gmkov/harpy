@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761684717131">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761763982618">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -22,21 +22,23 @@
     <meta property="og:url" content="https://pdimens.github.io/HARPY/haplotagdata/">
     <meta property="og:title" content=" Haplotag data | Harpy">
     <meta property="og:description" content="While barcodes are actually combinatorial bases, in the read headers they are represented with the format ">
+    <meta property="og:image" content="https://pdimens.github.io/HARPY/static/bc_threshold.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://pdimens.github.io/HARPY/haplotagdata/">
     <meta property="twitter:title" content=" Haplotag data | Harpy">
     <meta property="twitter:description" content="While barcodes are actually combinatorial bases, in the read headers they are represented with the format ">
+    <meta property="twitter:image" content="https://pdimens.github.io/HARPY/static/bc_threshold.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../static/favicon.png" rel="icon">
-    <link href="../resources/css/retype.css?v=3.5.0.761684717131" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.761763982618" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.761684717131" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.761763982618" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.761684717131" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.761763982618" data-turbo-eval="false" defer></script>
     <link href="../resources/css/katex.css?v=3.5.0" rel="stylesheet">
     <script id="katex-js" data-cfasync="false" src="../resources/js/katex.js?v=3.5.0" defer></script>
 </head>
@@ -369,6 +371,31 @@ you are being more strict and indicating that alignments sharing barcodes must b
 DNA molecule. Conversely, a higher threshold indicates you are being more lax and indicating barcodes can be further away from each other
 and still be considered originating from the same DNA molecule. A threshold of 50kb-150kb is considered a decent balance, but you should choose
 larger/smaller values if you have evidence to support them.</p>
+<p><figure class="content-center">
+    <img src="../static/bc_threshold.png" alt="Molecule origin is determined by the distance between alignments with the same barcode relative to the specified threshold">
+    <figcaption class="caption">Molecule origin is determined by the distance between alignments with the same barcode relative to the specified threshold</figcaption>
+</figure>
+</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;">Alignment distance</th>
+<th style="text-align: left;">Inferred origin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">less than threshold</td>
+<td style="text-align: left;">same molecule</td>
+</tr>
+<tr>
+<td style="text-align: left;">greater than threshold</td>
+<td style="text-align: left;">different molecules</td>
+</tr>
+</tbody>
+</table>
+</div>
 
                                 
                                 <!-- Required only on API pages -->
