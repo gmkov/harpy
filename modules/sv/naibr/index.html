@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761771887257">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762538243390">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../static/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.761771887257" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.762538243390" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761771887257" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.762538243390" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761771887257" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761771887257" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.762538243390" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.762538243390" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../../resources/js/mermaid.js?v=3.5.0" defer></script>
 </head>
 <body>
@@ -61,7 +61,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../../static/favicon.png">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.6.1</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.7.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -256,8 +256,8 @@
 </li>
 <li>the groups can be numbers or text (<em>i.e.</em> meaningful population names)</li>
 <li>you can comment out lines with <code v-pre>#</code> for Harpy to ignore them</li>
-<li>create with <code v-pre>harpy extra popgroup -d &lt;samplefolder&gt;</code> or manually</li>
-<li>if created with <code v-pre>harpy extra popgroup</code>, all the samples will be assigned to group <code v-pre>pop1</code>
+<li>create with <code v-pre>harpy popgroup -d &lt;samplefolder&gt;</code> or manually</li>
+<li>if created with <code v-pre>harpy popgroup</code>, all the samples will be assigned to group <code v-pre>pop1</code>
 <ul>
 <li>make sure to edit the second column to reflect your data correctly.</li>
 </ul>
@@ -302,15 +302,15 @@ should already have that information (yay!). If your alignments don&#x27;t have 
 then you will need to do a little extra work for NAIBR to work best with your data. This process is described below.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">usage</div>
-<pre class="language-bash"><code v-pre class="language-bash">harpy sv naibr OPTIONS... </code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy sv naibr OPTIONS... INPUTS...</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">examples</div>
 <pre class="language-bash"><code v-pre class="language-bash"># input bams already phased
-harpy sv naibr --threads 20 --directory Align/bwa --genome genome.fasta
+harpy sv naibr --threads 20 --genome genome.fasta Align/bwa
 
 # input bams require phasing
-harpy sv naibr --threads 20 --directory Align/bwa --genome genome.fasta --vcf Variants/data.vcf.gz</code></pre>
+harpy sv naibr --threads 20 --genome genome.fasta --vcf Variants/data.vcf.gz Align/bwa</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="running-options">
     <h2>
@@ -333,20 +333,20 @@ harpy sv naibr --threads 20 --directory Align/bwa --genome genome.fasta --vcf Va
 </thead>
 <tbody>
 <tr>
+<td style="text-align: left;"><code v-pre>INPUTS</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">file/directory paths</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>yes</strong></td>
+<td style="text-align: left;">Files or directories containing <a href="../../../commonoptions/#input-arguments">input BAM files</a></td>
+</tr>
+<tr>
 <td style="text-align: left;"><code v-pre>--genome</code></td>
 <td style="text-align: center;"><code v-pre>-g</code></td>
 <td style="text-align: left;">file path</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><strong>yes</strong></td>
 <td style="text-align: left;">Genome assembly for phasing bam files</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>--directory</code></td>
-<td style="text-align: center;"><code v-pre>-d</code></td>
-<td style="text-align: left;">folder path</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><strong>yes</strong></td>
-<td style="text-align: left;">Directory with sequence alignments</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>--vcf</code></td>
@@ -441,7 +441,7 @@ it too well.</p>
 <p>In order to get the best variant calling performance out of NAIBR, it requires <em>phased</em> bam files as input.
 The <code v-pre>--vcf</code> option is optional and not used by NAIBR. However, to use <code v-pre>harpy sv naibr</code> with
 bam files that are not phased, you will need to include <code v-pre>--vcf</code>, which Harpy uses with
-<code v-pre>whatshap haplotag</code> to phase your input bam files prior to variant calling. See the <a href="https://whatshap.readthedocs.io/en/latest/guide.html#whatshap-haplotag">whatshap documentation</a>
+<code v-pre>whatshap haplotag</code> to phase your input BAM files prior to variant calling. See the <a href="https://whatshap.readthedocs.io/en/latest/guide.html#whatshap-haplotag">whatshap documentation</a>
 for more details on that process.</p>
 <doc-anchor-target id="a-phased-input---vcf">
     <h4>

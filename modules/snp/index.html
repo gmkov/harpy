@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761771887257">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762538243390">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.5.0.761771887257" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.762538243390" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.761771887257" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762538243390" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.761771887257" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.761771887257" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762538243390" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.762538243390" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../resources/js/mermaid.js?v=3.5.0" defer></script>
 </head>
 <body>
@@ -61,7 +61,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../static/favicon.png">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.6.1</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.7.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -240,7 +240,7 @@
 <li>at least 4 cores/threads available</li>
 <li>a genome assembly in FASTA format</li>
 <li>sequence alignments, in <code v-pre>.bam</code> format</li>
-<li>sample grouping file</li>
+<li>sample grouping file (optional)</li>
 </ul>
    </doc-panel>
    <doc-panel id="sample-grouping-file" collapsed>
@@ -254,8 +254,8 @@
 </li>
 <li>the groups can be numbers or text (<em>i.e.</em> meaningful population names)</li>
 <li>you can comment out lines with <code v-pre>#</code> for Harpy to ignore them</li>
-<li>create with <code v-pre>harpy extra popgroup -d &lt;samplefolder&gt;</code> or manually</li>
-<li>if created with <code v-pre>harpy extra popgroup</code>, all the samples will be assigned to group <code v-pre>pop1</code>, so make sure to edit the second column to reflect your data correctly.</li>
+<li>create with <code v-pre>harpy popgroup &lt;samplefolder&gt;</code> or manually</li>
+<li>if created with <code v-pre>harpy popgroup</code>, all the samples will be assigned to group <code v-pre>pop1</code>, so make sure to edit the second column to reflect your data correctly.</li>
 </ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">example file for --populations</div>
@@ -293,15 +293,15 @@ from the sample names. A simple fix would be to use underscores (<code v-pre>_</
 You can call SNPs with the <code v-pre> harpy snp</code> module:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">usage</div>
-<pre class="language-bash"><code v-pre class="language-bash">harpy snp method OPTIONS... </code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy snp method OPTIONS... INPUTS...</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">examples</div>
 <pre class="language-bash"><code v-pre class="language-bash"># call variants with mpileup
-harpy snp mpileup --threads 20 --genome genome.fasta --directory Align/bwa
+harpy snp mpileup --threads 20 --genome genome.fasta Align/bwa
 
 # call variants with freebayes
-harpy snp freebayes --threads 20 --genome genome.fasta --directory Align/bwa</code></pre>
+harpy snp freebayes --threads 20 --genome genome.fasta Align/bwa</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="running-options">
     <h2>
@@ -324,20 +324,20 @@ harpy snp freebayes --threads 20 --genome genome.fasta --directory Align/bwa</co
 </thead>
 <tbody>
 <tr>
+<td style="text-align: left;"><code v-pre>INPUTS</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">file/directory paths</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>yes</strong></td>
+<td style="text-align: left;">Files or directories containing <a href="../../commonoptions/#input-arguments">input BAM files</a></td>
+</tr>
+<tr>
 <td style="text-align: left;"><code v-pre>--genome</code></td>
 <td style="text-align: center;"><code v-pre>-g</code></td>
 <td style="text-align: left;">file path</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><strong>yes</strong></td>
 <td style="text-align: left;">Genome assembly for variant calling</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>--directory</code></td>
-<td style="text-align: center;"><code v-pre>-d</code></td>
-<td style="text-align: left;">folder path</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><strong>yes</strong></td>
-<td style="text-align: left;">Directory with sequence alignments</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>--windowsize</code></td>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761771887257">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762538243390">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../static/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.761771887257" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.762538243390" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761771887257" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.762538243390" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761771887257" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761771887257" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.762538243390" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.762538243390" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../../resources/js/mermaid.js?v=3.5.0" defer></script>
     <link href="../../../resources/css/katex.css?v=3.5.0" rel="stylesheet">
     <script id="katex-js" data-cfasync="false" src="../../../resources/js/katex.js?v=3.5.0" defer></script>
@@ -63,7 +63,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../../static/favicon.png">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.6.1</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.7.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -249,11 +249,11 @@ such as those derived using <code v-pre>harpy qc</code>. You can map reads onto 
 using the <code v-pre>align</code> module:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">usage</div>
-<pre class="language-bash"><code v-pre class="language-bash">harpy align bwa|ema OPTIONS...</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy align bwa OPTIONS... INPUTS...</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">example</div>
-<pre class="language-bash"><code v-pre class="language-bash">harpy align bwa --genome genome.fasta --directory Sequences/ </code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy align bwa --genome genome.fasta Sequences/ </code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="running-options">
     <h2>
@@ -276,20 +276,20 @@ using the <code v-pre>align</code> module:</p>
 </thead>
 <tbody>
 <tr>
+<td style="text-align: left;"><code v-pre>INPUTS</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">file/directory paths</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>yes</strong></td>
+<td style="text-align: left;">Files or directories containing <a href="../../../commonoptions/#input-arguments">input FASTQ files</a></td>
+</tr>
+<tr>
 <td style="text-align: left;"><code v-pre>--genome</code></td>
 <td style="text-align: center;"><code v-pre>-g</code></td>
 <td style="text-align: left;">file path</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><strong>yes</strong></td>
 <td style="text-align: left;">Genome assembly for read mapping</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>--directory</code></td>
-<td style="text-align: center;"><code v-pre>-d</code></td>
-<td style="text-align: left;">folder path</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><strong>yes</strong></td>
-<td style="text-align: left;">Directory with sample sequences</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>--molecule-distance</code></td>
@@ -343,8 +343,13 @@ what this value does.</p>
         <span>Quality filtering</span>
     </h2>
 </doc-anchor-target>
-<doc-panel id="what-is-a-mq-score" collapsed>
-    <template #title>What is a <span class="math">MQ</span> score?</template>
+<p>The <code v-pre>--quality</code> argument filters out alignments below a given <span class="math">MQ</span> threshold. The default, <code v-pre>30</code>, keeps alignments
+that are at least 99.9% likely correctly mapped. Set this value to <code v-pre>1</code> if you only want alignments removed with
+<span class="math">MQ = 0</span> (0% likely correct). You may also set it to <code v-pre>0</code> to keep all alignments for diagnostic purposes.
+The plot below shows the relationship between <span class="math">MQ</span> score and the likelihood the alignment is correct and will serve to help you decide
+on a value you may want to use. It is common to remove alignments with <span class="math">MQ &lt;30</span> (&lt;99.9% chance correct) or <span class="math">MQ &lt;40</span> (&lt;99.99% chance correct).</p>
+<doc-panel id="what-is-the-mq-score" collapsed>
+    <template #title>What is the <span class="math">MQ</span> score?</template>
 <p>Every alignment in a BAM file has an associated mapping quality score (<span class="math">MQ</span>) that informs you of the likelihood
 that the alignment is accurate. This score can range from 0-40, where higher numbers mean the alignment is more
 likely correct. The math governing the <span class="math">MQ</span> score actually calculates the percent chance the alignment is <em><strong>incorrect</strong></em>:</p>
@@ -354,12 +359,6 @@ likely correct. The math governing the <span class="math">MQ</span> score actual
 <div class="math"><pre>\%\ chance\ correct = 100 - \%\ chance\ incorrect\\
 \text{or} \\
 \%\ chance\ correct = (1 - 10^\frac{-MQ}{10}) \times 100</pre></div>
-</doc-panel>
-<p>The <code v-pre>--quality</code> argument filters out alignments below a given <span class="math">MQ</span> threshold. The default, <code v-pre>30</code>, keeps alignments
-that are at least 99.9% likely correctly mapped. Set this value to <code v-pre>1</code> if you only want alignments removed with
-<span class="math">MQ = 0</span> (0% likely correct). You may also set it to <code v-pre>0</code> to keep all alignments for diagnostic purposes.
-The plot below shows the relationship between <span class="math">MQ</span> score and the likelihood the alignment is correct and will serve to help you decide
-on a value you may want to use. It is common to remove alignments with <span class="math">MQ &lt;30</span> (&lt;99.9% chance correct) or <span class="math">MQ &lt;40</span> (&lt;99.99% chance correct).</p>
 <p>
 <figure>
     <div class="relative w-full mb-6 overflow-hidden pt-9/16">
@@ -367,6 +366,7 @@ on a value you may want to use. It is common to remove alignments with <span cla
     </div>
 </figure>
 </p>
+</doc-panel>
 <doc-anchor-target id="marking-pcr-duplicates">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#marking-pcr-duplicates">#</doc-anchor-trigger>

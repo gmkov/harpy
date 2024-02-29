@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761771887257">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762538243390">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.5.0.761771887257" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.762538243390" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.761771887257" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762538243390" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.761771887257" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.761771887257" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762538243390" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.762538243390" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -60,7 +60,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../static/favicon.png">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.6.1</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.7.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -258,17 +258,17 @@ for the pipeline. There are separate <code v-pre>fastq</code> and <code v-pre>ba
 </ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">fastq usage and example</div>
-<pre class="language-bash"><code v-pre class="language-bash">harpy preflight fastq OPTIONS...
+<pre class="language-bash"><code v-pre class="language-bash">harpy preflight fastq OPTIONS... INPUTS...
 
 # example 
-harpy preflight fastq --threads 20 -d raw_data</code></pre>
+harpy preflight fastq --threads 20 raw_data</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">bam usage and example</div>
-<pre class="language-bash"><code v-pre class="language-bash">harpy preflight bam OPTIONS... 
+<pre class="language-bash"><code v-pre class="language-bash">harpy preflight bam OPTIONS... INPUST...
 
 # example
-harpy preflight bam --threads 20 -d Align/bwa</code></pre>
+harpy preflight bam --threads 20 Align/bwa</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="running-options">
     <h2>
@@ -291,12 +291,12 @@ harpy preflight bam --threads 20 -d Align/bwa</code></pre>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code v-pre>--directory</code></td>
-<td style="text-align: center;"><code v-pre>-d</code></td>
-<td style="text-align: left;">folder path</td>
+<td style="text-align: left;"><code v-pre>INPUTS</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">file/directory paths</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><strong>yes</strong></td>
-<td style="text-align: left;">Directory with sequences or alignments</td>
+<td style="text-align: left;">Files or directories containing <a href="../../commonoptions/#input-arguments">input fastq or bam files</a></td>
 </tr>
 </tbody>
 </table>
@@ -310,7 +310,8 @@ harpy preflight bam --threads 20 -d Align/bwa</code></pre>
 <doc-tabs>
 <doc-tab v-cloak id="fastq-checks">
 <template #title><code v-pre>fastq</code> checks</template>
-<p>Below is a table of the format specifics <code v-pre>harpy preflight</code> checks for FASTQ files. Take note
+<p>Below is a table of the format specifics <code v-pre>harpy preflight</code> checks for FASTQ files. Since 10X data doesn&#x27;t use
+the haplotagging data format, you will find little value in running <code v-pre>preflight</code> on 10X FASTQ files. Take note
 of the language such as when &quot;any&quot; and &quot;all&quot; are written.</p>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
