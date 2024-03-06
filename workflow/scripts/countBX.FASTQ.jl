@@ -3,7 +3,7 @@ try
     using CodecZlib
     using FASTX
 catch
-    using Pkg; Pkg.add("CodecZlib", "FASTX")
+    using Pkg; Pkg.add(["CodecZlib", "FASTX"])
     using CodecZlib
     using FASTX
 end
