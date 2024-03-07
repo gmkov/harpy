@@ -152,6 +152,7 @@ rule beadtag_count:
         logs   = temp(outdir + "/logs/count/{sample}.count")
     params:
         prefix = lambda wc: outdir + "/bxcount/" + wc.get("sample"),
+        outdir = f"{outdir}/bxcount", 
         beadtech = "-p" if platform == "haplotag" else f"-w {whitelist}",
         logdir = f"{outdir}/logs/count/"
     message:
@@ -160,7 +161,7 @@ rule beadtag_count:
         os.getcwd() + "/.harpy_envs/align.yaml"
     shell:
         """
-        mkdir -p {params.prefix} {params.logdir}
+        mkdir -p {params.outdir} {params.logdir}
         ema count {params.beadtech} -o {params.prefix} < {input} 2> {output.logs}
         """
 
