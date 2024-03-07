@@ -6,6 +6,7 @@ from .fileparsers import getnames
 from .printfunctions import print_error, print_notice, print_solution, print_solution_with_culprits
 from pathlib import Path
 from rich.table import Table
+from rich import box
 import rich_click as click
 
 def vcfcheck(vcf):
@@ -71,7 +72,7 @@ def check_impute_params(parameters):
         # Validate each column
         culprits = dict()
         colerr = 0
-        errtable = Table(title="Formatting Errors")
+        errtable = Table(title="Formatting Errors", box=box.SIMPLE)
         errtable.add_column("Column", justify="right", style="white", no_wrap=True)
         errtable.add_column("Expected Values", style="green")
         errtable.add_column("Rows with Issues", style = "white")
