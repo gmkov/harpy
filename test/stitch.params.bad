@@ -1,3 +1,6 @@
 model	usebx	bxlimit	k	s	ngen
 diploid	corn	50000	3	demon	10
 dinosaurs	TRUE	swim	r	1	beans
+alpaca	TRUE	swim	s	1	beans
+alpaca	TRUE	swim	s	1	beans
+alpaca	TRUE	swim	s	1	beans

@@ -6,7 +6,7 @@ from .fileparsers import getnames
 from .printfunctions import print_error, print_notice, print_solution, print_solution_with_culprits
 from pathlib import Path
 from rich.table import Table
-from rich import box
+from rich import print, box
 import rich_click as click
 
 def vcfcheck(vcf):
@@ -72,10 +72,10 @@ def check_impute_params(parameters):
         # Validate each column
         culprits = dict()
         colerr = 0
-        errtable = Table(title="Formatting Errors", box=box.SIMPLE)
-        errtable.add_column("Column", justify="right", style="white", no_wrap=True)
+        errtable = Table(box=box.SIMPLE)
+        errtable.add_column("Column", justify="right", style="bold", no_wrap=True)
         errtable.add_column("Expected Values", style="green")
-        errtable.add_column("Rows with Issues", style = "white")
+        errtable.add_column("Rows with Issues", style = "default")
 
         culprits["model"] = []
         for i,j in enumerate(data["model"]):
@@ -83,7 +83,7 @@ def check_impute_params(parameters):
                 culprits["model"].append(str(i + 1))
                 colerr += 1
         if culprits["model"]:
-            errtable.add_row("model", "diploid, diploid-inbred, pseudoHaploid", ", ".join(culprits["model"]))
+            errtable.add_row("model", "diploid, diploid-inbred, pseudoHaploid", ",".join(culprits["model"]))
 
         culprits["usebx"] = []
         for i,j in enumerate(data["usebx"]):
@@ -91,7 +91,7 @@ def check_impute_params(parameters):
                 culprits["usebx"].append(str(i + 1))
                 colerr += 1
         if culprits["usebx"]:
-            errtable.add_row("usebx", "True, False", ", ".join(culprits["usebx"]))
+            errtable.add_row("usebx", "True, False", ",".join(culprits["usebx"]))
         
         for param in ["bxlimit","k","s","ngen"]:
             culprits[param] = []
@@ -100,11 +100,14 @@ def check_impute_params(parameters):
                     culprits[param].append(str(i + 1))
                     colerr += 1
             if culprits[param]:
-                errtable.add_row(param, "Integers", ", ".join(culprits[param]))
+                errtable.add_row(param, "Integers", ",".join(culprits[param]))
 
         if colerr > 0:
             print_error(f"Parameter file [bold]{parameters}[/bold] is formatted incorrectly. Not all columns have valid values.")
-            print_solution("Review the table below of what values are expected for each column and which rows are causing issues.")
+            print_solution_with_culprits(
+                "Review the table below of what values are expected for each column and which rows are causing issues.",
+                "Formatting Errors:"    
+            )
             print(errtable, file = sys.stderr)
             exit(1)
 
