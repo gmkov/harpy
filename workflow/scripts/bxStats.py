@@ -4,21 +4,6 @@ import re
 import sys
 import gzip
 import pysam
-#import argparse
-
-#parser = argparse.ArgumentParser(
-#    prog = 'bxStats.py',
-#    description = 'Calculate BX molecule length and reads per molecule from BAM file.',
-#    usage = "bxStats.py input.bam > output.bxstats",
-#    exit_on_error = False
-#    )
-#parser.add_argument('input', help = "Input bam/sam file. If bam, a matching index file should be in the same directory.")
-#
-#if len(sys.argv) == 1:
-#    parser.print_help(sys.stderr)
-#    sys.exit(1)
-#
-#args = parser.parse_args()
 
 d = dict()
 chromlast = False
