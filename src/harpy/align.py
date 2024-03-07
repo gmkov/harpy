@@ -152,9 +152,10 @@ def ema(input, platform, whitelist, genome, threads, ema_bins, skipreports, extr
             config.write(f"extra: {extra_params}\n")
         config.write(f"workflow_call: {call_SM}\n")
 
+    whitelisttext = f"\nWhitelist: {whitelist}" if whitelist else ""
     generate_conda_deps()
     print_onstart(
-        f"Samples: {len(samplenames)}\nPlatform: {platform}\nOutput Directory: Align/ema/",
+        f"Samples: {len(samplenames)}\nPlatform: {platform}{whitelisttext}\nOutput Directory: Align/ema/",
         "align ema"
     )
     _module = subprocess.run(command)
