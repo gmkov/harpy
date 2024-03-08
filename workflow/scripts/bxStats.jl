@@ -1,12 +1,12 @@
 #! /usr/bin/env julia
 
 try
-    using XAM
-    using GZip
+    using XAM ;
+    using GZip ;
 catch
-    using Pkg; Pkg.add(["XAM", "GZip"])
-    using XAM
-    using GZip
+    using Pkg; Pkg.add(["XAM", "GZip"], io = devnull) ;
+    using XAM ;
+    using GZip ;
 end
 
 ## worker functions ##
@@ -26,19 +26,19 @@ function getBX(itr::BAM.Record, fallback::String)::String
     end
 end
 
-function getMI(itr::BAM.Record, fallback::String)::Int64
+function getMI(itr::BAM.Record, fallback::Int64)::Int64
     try
-        itr["MI"]::Int64
+        Int64(itr["MI"])::Int64
     catch
         fallback::Int64
     end
 end
 
 isforward(record::BAM.Record)::Bool = BAM.flags(record) & 0x10 == 0
-ispaired(record::BAM.Record)::Bool = BAM.flags(record) & 0x80 == 0
-isduplicate(record::BAM.Record)::Bool = BAM.flags(record) & 0x400 == 0
+ispaired(record::BAM.Record)::Bool = !(BAM.flags(record) & 0x1 == 0)
+isduplicate(record::BAM.Record)::Bool = !(BAM.flags(record) & 0x400 == 0)
 
-function updatedict!(d::Dict{String, Int64}, record::BAM.Record)::Bool
+function updatedict!(d::Dict{Int64, Dict{String, Int64}}, record::BAM.Record)
     """
     Safely pull the BX and MI tags from the alignment record and either
     update the dictionary entry for the MI tag or create a new one.
@@ -47,21 +47,18 @@ function updatedict!(d::Dict{String, Int64}, record::BAM.Record)::Bool
     bx::String = getBX(record, "noBX")
     mi::Int64  = getMI(record, -1)
     if bx != "noBX"
-        bad_beadtag = occursin(r"[ABCD]0{2,4}", bx)
-        bx = bad_beadtag ? "invalidBX" : bx
+        if occursin(r"[ABCD]0{2,4}", bx)
+            get!(d, mi, newInvalidDict())
+            d[mi]["bp"] += bp
+            d[mi]["n"] += 1
+            return
+        end
     end
-    valid = !occursin(r"[ABCD]0{2,4}", bx) && bx != "noBX"
-    if !valid
-        get!(d, mi, newInvalidDict())
-        d[mi]["bp"] += bp
-        d[mi]["n"] += 1
-        return false
-    end
-    pos_start = BAM.position(record)
+    pos_start = BAM.position(record) - 1
     pos_end = BAM.rightposition(record) 
     if mi ∉ keys(d)
         d[mi] = newValidDict(pos_start, pos_end, bp)
-        return false         
+        return         
     end
 
     # only calculate the minimum distance between alignments
@@ -70,7 +67,7 @@ function updatedict!(d::Dict{String, Int64}, record::BAM.Record)::Bool
     if isforward(record) || (!ispaired(record) && !isforward(record))
         _dist = d[mi]["mindist"]
         d[mi]["mindist"] = (dist < _dist || _dist < 0) ? dist : _dist
-
+    end
     # update the basic alignment info of the barcode
     d[mi]["bp"] += bp
     d[mi]["n"]  += 1
@@ -86,23 +83,20 @@ function updatedict!(d::Dict{String, Int64}, record::BAM.Record)::Bool
         # set the last position to be the end of current alignment
         d[mi]["lastpos"] = pos_end
     end
-    return false
+    return
 end
 
 # define write function
 # it will only be called when the current alignment's chromosome doesn't
 # match the chromosome from the previous alignment
-function writestats(x::T,chr::String) where T<:Dict
+function writestats(outfile::GZipStream, x::Dict{Int64, Dict{String, Int64}},chr::String)
     for (mi,stats) in x
-        stats["inferred"] = stats["end"] - stats["start"] 
+        stats["inferred"] = stats["end"] - stats["start"]
         stats["mindist"] = max(0, stats["mindist"])
-        outtext = "$chr\t$mi\t" * join([stats[i] for i in ["n", "start","end", "inferred", "bp", "mindist"]], "\t")
-        write(outfile, outtext * "\n")
+        outtext = "$chr\t$mi\t" * join([stats[i] for i in ["n", "start","end", "inferred", "bp", "mindist"]], "\t") * "\n"
+        write(outfile, outtext)
     end
 end
-
-write(outfile, "contig\tmolecule\treads\tstart\tend\tlength_inferred\taligned_bp\tmindist\n")
-
 
 ####
 # pick an unreasonable string you shouldnt name contigs after (Unicode \0)
@@ -110,6 +104,7 @@ write(outfile, "contig\tmolecule\treads\tstart\tend\tlength_inferred\taligned_bp
 let chromlast = "\u0", d = Dict{Int64,Dict{String,Int64}}()
     reader = open(BAM.Reader, ARGS[1])
     outfile = GZip.open(ARGS[2], "w")
+    write(outfile, "contig\tmolecule\treads\tstart\tend\tlength_inferred\taligned_bp\tmindist\n")
     record = BAM.Record()
     while !eof(reader)
         empty!(record)
@@ -119,14 +114,16 @@ let chromlast = "\u0", d = Dict{Int64,Dict{String,Int64}}()
         # check if the current chromosome is different from the previous one
         # if so, print the dict to file and empty it (a consideration for RAM usage)
         if chrm != chromlast && chromlast != "\u0"
-            writestats(d, chromlast)
+            writestats(outfile, d, chromlast)
             empty!(d)
         end
         chromlast = chrm
-        if isduplicate(record) || !ismapped(record)
+        if isduplicate(record) || !BAM.ismapped(record)
             continue
         end
         # create up update an MI dict entry
         updatedict!(d, record)
     end
+    close(reader)
+    close(outfile)
 end

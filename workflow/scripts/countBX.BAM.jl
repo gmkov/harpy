@@ -1,10 +1,10 @@
 #! /usr/bin/env julia
 
 try
-    using XAM
+    using XAM ;
 catch
-    using Pkg; Pkg.add("XAM")
-    using XAM
+    using Pkg; Pkg.add("XAM", io = devnull) ;
+    using XAM ;
 end
 
 function parseBX!(rec, inv_dict, rgx)
