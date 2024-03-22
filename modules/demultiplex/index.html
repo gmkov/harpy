@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762624045714">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.764430853810">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../static/favicon.png" rel="icon">
-    <link href="../../resources/css/retype.css?v=3.5.0.762624045714" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.764430853810" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762624045714" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.764430853810" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762624045714" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.762624045714" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.764430853810" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.764430853810" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../resources/js/mermaid.js?v=3.5.0" defer></script>
 </head>
 <body>
@@ -61,7 +61,7 @@
                                 <img class="max-h-10 hidden dark:inline-block" src="../../static/favicon.png">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Harpy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.7.x</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">v0.8.x</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -358,7 +358,7 @@ individual samples is performed in parallel and using the beloved workhorse <cod
 </doc-tab>
 <doc-tab v-cloak id="demultiplexing-output">
 <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M2 4.75C2 3.784 2.784 3 3.75 3h4.971c.58 0 1.12.286 1.447.765l1.404 2.063c.046.069.124.11.207.11h8.471c.966 0 1.75.783 1.75 1.75V19.25A1.75 1.75 0 0 1 20.25 21H3.75A1.75 1.75 0 0 1 2 19.25Zm1.75-.25a.25.25 0 0 0-.25.25v14.5c0 .138.112.25.25.25h16.5a.25.25 0 0 0 .25-.25V7.687a.25.25 0 0 0-.25-.25h-8.471a1.75 1.75 0 0 1-1.447-.765L8.928 4.61a.252.252 0 0 0-.208-.11Z"/></g></g></svg> demultiplexing output</template>
-<p>The <code v-pre>harpy demultiplex</code> module creates an <code v-pre>Demultiplex/PREFIX</code> directory with the folder structure below, where <code v-pre>PREFIX</code> is the prefix of your input file that Harpy
+<p>The default output directory is <code v-pre>Demultiplex/PREFIX</code> with the folder structure below, where <code v-pre>PREFIX</code> is the prefix of your input file that Harpy
 infers by removing the file extension and forward/reverse distinction. <code v-pre>Sample1</code> and <code v-pre>Sample2</code> are generic sample names for demonstration purposes.
 The resulting folder also includes a <code v-pre>workflow</code> directory (not shown) with workflow-relevant runtime files and information.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
