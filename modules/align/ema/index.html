@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/HARPY">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765478865403">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765493029486">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -34,12 +34,12 @@
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../../static/favicon.png" rel="icon">
-    <link href="../../../resources/css/retype.css?v=3.5.0.765478865403" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.765493029486" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765478865403" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765493029486" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765478865403" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765478865403" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765493029486" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765493029486" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../../resources/js/mermaid.js?v=3.5.0" defer></script>
     <link href="../../../resources/css/katex.css?v=3.5.0" rel="stylesheet">
     <script id="katex-js" data-cfasync="false" src="../../../resources/js/katex.js?v=3.5.0" defer></script>
@@ -425,6 +425,10 @@ using BWA before merging all the alignments together again. EMA will mark duplic
 within alignments, but the BWA alignments need duplicates marked manually using
 <code v-pre>samtools markdup</code>.</p>
 <div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
+    subgraph Inputs
+        trm[FASTQ files]---geno[genome]
+    end
+    Inputs--&gt;A &amp; IDX
     A([EMA count]) --&gt; B([EMA preprocess])
     B--&gt;C([EMA align barcoded])
     C--&gt;D([sort BX alignments])
@@ -441,6 +445,8 @@ within alignments, but the BWA alignments need duplicates marked manually using
         fixmate--&gt;sort
         sort--&gt;markdup
     end
+    style markdp fill:#f0f0f0,stroke:#e8e8e8,stroke-width:2px
+    style Inputs fill:#f0f0f0,stroke:#e8e8e8,stroke-width:2px
 </pre></div>
 </doc-tab>
 <doc-tab v-cloak id="ema-output">
