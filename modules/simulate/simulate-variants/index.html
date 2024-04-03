@@ -10,26 +10,24 @@
     <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
-    <title> Map Reads onto a genome with BWA MEM | Harpy</title>
-    <meta name="title" content=" Map Reads onto a genome with BWA MEM | Harpy">
-    <meta name="description" content="Align haplotagged sequences with BWA MEM">
+    <title> Simulate Genomic Variants | Harpy</title>
+    <meta name="title" content=" Simulate Genomic Variants | Harpy">
+    <meta name="description" content="Simulate snps, indels, inversions, cnv, translocations">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://pdimens.github.io/HARPY/modules/align/bwa/">
+    <link rel="canonical" href="https://pdimens.github.io/HARPY/modules/simulate/simulate-variants/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://pdimens.github.io/HARPY/modules/align/bwa/">
-    <meta property="og:title" content=" Map Reads onto a genome with BWA MEM | Harpy">
-    <meta property="og:description" content="Align haplotagged sequences with BWA MEM">
-    <meta property="og:image" content="https://pdimens.github.io/HARPY/static/report_align_coverage.png">
+    <meta property="og:url" content="https://pdimens.github.io/HARPY/modules/simulate/simulate-variants/">
+    <meta property="og:title" content=" Simulate Genomic Variants | Harpy">
+    <meta property="og:description" content="Simulate snps, indels, inversions, cnv, translocations">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://pdimens.github.io/HARPY/modules/align/bwa/">
-    <meta property="twitter:title" content=" Map Reads onto a genome with BWA MEM | Harpy">
-    <meta property="twitter:description" content="Align haplotagged sequences with BWA MEM">
-    <meta property="twitter:image" content="https://pdimens.github.io/HARPY/static/report_align_coverage.png">
+    <meta property="twitter:url" content="https://pdimens.github.io/HARPY/modules/simulate/simulate-variants/">
+    <meta property="twitter:title" content=" Simulate Genomic Variants | Harpy">
+    <meta property="twitter:description" content="Simulate snps, indels, inversions, cnv, translocations">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -41,8 +39,6 @@
     <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765478865403" data-turbo-eval="false" defer></script>
     <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765478865403" defer></script>
     <script id="mermaid-js" data-cfasync="false" src="../../../resources/js/mermaid.js?v=3.5.0" defer></script>
-    <link href="../../../resources/css/katex.css?v=3.5.0" rel="stylesheet">
-    <script id="katex-js" data-cfasync="false" src="../../../resources/js/katex.js?v=3.5.0" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -229,39 +225,164 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="map-reads-onto-a-genome-with-bwa-mem" class="break-words">
+<doc-anchor-target id="simulate-genomic-variants" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#map-reads-onto-a-genome-with-bwa-mem">#</doc-anchor-trigger>
-        <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M3 6.25a.75.75 0 0 1 .75-.75h13.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.25Zm5 6.063a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 0 1.5H8.75a.75.75 0 0 1-.75-.75Zm0 5.937a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 0 1.5H8.75a.75.75 0 0 1-.75-.75ZM3.75 11a.75.75 0 0 1 .75.75v7a.75.75 0 0 1-1.5 0v-7a.75.75 0 0 1 .75-.75Z"/></g></g></svg> Map Reads onto a genome with BWA MEM</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#simulate-genomic-variants">#</doc-anchor-trigger>
+        <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M14.265 1.627c0 3.545 1.869 5.327 3.479 7.021 1.54 1.62 3.006 3.163 3.006 6.102 0 4.812-3.753 8.25-8.565 8.25-4.813 0-8.935-3.421-8.935-8.25 0-2.039.962-4.011 2.509-4.899.305-.175.672.007.803.334C7.563 12.684 8.797 12.64 9.437 12c.388-.387.47-1.116-.004-2.062-2.405-4.812 1.863-8.279 4.2-8.854.336-.082.615.198.632.543ZM12.185 21.5c4.059 0 7.065-2.84 7.065-6.75 0-2.337-1.093-3.489-2.678-5.158l-.021-.023c-1.44-1.517-3.139-3.351-3.649-6.557a6.148 6.148 0 0 0-1.911 1.76c-.787 1.144-1.147 2.633-.216 4.495.603 1.205.777 2.74-.277 3.794-.657.657-1.762 1.1-2.956.586-.752-.324-1.353-.955-1.838-1.79-.567.706-.954 1.74-.954 2.893 0 3.847 3.288 6.75 7.435 6.75Z"/></g></g></svg> Simulate Genomic Variants</span>
     </h1>
 </doc-anchor-target>
+<p>Simulate snps, indels, inversions, cnv, translocations</p>
 <doc-panel id="you-will-need">
     <template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M3.5 3.75a.25.25 0 0 1 .25-.25h13.5a.25.25 0 0 1 .25.25v10a.75.75 0 0 0 1.5 0v-10A1.75 1.75 0 0 0 17.25 2H3.75A1.75 1.75 0 0 0 2 3.75v16.5c0 .966.784 1.75 1.75 1.75h7a.75.75 0 0 0 0-1.5h-7a.25.25 0 0 1-.25-.25V3.75Z"/><path d="M6.25 7a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Zm-.75 4.75a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75Zm16.28 4.53a.75.75 0 1 0-1.06-1.06l-4.97 4.97-1.97-1.97a.75.75 0 1 0-1.06 1.06l2.5 2.5a.75.75 0 0 0 1.06 0l5.5-5.5Z"/></g></g></svg> You will need</template>
 <ul>
-<li>at least 4 cores/threads available</li>
-<li>a genome assembly in FASTA format</li>
-<li>paired-end fastq sequence file with the <a href="../../../haplotagdata/#naming-conventions">proper naming convention</a> (gzipped recommended)</li>
+<li>a reference genome in fasta or gzipped fasta format</li>
 </ul>
 </doc-panel>
-<p>Once sequences have been trimmed and passed through other QC filters, they will need to
-be aligned to a reference genome. This module within Harpy expects filtered reads as input,
-such as those derived using <code v-pre>harpy qc</code>. You can map reads onto a genome assembly with Harpy
-using the <code v-pre>align</code> module:</p>
+<p>You may want to benchmark haplotag data on different kinds of genomic variants. To
+do that, you&#x27;ll need <em>known</em> variants, and typically simulations are how you achieve
+that. This series of modules simulates genomic variants onto a genome, either randomly
+or specific variants provided in VCF files. The simulator Harpy uses,
+<a href="https://github.com/yjx1217/simuG">simuG</a>, can only simulate one type of
+variant at a time and each variant type has their own set of parameters. This page
+is divided by variant types to help you navigate the process. The general usage
+for simulating variants is:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">usage</div>
-<pre class="language-bash"><code v-pre class="language-bash">harpy align bwa OPTIONS... INPUTS...</code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy simulate variant OPTIONS... INPUT_GENOME</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">example</div>
-<pre class="language-bash"><code v-pre class="language-bash">harpy align bwa --genome genome.fasta Sequences/ </code></pre>
+<pre class="language-bash"><code v-pre class="language-bash">harpy simulate inversion -n 10 --min-size 1000 --max-size 50000  path/to/genome.fasta</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="modules">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#modules">#</doc-anchor-trigger>
+        <span>Modules</span>
+    </h2>
+</doc-anchor-target>
+<p>There are 4 submodules with very obvious names:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;">submodule</th>
+<th style="text-align: left;">what it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>snpindel</code></td>
+<td style="text-align: left;">simulates single nucleotide polymorphisms (snps) and insertion-deletions (indels)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>inversion</code></td>
+<td style="text-align: left;">simulates inversions</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>cnv</code></td>
+<td style="text-align: left;">simulates copy number variants</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>translocation</code></td>
+<td style="text-align: left;">simulates translocations</td>
+</tr>
+</tbody>
+</table>
+</div>
 <doc-anchor-target id="running-options">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#running-options">#</doc-anchor-trigger>
         <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M9.25 12a.75.75 0 0 1-.22.53l-2.75 2.75a.75.75 0 0 1-1.06-1.06L7.44 12 5.22 9.78a.75.75 0 1 1 1.06-1.06l2.75 2.75c.141.14.22.331.22.53Zm2 2a.75.75 0 0 0 0 1.5h5a.75.75 0 0 0 0-1.5h-5Z"/><path d="M0 4.75C0 3.784.784 3 1.75 3h20.5c.966 0 1.75.784 1.75 1.75v14.5A1.75 1.75 0 0 1 22.25 21H1.75A1.75 1.75 0 0 1 0 19.25Zm1.75-.25a.25.25 0 0 0-.25.25v14.5c0 .138.112.25.25.25h20.5a.25.25 0 0 0 .25-.25V4.75a.25.25 0 0 0-.25-.25Z"/></g></g></svg> Running Options</span>
     </h2>
 </doc-anchor-target>
-<p>In addition to the <a href="../../../commonoptions/">common runtime options</a>, the <code v-pre>harpy align bwa</code> module is configured using these command-line arguments:</p>
+<p>While there are serveral differences between the submodule command line options, each has available all the
+<a href="../../../commonoptions/">common runtime options</a> like other Harpy modules. Each requires and input genome at the
+end of the command line, and each requires either a <code v-pre>--count</code> of variants to randomly simulate, or a <code v-pre>--vcf</code> of
+specific variants to simulate. There are also these unifying options among the different variant types:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;">argument</th>
+<th style="text-align: left;">short name</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>INPUT_GENOME</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">file path</td>
+<td style="text-align: left;">The haploid genome to simulate variants onto. <strong>REQUIRED</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--prefix</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Naming prefix for output files (default: <code v-pre>sim.{module_name}</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--exclude-chr</code></td>
+<td style="text-align: left;"><code v-pre>-e</code></td>
+<td style="text-align: left;">file path</td>
+<td style="text-align: left;">Text file of chromosomes to avoid, one per line</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--centromeres</code></td>
+<td style="text-align: left;"><code v-pre>-c</code></td>
+<td style="text-align: left;">file path</td>
+<td style="text-align: left;">GFF3 file of centromeres to avoid</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--genes</code></td>
+<td style="text-align: left;"><code v-pre>-g</code></td>
+<td style="text-align: left;">file path</td>
+<td style="text-align: left;">GFF3 file of genes to avoid simulating over (see <code v-pre>snpindel</code> for caveat)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--heterozygosity</code></td>
+<td style="text-align: left;"><code v-pre>-z</code></td>
+<td style="text-align: left;">float between [0,1]</td>
+<td style="text-align: left;"><doc-anchor-trigger to="#heterozygosity">% heterozygosity to simulate diploid later</doc-anchor-trigger> (default: <code v-pre>0</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--randomseed</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Random seed for simulation</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-panels>
+   <doc-panel id="snps-and-indels" collapsed>
+       <template #title>snps and indels</template>
+<doc-anchor-target id="snpindel">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#snpindel">#</doc-anchor-trigger>
+        <span>snpindel</span>
+    </h3>
+</doc-anchor-target>
+<p>A single nucleotide polymorphism (&quot;SNP&quot;) is a genomic variant at a single base position in the DNA (<a href="https://www.genome.gov/genetics-glossary/Single-Nucleotide-Polymorphisms">source</a>).
+An indel, is a type of mutation that involves the addition/deletion of one or more nucleotides into a segment of DNA (<a href="https://www.genome.gov/genetics-glossary/Insertion">insertions</a>, <a href="https://www.genome.gov/genetics-glossary/Deletion">deletions</a>).
+The snp and indel variants are combined in this module because <code v-pre>simuG</code> allows simulating them together. The
+ratio parameters control different things for snp and indel variants and have special meanings when setting
+the value to either <code v-pre>9999</code> or <code v-pre>0</code> :</p>
+<ul>
+<li><code v-pre>--titv-ratio</code>
+<ul>
+<li><code v-pre>9999</code>: transitions only</li>
+<li><code v-pre>0</code>: transversions only</li>
+</ul>
+</li>
+<li><code v-pre>--indel-ratio</code>
+<ul>
+<li><code v-pre>9999</code>: insertions only</li>
+<li><code v-pre>0</code>: deletions only</li>
+</ul>
+</li>
+</ul>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -270,308 +391,432 @@ using the <code v-pre>align</code> module:</p>
 <th style="text-align: center;">short name</th>
 <th style="text-align: left;">type</th>
 <th style="text-align: center;">default</th>
-<th style="text-align: center;">required</th>
 <th style="text-align: left;">description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code v-pre>INPUTS</code></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;">file/directory paths</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><strong>yes</strong></td>
-<td style="text-align: left;">Files or directories containing <a href="../../../commonoptions/#input-arguments">input FASTQ files</a></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>--genome</code></td>
-<td style="text-align: center;"><code v-pre>-g</code></td>
+<td style="text-align: left;"><code v-pre>--snp-vcf</code></td>
+<td style="text-align: center;"><code v-pre>-v</code></td>
 <td style="text-align: left;">file path</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><strong>yes</strong></td>
-<td style="text-align: left;">Genome assembly for read mapping</td>
+<td style="text-align: left;">VCF file of known snps to simulate</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>--molecule-distance</code></td>
+<td style="text-align: left;"><code v-pre>--indel-vcf</code></td>
+<td style="text-align: center;"><code v-pre>-i</code></td>
+<td style="text-align: left;">file path</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">VCF file of known indels to simulate</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--snp-count</code></td>
+<td style="text-align: center;"><code v-pre>-n</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">Number of random snps to simluate</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--indel-count</code></td>
 <td style="text-align: center;"><code v-pre>-m</code></td>
 <td style="text-align: left;">integer</td>
-<td style="text-align: center;">100000</td>
-<td style="text-align: center;">no</td>
-<td style="text-align: left;">Base-pair distance threshold to separate molecules</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">Number of random indels to simluate</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>--quality-filter</code></td>
-<td style="text-align: center;"><code v-pre>-f</code></td>
-<td style="text-align: left;">integer (0-40)</td>
-<td style="text-align: center;">30</td>
-<td style="text-align: center;">no</td>
-<td style="text-align: left;">Minimum <code v-pre>MQ</code> (SAM mapping quality) to pass filtering</td>
+<td style="text-align: left;"><code v-pre>--titv-ratio</code></td>
+<td style="text-align: center;"><code v-pre>-r</code></td>
+<td style="text-align: left;">float</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: left;">Transition/Transversion ratio for snps</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>--method</code></td>
-<td style="text-align: center;"><code v-pre>-m</code></td>
-<td style="text-align: left;">choice [<code v-pre>bwa</code>, <code v-pre>ema</code>]</td>
-<td style="text-align: center;">bwa</td>
-<td style="text-align: center;">no</td>
-<td style="text-align: left;">Which aligning software to use</td>
+<td style="text-align: left;"><code v-pre>--indel-ratio</code></td>
+<td style="text-align: center;"><code v-pre>-d</code></td>
+<td style="text-align: left;">float</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Insertion/Deletion ratio for indels</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>--extra-params</code></td>
-<td style="text-align: center;"><code v-pre>-x</code></td>
+<td style="text-align: left;"><code v-pre>--indel-size-alpha</code></td>
+<td style="text-align: center;"><code v-pre>-a</code></td>
+<td style="text-align: left;">float</td>
+<td style="text-align: center;">2.0</td>
+<td style="text-align: left;">Exponent Alpha for power-law-fitted indel size distribution</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--indel-size-constant</code></td>
+<td style="text-align: center;"><code v-pre>-l</code></td>
+<td style="text-align: left;">float</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: left;">Exponent constant for power-law-fitted indel size distribution</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--snp-gene-constraints</code></td>
+<td style="text-align: center;"><code v-pre>-y</code></td>
 <td style="text-align: left;">string</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">no</td>
-<td style="text-align: left;">Additional EMA-align/BWA arguments, in quotes</td>
+<td style="text-align: left;">How to constrain randomly simulated SNPs {<code v-pre>noncoding</code>,<code v-pre>coding</code>,<code v-pre>2d</code>,<code v-pre>4d</code>} when using <code v-pre>--genes</code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<doc-anchor-target id="molecule-distance">
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>SNPs can be slow</h5>
+<p>Given software limitations, simulating many SNPs (&gt;10,000) will be noticeably slower than the other variant types.</p>
+        </div>
+    </div>
+</div>
+   </doc-panel>
+   <doc-panel id="inversions" collapsed>
+       <template #title>inversions</template>
+<doc-anchor-target id="inversion">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#molecule-distance">#</doc-anchor-trigger>
-        <span>Molecule distance</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#inversion">#</doc-anchor-trigger>
+        <span>inversion</span>
     </h3>
 </doc-anchor-target>
-<p>The <code v-pre>--molecule-distance</code> option is used during the BWA alignment workflow
-to assign alignments a unique Molecular Identifier <code v-pre>MI:i</code> tag based on their
-haplotag barcode and the distance threshold you specify. See
-<a href="../../../haplotagdata/#barcode-thresholds">haplotag data</a> for more information on
-what this value does.</p>
-<doc-anchor-target id="quality-filtering">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#quality-filtering">#</doc-anchor-trigger>
-        <span>Quality filtering</span>
-    </h2>
-</doc-anchor-target>
-<p>The <code v-pre>--quality</code> argument filters out alignments below a given <span class="math">MQ</span> threshold. The default, <code v-pre>30</code>, keeps alignments
-that are at least 99.9% likely correctly mapped. Set this value to <code v-pre>1</code> if you only want alignments removed with
-<span class="math">MQ = 0</span> (0% likely correct). You may also set it to <code v-pre>0</code> to keep all alignments for diagnostic purposes.
-The plot below shows the relationship between <span class="math">MQ</span> score and the likelihood the alignment is correct and will serve to help you decide
-on a value you may want to use. It is common to remove alignments with <span class="math">MQ &lt;30</span> (&lt;99.9% chance correct) or <span class="math">MQ &lt;40</span> (&lt;99.99% chance correct).</p>
-<doc-panel id="what-is-the-mq-score" collapsed>
-    <template #title>What is the <span class="math">MQ</span> score?</template>
-<p>Every alignment in a BAM file has an associated mapping quality score (<span class="math">MQ</span>) that informs you of the likelihood
-that the alignment is accurate. This score can range from 0-40, where higher numbers mean the alignment is more
-likely correct. The math governing the <span class="math">MQ</span> score actually calculates the percent chance the alignment is <em><strong>incorrect</strong></em>:</p>
-<div class="math"><pre>\%\ chance\ incorrect = 10^\frac{-MQ}{10} \times 100\\
-\text{where }0\le MQ\le 40</pre></div>
-<p>You can simply subtract it from 100 to determine the percent chance the alignment is <em><strong>correct</strong></em>:</p>
-<div class="math"><pre>\%\ chance\ correct = 100 - \%\ chance\ incorrect\\
-\text{or} \\
-\%\ chance\ correct = (1 - 10^\frac{-MQ}{10}) \times 100</pre></div>
-<p>
-<figure>
-    <div class="relative w-full mb-6 overflow-hidden pt-9/16">
-        <embed class="w-full h-full border-0 absolute inset-0" src="//plotly.com/%7Epdimens/7.embed"></embed>
-    </div>
-</figure>
-</p>
-</doc-panel>
-<doc-anchor-target id="marking-pcr-duplicates">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#marking-pcr-duplicates">#</doc-anchor-trigger>
-        <span>Marking PCR duplicates</span>
-    </h2>
-</doc-anchor-target>
-<p>Harpy uses <code v-pre>samtools markdup</code> to mark putative PCR duplicates. By using the <code v-pre>--barcode-tag BX</code>
-option, it considers the linked-read barcode for more accurate duplicate detection. Duplicate
-marking also uses the <code v-pre>-S</code> option to mark supplementary (chimeric) alignments as duplicates
-if the primary alignment was marked as a duplicate. Duplicates get marked but <strong>are not removed</strong>.</p>
-<hr>
-<doc-anchor-target id="bwa-workflow">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#bwa-workflow">#</doc-anchor-trigger>
-        <span><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M16 19.25a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0Zm-14.5 0a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0Zm0-14.5a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0ZM4.75 3a1.75 1.75 0 1 0 .001 3.501A1.75 1.75 0 0 0 4.75 3Zm0 14.5a1.75 1.75 0 1 0 .001 3.501A1.75 1.75 0 0 0 4.75 17.5Zm14.5 0a1.75 1.75 0 1 0 .001 3.501 1.75 1.75 0 0 0-.001-3.501Z"/><path d="M13.405 1.72a.75.75 0 0 1 0 1.06L12.185 4h4.065A3.75 3.75 0 0 1 20 7.75v8.75a.75.75 0 0 1-1.5 0V7.75a2.25 2.25 0 0 0-2.25-2.25h-4.064l1.22 1.22a.75.75 0 0 1-1.061 1.06l-2.5-2.5a.75.75 0 0 1 0-1.06l2.5-2.5a.75.75 0 0 1 1.06 0ZM4.75 7.25A.75.75 0 0 1 5.5 8v8A.75.75 0 0 1 4 16V8a.75.75 0 0 1 .75-.75Z"/></g></g></svg> BWA workflow</span>
-    </h2>
-</doc-anchor-target>
-<doc-tabs>
-<doc-tab v-cloak id="details">
-<template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M15 13.25a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0Zm-12.5 6a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0Zm0-14.5a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0ZM5.75 6.5a1.75 1.75 0 1 0-.001-3.501A1.75 1.75 0 0 0 5.75 6.5Zm0 14.5a1.75 1.75 0 1 0-.001-3.501A1.75 1.75 0 0 0 5.75 21Zm12.5-6a1.75 1.75 0 1 0-.001-3.501A1.75 1.75 0 0 0 18.25 15Z"/><path d="M6.5 7.25c0 2.9 2.35 5.25 5.25 5.25h4.5V14h-4.5A6.75 6.75 0 0 1 5 7.25Z"/><path d="M5.75 16.75A.75.75 0 0 1 5 16V8a.75.75 0 0 1 1.5 0v8a.75.75 0 0 1-.75.75Z"/></g></g></svg> details</template>
-<ul>
-<li>default aligner</li>
-<li>ignores (but retains) barcode information</li>
-<li>fast</li>
-</ul>
-<p>The <a href="https://github.com/lh3/bwa">BWA MEM</a> workflow is much simpler and faster than the EMA workflow
-and maps all reads against the reference genome. Duplicates are marked using <code v-pre>samtools markdup</code>.
-The <code v-pre>BX:Z</code> tags in the read headers are still added to the alignment headers, even though barcodes
-are not used to inform mapping. The <code v-pre>-m</code> threshold is used for alignment molecule assignment.</p>
-<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
-    Z([trimmed reads]) --&gt; B
-    A([index genome]) --&gt; B([align to genome])
-    B--&gt;C([sort alignments])
-    C--&gt;D([mark duplicates])
-    D--&gt;E([assign molecules])
-    E--&gt;F([alignment metrics])
-    D--&gt;G([barcode stats])
-    G--&gt;F
-    subgraph markdp [mark duplicates via `samtools`]
-        direction LR
-        collate--&gt;fixmate
-        fixmate--&gt;sort
-        sort--&gt;markdup
-    end</pre></div>
-</doc-tab>
-<doc-tab v-cloak id="bwa-output">
-<template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M2 4.75C2 3.784 2.784 3 3.75 3h4.971c.58 0 1.12.286 1.447.765l1.404 2.063c.046.069.124.11.207.11h8.471c.966 0 1.75.783 1.75 1.75V19.25A1.75 1.75 0 0 1 20.25 21H3.75A1.75 1.75 0 0 1 2 19.25Zm1.75-.25a.25.25 0 0 0-.25.25v14.5c0 .138.112.25.25.25h16.5a.25.25 0 0 0 .25-.25V7.687a.25.25 0 0 0-.25-.25h-8.471a1.75 1.75 0 0 1-1.447-.765L8.928 4.61a.252.252 0 0 0-.208-.11Z"/></g></g></svg> BWA output</template>
-<p>The default output directory is <code v-pre>Align/bwa</code> with the folder structure below. <code v-pre>Sample1</code> is a generic sample name for demonstration purposes.
-The resulting folder also includes a <code v-pre>workflow</code> directory (not shown) with workflow-relevant runtime files and information.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">Align/bwa
-├── Sample1.bam
-├── Sample1.bam.bai
-├── logs
-│   └── markduplicates
-│       └── Sample1.markdup.log
-└── reports
-    ├── bwa.stats.html
-    ├── BXstats
-    │   ├── Sample1.bxstats.html
-    │   └── data
-    │       └── Sample1.bxstats.gz
-    └── coverage
-        ├── Sample1.gencov.html
-        └── data
-            └── Sample1.gencov.gz
-
-</code></pre>
-</doc-codeblock></div>
+<p>Inversions are when a section of a chromosome appears in the reverse orientation (<a href="https://www.genome.gov/genetics-glossary/Inversion">source</a>).</p>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
 <tr>
-<th style="text-align: left;">item</th>
+<th style="text-align: left;">argument</th>
+<th style="text-align: center;">short name</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: center;">default</th>
 <th style="text-align: left;">description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code v-pre>*.bam</code></td>
-<td style="text-align: left;">sequence alignments for each sample</td>
+<td style="text-align: left;"><code v-pre>--vcf</code></td>
+<td style="text-align: center;"><code v-pre>-v</code></td>
+<td style="text-align: left;">file path</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">VCF file of known inversions to simulate</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>*.bai</code></td>
-<td style="text-align: left;">sequence alignment indexes for each sample</td>
+<td style="text-align: left;"><code v-pre>--count</code></td>
+<td style="text-align: center;"><code v-pre>-n</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">Number of random inversions to simluate</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>logs/markduplicates</code></td>
-<td style="text-align: left;">stats provided by <code v-pre>samtools markdup</code></td>
+<td style="text-align: left;"><code v-pre>--min-size</code></td>
+<td style="text-align: center;"><code v-pre>-m</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">1000</td>
+<td style="text-align: left;">Minimum inversion size (bp)</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>reports/</code></td>
-<td style="text-align: left;">various counts/statistics/reports relating to sequence alignment</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>reports/bwa.stats.html</code></td>
-<td style="text-align: left;">report summarizing <code v-pre>samtools flagstat and stats</code> results across all samples from <code v-pre>multiqc</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>reports/reads.bxstats.html</code></td>
-<td style="text-align: left;">interactive html report summarizing valid vs invalid barcodes across all samples</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>reports/BXstats/*.bxstats.html</code></td>
-<td style="text-align: left;">interactive html report summarizing inferred molecule size</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>reports/coverage/*.html</code></td>
-<td style="text-align: left;">summary plots of alignment coverage per contig</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>reports/coverage/data/*.gencov.gz</code></td>
-<td style="text-align: left;">output from samtools bedcov from all alignments, used for plots</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>reports/BXstats/</code></td>
-<td style="text-align: left;">reports summarizing molecule size and reads per molecule</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>reports/BXstats/data/</code></td>
-<td style="text-align: left;">tabular data containing the information used to generate the BXstats reports</td>
+<td style="text-align: left;"><code v-pre>--max-size</code></td>
+<td style="text-align: center;"><code v-pre>-x</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">100000</td>
+<td style="text-align: left;">Maximum inversion size (bp)</td>
 </tr>
 </tbody>
 </table>
 </div>
-</doc-tab>
-<doc-tab v-cloak id="bwa-parameters">
-<template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M10.3 8.24a.75.75 0 0 1-.04 1.06L7.352 12l2.908 2.7a.75.75 0 1 1-1.02 1.1l-3.5-3.25a.75.75 0 0 1 0-1.1l3.5-3.25a.75.75 0 0 1 1.06.04Zm3.44 1.06a.75.75 0 1 1 1.02-1.1l3.5 3.25a.75.75 0 0 1 0 1.1l-3.5 3.25a.75.75 0 1 1-1.02-1.1l2.908-2.7-2.908-2.7Z"/><path d="M2 3.75C2 2.784 2.784 2 3.75 2h16.5c.966 0 1.75.784 1.75 1.75v16.5A1.75 1.75 0 0 1 20.25 22H3.75A1.75 1.75 0 0 1 2 20.25Zm1.75-.25a.25.25 0 0 0-.25.25v16.5c0 .138.112.25.25.25h16.5a.25.25 0 0 0 .25-.25V3.75a.25.25 0 0 0-.25-.25Z"/></g></g></svg> BWA parameters</template>
-<p>By default, Harpy runs <code v-pre>bwa</code> with these parameters (excluding inputs and outputs):</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">bwa mem -C -R &quot;@RG\tID:samplename\tSM:samplename&quot;</code></pre>
-</doc-codeblock></div>
-<p>Below is a list of all <code v-pre>bwa mem</code> command line arguments, excluding those Harpy already uses or those made redundant by Harpy&#x27;s implementation of BWA.
-These are taken directly from the <a href="https://bio-bwa.sourceforge.net/bwa.shtml">BWA documentation</a>.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<div class="codeblock-title">bwa arguments</div>
-<pre class="language-none"><code v-pre class="language-none">-k INT 	Minimum seed length. Matches shorter than INT will be missed. The alignment speed is usually insensitive to this value unless it significantly deviates 20. [19]
--w INT 	Band width. Essentially, gaps longer than INT will not be found. Note that the maximum gap length is also affected by the scoring matrix and the hit length, not solely determined by this option. [100]
--d INT 	Off-diagonal X-dropoff (Z-dropoff). Stop extension when the difference between the best and the current extension score is above |i-j|*A+INT, where i and j are the current positions of the query and reference, respectively, and A is the matching score. Z-dropoff is similar to BLAST’s X-dropoff except that it doesn’t penalize gaps in one of the sequences in the alignment. Z-dropoff not only avoids unnecessary extension, but also reduces poor alignments inside a long good alignment. [100]
--r FLOAT 	Trigger re-seeding for a MEM longer than minSeedLen*FLOAT. This is a key heuristic parameter for tuning the performance. Larger value yields fewer seeds, which leads to faster alignment speed but lower accuracy. [1.5]
--c INT 	Discard a MEM if it has more than INT occurence in the genome. This is an insensitive parameter. [10000]
--P 	In the paired-end mode, perform SW to rescue missing hits only but do not try to find hits that fit a proper pair.
--A INT 	Matching score. [1]
--B INT 	Mismatch penalty. The sequence error rate is approximately: {.75 * exp[-log(4) * B/A]}. [4]
--O INT 	Gap open penalty. [6]
--E INT 	Gap extension penalty. A gap of length k costs O + k*E (i.e. -O is for opening a zero-length gap). [1]
--L INT 	Clipping penalty. When performing SW extension, BWA-MEM keeps track of the best score reaching the end of query. If this score is larger than the best SW score minus the clipping penalty, clipping will not be applied. Note that in this case, the SAM AS tag reports the best SW score; clipping penalty is not deducted. [5]
--U INT 	Penalty for an unpaired read pair. BWA-MEM scores an unpaired read pair as scoreRead1+scoreRead2-INT and scores a paired as scoreRead1+scoreRead2-insertPenalty. It compares these two scores to determine whether we should force pairing. [9]
--T INT 	Don’t output alignment with score lower than INT. This option only affects output. [30]
--a 	Output all found alignments for single-end or unpaired paired-end reads. These alignments will be flagged as secondary alignments.
--H 	Use hard clipping ’H’ in the SAM output. This option may dramatically reduce the redundancy of output when mapping long contig or BAC sequences.</code></pre>
-</doc-codeblock></div>
-</doc-tab>
-<doc-tab v-cloak id="reports">
-<template #title><svg xmlns="http://www.w3.org/2000/svg" class="docs-icon" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><g><path d="M2.5 2.75a.75.75 0 0 0-1.5 0v18.5c0 .414.336.75.75.75H20a.75.75 0 0 0 0-1.5H2.5V2.75Z"/><path d="M22.28 7.78a.75.75 0 0 0-1.06-1.06l-5.72 5.72-3.72-3.72a.75.75 0 0 0-1.06 0l-6 6a.75.75 0 1 0 1.06 1.06l5.47-5.47 3.72 3.72a.75.75 0 0 0 1.06 0l6.25-6.25Z"/></g></g></svg> reports</template>
-<p>These are the summary reports Harpy generates for this workflow. You may right-click
-the images and open them in a new tab if you wish to see the examples in better detail.</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white border-r">
-        <span>Depth and coverage</span>
-    </div>
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white border-r">
-        <span>BX validation</span>
-    </div>
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white border-r">
-        <span>Molecule size</span>
-    </div>
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white">
-        <span>Alignment stats</span>
-    </div>
-    <div class="px-5 py-3 docs-columns-content border-r border-gray-200 dark:border-dark-650">
-<p>Reports the depth of alignments in 10kb windows.
-<figure class="content-center">
-    <img src="../../../static/report_align_coverage.png" alt="reports/coverage/*.html">
-    <figcaption class="caption">reports/coverage/*.html</figcaption>
-</figure>
-</p>
-    </div>
-    <div class="px-5 py-3 docs-columns-content border-r border-gray-200 dark:border-dark-650">
-<p>Reports the number of valid/invalid barcodes in the alignments.
-<figure class="content-center">
-    <img src="../../../static/report_align_bxstats.png" alt="reports/reads.bxstats.html">
-    <figcaption class="caption">reports/reads.bxstats.html</figcaption>
-</figure>
-</p>
-    </div>
-    <div class="px-5 py-3 docs-columns-content border-r border-gray-200 dark:border-dark-650">
-<p>Reports the inferred molecule sized based on barcodes in the alignments.
-<figure class="content-center">
-    <img src="../../../static/report_align_bxmol.png" alt="reports/BXstats/*.bxstats.html">
-    <figcaption class="caption">reports/BXstats/*.bxstats.html</figcaption>
-</figure>
-</p>
-    </div>
-    <div class="px-5 py-3 docs-columns-content">
-<p>Reports the general statistics computed by samtools <code v-pre>stats</code> and <code v-pre>flagstat</code>
-<figure class="content-center">
-    <img src="../../../static/report_align_flagstat.png" alt="reports/samtools_*stat/*html">
-    <figcaption class="caption">reports/samtools_*stat/*html</figcaption>
-</figure>
-</p>
-    </div>
+   </doc-panel>
+   <doc-panel id="copy-number-variants" collapsed>
+       <template #title>copy number variants</template>
+<doc-anchor-target id="cnv">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cnv">#</doc-anchor-trigger>
+        <span>cnv</span>
+    </h3>
+</doc-anchor-target>
+<p>A copy number variation (CNV) is when the number of copies of a particular gene varies
+between individuals (<a href="https://www.genome.gov/genetics-glossary/Copy-Number-Variation">source</a>)
+The ratio parameters control different things and have special meanings when setting
+the value to either <code v-pre>9999</code> or <code v-pre>0</code> :</p>
+<ul>
+<li><code v-pre>--dup-ratio</code>
+<ul>
+<li><code v-pre>9999</code>: tandem duplications only</li>
+<li><code v-pre>0</code>: dispersed duplications only</li>
+</ul>
+</li>
+<li><code v-pre>--gain-ratio</code>
+<ul>
+<li><code v-pre>9999</code>: gain only</li>
+<li><code v-pre>0</code>: loss only</li>
+</ul>
+</li>
+</ul>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;">argument</th>
+<th style="text-align: center;">short name</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: center;">default</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>--vcf</code></td>
+<td style="text-align: center;"><code v-pre>-v</code></td>
+<td style="text-align: left;">file path</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">VCF file of known copy number variants to simulate</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--count</code></td>
+<td style="text-align: center;"><code v-pre>-n</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">Number of random cnv to simluate</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--min-size</code></td>
+<td style="text-align: center;"><code v-pre>-m</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">1000</td>
+<td style="text-align: left;">Minimum cnv size (bp)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--max-size</code></td>
+<td style="text-align: center;"><code v-pre>-x</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">100000</td>
+<td style="text-align: left;">Maximum cnv size (bp)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--max-copy</code></td>
+<td style="text-align: center;"><code v-pre>-y</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: left;">Maximum number of copies</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--dup-ratio</code></td>
+<td style="text-align: center;"><code v-pre>-d</code></td>
+<td style="text-align: left;">float</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Tandem/Dispersed duplication ratio</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--gain-ratio</code></td>
+<td style="text-align: center;"><code v-pre>-l</code></td>
+<td style="text-align: left;">float</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Relative ratio of DNA gain over DNA loss</td>
+</tr>
+</tbody>
+</table>
 </div>
-</doc-tab>
-</doc-tabs>
+   </doc-panel>
+   <doc-panel id="translocations" collapsed>
+       <template #title>translocations</template>
+<doc-anchor-target id="translocation">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#translocation">#</doc-anchor-trigger>
+        <span>translocation</span>
+    </h3>
+</doc-anchor-target>
+<p>A translocation occurs when a chromosome breaks and the fragmented pieces re-attach to different chromosomes (<a href="https://www.genome.gov/genetics-glossary/Translocation">source</a>).</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th style="text-align: left;">argument</th>
+<th style="text-align: center;">short name</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: center;">default</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code v-pre>--vcf</code></td>
+<td style="text-align: center;"><code v-pre>-v</code></td>
+<td style="text-align: left;">file path</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">VCF file of known inversions to simulate</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>--count</code></td>
+<td style="text-align: center;"><code v-pre>-n</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">Number of random inversions to simluate</td>
+</tr>
+</tbody>
+</table>
+</div>
+   </doc-panel>
+</doc-panels>
+<doc-anchor-target id="simulate-known-variants">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#simulate-known-variants">#</doc-anchor-trigger>
+        <span>Simulate known variants</span>
+    </h2>
+</doc-anchor-target>
+<p>Rather than simulating random variants, you can use a VCF file as input to any of the submodules
+to have <code v-pre>simuG</code> simulate the variants (of that type) from the VCF file. This becomes particularly
+handy because the modules output a VCF file of the variants that were introduced, which you can
+modify and reuse as you see fit (see <doc-anchor-trigger to="#heterozygosity">heterozygosity</doc-anchor-trigger>). Using <code v-pre>--genes</code>,
+<code v-pre>--centromeres</code>, or <code v-pre>--exclude-chr</code> would still avoid creating variants in those regions as with
+random simulation, except with SNPs, where you would have to specify the contraints for using
+<code v-pre>--genes</code> as per usual.</p>
+<doc-anchor-target id="heterozygosity">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#heterozygosity">#</doc-anchor-trigger>
+        <span>Heterozygosity</span>
+    </h2>
+</doc-anchor-target>
+<p>Each submodule has a <code v-pre>--heterozygosity</code> parameter where you can specify the heterozygosity of
+an intended diploid genome, should you use the resulting VCF(s) to simulate variants again.
+This <strong>does not</strong> create a diploid genome for you, rather, it
+takes the output VCF from <code v-pre>simuG</code> and creates two new VCF files (<code v-pre>{prefix}.hap1.vcf</code>,
+<code v-pre>{prefix}.hap2.vcf</code>) that have their variants shuffled between the two haplotypes to
+achieve the desired heterozygosity. You can then use the two resulting VCF files to
+<doc-anchor-trigger to="#simulate-known-variants">simulate known variants</doc-anchor-trigger> onto a genome and create a diploid genome!
+A simplified workflow is provided below to explain that in better context.</p>
+<doc-panel id="how-the-paramater-is-actually-used" collapsed>
+    <template #title>How the paramater is actually used</template>
+<p>To understand how heterozygosity is created from the <code v-pre>simuG</code> VCF output, consider a genome
+with 5 variants added to it, here represented as a column labelled <code v-pre>h1</code> with <code v-pre>1</code> being the presence
+of a variant (the ALT allele).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">h1
+1
+1
+1
+1
+1</code></pre>
+</doc-codeblock></div>
+<p>If we were to simulate those same variants onto the genome again, it would create a homozygote
+at every position (<code v-pre>h2</code> is the second haplotype):</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">h1 h2
+1  1
+1  1
+1  1
+1  1
+1  1</code></pre>
+</doc-codeblock></div>
+<p>However, if we omit some of the variants on <code v-pre>h2</code> to create 40% heterozygosity (2/5),
+we would now have heterozygotes, except the ALT allele for the heterozygote would
+only every be on the first haplotype <code v-pre>h1</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">h1 h2
+1  1
+1  1
+1  1
+1     &lt;- heterozygote with ALT on h1
+1     &lt;- heterozygote with ALT on h1</code></pre>
+</doc-codeblock></div>
+<p>It would probably be more biologically sound to then make sure that the ALT allele
+in the heterozygote can appear in either haplotype:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">h1 h2
+1  1
+1  1
+1  1
+   1  &lt;- heterozygote with ALT on h2
+1     &lt;- heterozygote with ALT on h1</code></pre>
+</doc-codeblock></div>
+<p>Within Harpy, a heterozygous variant has a 50% chance of being assigned to one of the haplotypes.
+So that&#x27;s the logic behind the <code v-pre>--heterozygosity</code> parameter and why it ouputs 3 VCF files:</p>
+<ol>
+<li>the VCF <code v-pre>simuG</code> outputs of variants added to the genome</li>
+<li>haplotype 1 of that VCF file with some of the variants</li>
+<li>haplotype 2 of that VCF file with some of the variants</li>
+</ol>
+<p>Knowing that, you can then have a workflow to start with a haploid assembly and create
+a diploid assembly with simulated variants.</p>
+</doc-panel>
+<doc-anchor-target id="simulate-diploid-assembly">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#simulate-diploid-assembly">#</doc-anchor-trigger>
+        <span>Simulate Diploid Assembly</span>
+    </h2>
+</doc-anchor-target>
+<p>Here is a simple but realistic workflow of creating a diploid assembly with simulated variants.
+If you haven&#x27;t already, please read the sections about <doc-anchor-trigger to="#simulate-known-variants">simulating known variants</doc-anchor-trigger>
+and <doc-anchor-trigger to="#heterozygosity">heterozygosity</doc-anchor-trigger>. The idea here is that due to the limitations of <code v-pre>simuG</code>, we can
+only simulate one type of variant at a time and we will take advantage of the VCF files created by
+the <code v-pre>--heterozygosity</code> parameter to simulate known variants from random ones! The basic idea is such:</p>
+<doc-anchor-target id="step-1">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-1">#</doc-anchor-trigger>
+        <span>Step 1</span>
+    </h4>
+</doc-anchor-target>
+<p>Simulate random variants onto your haploid assembly with <code v-pre>--heterozygosity</code> (<code v-pre>-z</code>) set above <code v-pre>0</code>.
+We aren&#x27;t interested in the resulting genome, but rather the positions of the variants <code v-pre>simuG</code> created.</p>
+<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
+    geno(haploid genome)--&gt;|simulate inversion -n 10 -z 0.5|hap(inversions.vcf)
+    hap--&gt;hap1(inversion.hap1.vcf)
+    hap--&gt;hap2(inversion.hap2.vcf)</pre></div>
+<doc-anchor-target id="step-2">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-2">#</doc-anchor-trigger>
+        <span>Step 2</span>
+    </h4>
+</doc-anchor-target>
+<p>Use the resulting hap1 and hap2 VCF files to simulate those same variants, but shuffled
+into homozygotes and heterozygotes, onto the original haploid genome, creating two haplotype
+genomes.</p>
+<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
+    hap1(inversion.hap1.vcf)--&gt;|simulate inversion -v|geno
+    geno(haploid genome)--&gt;genohap1(haplotype-1 genome)</pre></div>
+<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
+    hap1(inversion.hap2.vcf)--&gt;|simulate inversion -v|geno
+    geno(haploid genome)--&gt;genohap1(haplotype-2 genome)</pre></div>
+<doc-anchor-target id="step-3">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-3">#</doc-anchor-trigger>
+        <span>Step 3</span>
+    </h4>
+</doc-anchor-target>
+<p>Use the one of the new genome haplotypes for simulating other kinds of variants.
+Again, use <code v-pre>--heterozygosity</code> (<code v-pre>-z</code>) with a value greater than <code v-pre>0</code>. Like <doc-anchor-trigger to="#step-1"><strong>Step 1</strong></doc-anchor-trigger>,
+we&#x27;re only interested in the haplotype VCF files (positions of variants) and not the resulting
+genome.</p>
+<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
+    geno(haplotype-1 genome)--&gt;|simulate snpindel -n 100000 -z 0.5|hap(snpindel.vcf)
+    hap--&gt;hap1(snpindel.hap1.vcf)
+    hap--&gt;hap2(snpindel.hap2.vcf)</pre></div>
+<doc-anchor-target id="step-4">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-4">#</doc-anchor-trigger>
+        <span>Step 4</span>
+    </h4>
+</doc-anchor-target>
+<p>Use the resulting haplotype VCFs to simulate known variants onto the <strong>haplotype genomes</strong> from
+Step 2.</p>
+<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
+    hap1(snpindel.hap1.vcf)--&gt;|simulate snpindel -v|geno
+    geno(haplotype-1 genome)--&gt;genohap1(haplotype-1 genome with new variants)</pre></div>
+<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">graph LR
+    hap1(snpindel.hap2.vcf)--&gt;|simulate snpindel -v|geno
+    geno(haplotype-2 genome)--&gt;genohap1(haplotype-2 genome with new variants)</pre></div>
+<doc-anchor-target id="step-5">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#step-5">#</doc-anchor-trigger>
+        <span>Step 5</span>
+    </h4>
+</doc-anchor-target>
+<p>Repeat <doc-anchor-trigger to="#step-3"><strong>Step 3</strong></doc-anchor-trigger> and <doc-anchor-trigger to="#step-4"><strong>Step 4</strong></doc-anchor-trigger> to your heart&#x27;s content.</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -579,7 +824,7 @@ the images and open them in a new tab if you wish to see the examples in better 
                             </div>
                             <footer class="clear-both">
                                 <div class="flex flex-wrap items-center justify-between mt-14">
-                                    <a class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-blue-500 dark:text-blue-400 hover:text-blue-700 hover:underline" href="https://github.com/pdimens/HARPY/edit/docs/Modules/Align/bwa.md" target="_blank" rel="noopener">
+                                    <a class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-blue-500 dark:text-blue-400 hover:text-blue-700 hover:underline" href="https://github.com/pdimens/HARPY/edit/docs/Modules/Simulate/simulate-variants.md" target="_blank" rel="noopener">
                                         <svg class="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M20 12c-.55 0-1 .45-1 1v7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h7c.55 0 1-.45 1-1s-.45-1-1-1H4C2.35 3 1 4.35 1 6v14c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-7c0-.55-.45-1-1-1z" /><path d="M22.21 1.79c-1.18-1.18-3.24-1.18-4.41 0l-9.5 9.5c-.13.13-.22.29-.26.46l-1 4c-.08.34.01.7.26.95.18.2.44.3.7.3.08 0 .16-.01.24-.03l4-1c.18-.04.34-.13.46-.26l9.5-9.5c1.22-1.22 1.22-3.2.01-4.42zm-1.42 3l-9.3 9.3-2.11.53.53-2.11 9.3-9.3c.42-.42 1.16-.42 1.59 0 .43.43.43 1.15-.01 1.58z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         <span>Edit this page</span>
                                     </a>
@@ -587,20 +832,20 @@ the images and open them in a new tab if you wish to see the examples in better 
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../modules/qc/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../modules/align/minimap/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">QC</span>
+                                                <span class="block mt-1">Minimap</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../modules/align/ema/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../modules/snp/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">EMA</span>
+                                                <span class="block mt-1">SNP</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -644,6 +889,6 @@ the images and open them in a new tab if you wish to see the examples in better 
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "BWA", level: 3, icon: "file", hasPrism: true, hasMermaid: true, hasMath: true, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Variants", level: 3, icon: "file", hasPrism: true, hasMermaid: true, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
