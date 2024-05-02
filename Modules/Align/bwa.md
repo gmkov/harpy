@@ -33,7 +33,6 @@ In addition to the [common runtime options](/commonoptions.md), the `harpy align
 | `--genome`         |    `-g`    | file path             |         | **yes**  | Genome assembly for read mapping                      |
 | `--molecule-distance` |    `-m`    | integer         |  100000  |    no    | Base-pair distance threshold to separate molecules      |
 | `--quality-filter` |    `-f`    | integer (0-40)        |   30    |    no    | Minimum `MQ` (SAM mapping quality) to pass filtering  |
-| `--method`         |    `-m`    | choice [`bwa`, `ema`] |   bwa   |    no    | Which aligning software to use                        |
 | `--extra-params`   |    `-x`    | string                |         |    no    | Additional EMA-align/BWA arguments, in quotes         |
 
 ### Molecule distance
